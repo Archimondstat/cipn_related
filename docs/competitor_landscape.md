@@ -131,3 +131,96 @@ First stratify the competitor evidence by:
 - treatment duration / cumulative chemotherapy exposure.
 
 Only then should historical scenarios be converted into simulation assumptions for FREQ-01 and BAYES-01.
+
+
+## 2026 current-development update
+
+The competitor landscape should distinguish **published historical benchmarks** from **currently active drug-development programs**. The latter are especially relevant for endpoint/regulatory choices, even when they do not yet provide mature effect estimates.
+
+### PC-SOD (lecithinized superoxide dismutase) — PROSPER Phase III
+- Sponsor/development group: Japanese multicenter program.
+- Current status: Phase III program reported as ongoing/recruiting in 2026.
+- Population: curatively resected stage II/III colorectal cancer, planned 12 cycles of adjuvant mFOLFOX6.
+- Design: randomized, double-blind, placebo-controlled, approximately 350 participants, 1:1 allocation.
+- **Primary endpoint: time to onset of CTCAE grade >=2 CIPN.**
+- Key secondary endpoint: time to onset of DEB-NTC grade >=2 CIPN; oxaliplatin infusion-related reactions are also evaluated.
+- Phase II predecessor (jRCT2031210466): 90 participants (PC-SOD 43, placebo 47); primary endpoint was number of cycles/time until NCI-CTCAE grade >=2 CIPN. The phase II primary endpoint was not met (HR 0.88, 95% CI 0.44-1.78), but the program nevertheless advanced to Phase III.
+- **Design relevance:** among current programs this is one of the closest matches to our planned binary CTCAE >=2 prevention endpoint, except that PROSPER uses time-to-onset rather than a fixed-horizon binary endpoint.
+
+Sources:
+- Phase II publication: https://www.sciencedirect.com/science/article/pii/S2949819825001384
+- Phase III PROSPER publication: https://pubmed.ncbi.nlm.nih.gov/42583153/
+- Phase III trial abstract: https://ascopubs.org/doi/10.1200/JCO.2026.44.2_suppl.TPS257
+
+### ART-123 (recombinant thrombomodulin) — Phase III
+- Sponsor: Asahi Kasei Therapeutics.
+- Trial: jRCT2051250045.
+- Current status: recruiting; first enrollment in June 2025.
+- Target sample size: 450.
+- Population: oxaliplatin-treated patients; Phase II precedent used stage II/III colon cancer receiving adjuvant mFOLFOX6.
+- Phase III primary endpoint: change from baseline in FACT/GOG-NTX4.
+- Important secondary endpoint: proportion developing CTCAE grade >=2 peripheral sensory neuropathy.
+- Phase IIa precedent: placebo / 1-day ART-123 / 3-day ART-123, with cumulative CTCAE grade >=2 sensory neuropathy at cycle 12 of 64.3%, 40.7%, and 45.8%, respectively.
+- **Design relevance:** very relevant for plausible effect-size scenarios and 3-arm dose/schedule architecture, but its current Phase III program has moved the primary endpoint from CTCAE to a PRO endpoint.
+
+Sources:
+- Phase II publication: https://pmc.ncbi.nlm.nih.gov/articles/PMC7561567/
+- Phase III registry: https://jrct.mhlw.go.jp/en-latest-detail/jRCT2051250045
+
+### GM1 — Gypsophila Phase III in nab-paclitaxel breast cancer
+- Sponsor: Qilu Pharmaceutical.
+- Trial: NCT06994507 / QLGM1-CIPN-301.
+- Current status: recruiting.
+- Population: breast cancer receiving nab-paclitaxel in adjuvant/neoadjuvant treatment.
+- Design: randomized, double-blind, placebo-controlled Phase III; planned N=352 (176 per group).
+- Primary endpoint: at C4D21, proportion with FACT/GOG-NTX deterioration >12 points from baseline.
+- **Design relevance:** current pharmacologic prevention competitor in the taxane stratum; should not be pooled with oxaliplatin control-rate assumptions.
+
+Source:
+- https://clinicaltrials.gov/study/NCT06994507
+
+### AH-008 — early pipeline
+- Sponsor: AnHorn Medicines.
+- Current status: first-in-human Phase I in healthy volunteers began in 2026 (NCT07697560).
+- Development intent: pharmacologic prevention of CIPN, with stated broad applicability across taxanes, platinum agents, and ADCs.
+- No patient efficacy data are yet available.
+- **Design relevance:** commercial/pipeline surveillance only at present; not suitable for p0 or effect-size calibration.
+
+Sources:
+- https://www.anhornmed.com/news/ah008-cipn-pain-prevention-fsfv/
+- NCT07697560
+
+## Important reclassification of Alliance A221805
+
+Alliance A221805 is highly relevant as a **dose-screening design precedent**, but it should not be treated as a direct randomized active-versus-placebo efficacy comparison for calibrating our CTCAE grade >=2 endpoint.
+
+Key points:
+- The Phase II portion was explicitly described as **noncomparative**.
+- Placebo was included as a calibration arm and to facilitate transition to a possible Phase III.
+- Simon's two-stage design was applied **separately to each duloxetine dose arm** against a historical response rate (p0=0.50; target p1=0.70; one-sided alpha 0.05; 90% power).
+- A dose was promising if >=32/54 evaluable participants maintained minimal sensory symptoms.
+- If both doses passed, the higher observed response rate was selected; a tie favored the lower dose.
+- The primary outcome was a six-item EORTC QLQ-CIPN20 sensory composite, not CTCAE grade >=2.
+- Only 143/199 randomized participants (71.8%) were primary-endpoint evaluable; the trial had assumed only ~3% missing postbaseline data, but 21.1% had missing postbaseline OIPN data.
+
+**Implication:** use A221805 to inform Stage-1/Stage-2 screening logic, endpoint evaluability, and operational attrition. Do not use its placebo response rate directly as p0 for CTCAE grade >=2.
+
+Source:
+- https://pmc.ncbi.nlm.nih.gov/articles/PMC13120771/
+
+## Evidence hierarchy for converting competitors into design assumptions
+
+For the planned drug-C Phase II study, evidence should be weighted in the following order when estimating control incidence and plausible benefit:
+
+1. **Same chemotherapy backbone + same CTCAE grade >=2 definition + same exposure horizon**
+   - strongest source for p0 and delta scenarios;
+2. **Same backbone + same CTCAE threshold but different time metric/horizon**
+   - e.g. fixed-horizon cumulative incidence versus time-to-onset;
+3. **Same backbone + different CIPN endpoint**
+   - useful for architecture, evaluability, and timing, but not direct p0 calibration;
+4. **Different neurotoxic backbone (e.g. taxane vs oxaliplatin)**
+   - separate evidence stratum;
+5. **Non-pharmacologic interventions / small exploratory studies**
+   - useful as external context and for range checks, but should have low weight in quantitative assumptions.
+
+The current evidence therefore supports building **backbone-specific p0 scenarios** rather than one global CIPN control rate.

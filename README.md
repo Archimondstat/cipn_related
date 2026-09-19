@@ -1,5 +1,14 @@
 # CIPN-related Phase II adaptive design
 
+## Working structure
+
+This repository contains two linked but separate workstreams:
+
+1. **Design workstream** — the main focus of the current design discussion.
+2. **Competitor-analysis workstream** — maintained separately and used to inform design assumptions.
+
+The competitor review is archived in `docs/competitor_landscape.md`. A separate conversation will be used for expanding that landscape. The current design discussion should stay focused on the adaptive Phase II design itself and only import competitor-derived assumptions once they are sufficiently supported.
+
 ## Current design question
 
 Three-arm randomized Phase II study of drug C given concurrently with neurotoxic chemotherapy:
@@ -59,16 +68,54 @@ Let
 - pL = low-dose probability;
 - pH = high-dose probability.
 
-Because lower incidence is better, define benefit for dose j as either
+Because lower incidence is better, define benefit using absolute risk reduction:
 
-- absolute risk reduction: Delta_j = p0 - p_j, or
-- risk ratio / odds ratio if clinically preferred.
+- Delta_L = p0 - pL;
+- Delta_H = p0 - pH.
 
 The first simulation should use the same clinically meaningful thresholds under FREQ-01 and BAYES-01:
 
 - delta_min = minimum worthwhile absolute risk reduction;
 - delta_target = target absolute risk reduction.
 
-## Next step
+## Current methodological position
 
-Freeze the binary estimand and plausible values for p0, delta_min, and delta_target before choosing Stage 1 information fraction, interim rules, and maximum sample size.
+The project will compare two primary adaptive frameworks:
+
+- **FREQ-01:** inverse-normal combination testing + closed testing / Dunnett-type multiplicity control + adaptive dose selection + conditional-error-based sample-size reassessment.
+- **BAYES-01:** weak-prior Bayesian binary model + posterior clinically worthwhile benefit + predictive probability of final success.
+
+Both designs should permit the same Stage 1 actions:
+
+- No-Go;
+- Low only;
+- High only;
+- Both.
+
+The designs should be compared under common clinical scenarios rather than under different treatment-effect definitions.
+
+## Competitor evidence: archived, not yet converted into design assumptions
+
+Initial competitor work indicates substantial heterogeneity in CTCAE grade >=2 CIPN control rates and observed treatment effects. These findings are intentionally **not yet** converted into fixed values of p0, delta_min, or delta_target.
+
+See:
+
+- `docs/competitor_landscape.md`
+
+The competitor-analysis workstream will separately refine:
+- chemotherapy-backbone-specific control rates;
+- endpoint-horizon definitions;
+- realistic absolute risk reductions;
+- endpoint evaluability and attrition;
+- design precedents for dose selection and Go/No-Go.
+
+## Next design step
+
+After the competitor-analysis workstream returns a sufficiently supported range for p0 and plausible treatment effects, the design workstream will:
+
+1. freeze the binary estimand;
+2. specify candidate p0, delta_min, and delta_target scenarios;
+3. specify Stage 1 timing/information fraction;
+4. define FREQ-01 interim decision rules;
+5. define BAYES-01 posterior/PPoS decision rules;
+6. compare operating characteristics by simulation.

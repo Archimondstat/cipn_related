@@ -134,3 +134,25 @@ Recommended order:
 4. calibrate its evidence threshold by simulation to acceptable false-Go / correct-Go behavior;
 5. derive Stage 1 conditional-probability and futility boundaries from that final rule;
 6. evaluate hard pause vs capped-overrun operating characteristics.
+
+
+## Candidate operational strategy: Simon-style staged accrual with enrollment slowdown
+
+A practical candidate for this project is a **Simon-style two-stage screening concept combined with controlled accrual slowdown**, inspired by the operational precedent of Alliance A221805 but adapted to this three-arm randomized study.
+
+Working rule:
+
+1. Enroll Stage 1 until the prespecified Stage 1 accrual/evaluable target has been reached.
+2. Once the Stage 1 target cohort is fully accrued, **do not stop recruitment abruptly**. Instead, operationally slow recruitment while waiting for the 4-6 month primary endpoint to mature.
+3. Subjects enrolled after the Stage 1 target cohort are treated as **overrun/pipeline subjects**.
+4. The Stage 1 interim decision uses **only the prespecified Stage 1 cohort with mature primary-endpoint data**. Overrun/pipeline subjects are excluded from the interim efficacy calculation, even if some have already been randomized.
+5. Overrun/pipeline subjects remain in follow-up and their mature efficacy and safety data are retained for the **overall Phase II evidence package and the subsequent decision on whether/how to proceed to Phase III**.
+6. If an arm is dropped for efficacy futility, no new subjects are randomized to that arm after the interim decision. Subjects already randomized before the decision continue according to the prespecified follow-up/treatment rules unless safety/benefit-risk considerations require otherwise.
+7. Safety information remains continuously reviewable and is not restricted to the Stage 1 efficacy cohort.
+
+This strategy intentionally separates:
+
+- **Stage 1 decision cohort**: fixed/prespecified and used for the interim Go/No-Go rule;
+- **overrun/pipeline cohort**: excluded from the interim efficacy rule but retained as later supportive evidence.
+
+The enrollment-slowdown intensity and any maximum permitted overrun remain to be calibrated using expected accrual speed and endpoint delay. This is currently a working operational option, not yet the final design.

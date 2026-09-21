@@ -1,3 +1,5 @@
+> **Superseded on 2026-09-22.** Use `docs/cp_futility_derivation_v1_1.md`. Version 1.1 derives CP against the prespecified 10% Phase II promising criterion and adds exact final No-Go / Consider / Go operating characteristics.
+
 # CIPN Phase II Conditional-Power Simulation
 ## Statistical Derivation and R/SAS Implementation Notes
 

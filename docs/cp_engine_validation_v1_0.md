@@ -1,3 +1,5 @@
+> **Superseded on 2026-09-22.** Use `docs/cp_engine_validation_v1_1.md`; the 10% criterion is now the prespecified Phase II promising threshold rather than a provisional working success rule.
+
 # CP Engine Cross-Validation Cases v1.0
 
 Date: 2026-09-21

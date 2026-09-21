@@ -1,8 +1,8 @@
 /*=================================================================
   CIPN randomized Phase II
   Conditional-power engine and calibration utilities
-  Version 1.0
-  Date: 2026-09-21
+  Version 1.1
+  Date: 2026-09-22
 
   Endpoint:
     Y=1 if CTCAE grade >=2 CIPN (unfavorable event)
@@ -15,6 +15,13 @@
     p_placebo = 0.45
     p_treatment = 0.30
     target treatment effect = 0.15
+    weak-effect boundary    = 0.05
+    promising threshold     = 0.10
+
+  Phase II efficacy classification (program level):
+    max observed effect < 0.05          : No-Go leaning
+    0.05 <= max observed effect < 0.10  : Consider
+    max observed effect >= 0.10         : Go leaning
 
   IMPORTANT:
     Conditional power is NON-BINDING decision support.
@@ -29,8 +36,11 @@
 /*-----------------------------------------------------------------
   1. Exact individual CP using ACTUAL interim sample sizes
 
-  Final success event:
+  Final Phase II promising event:
       (xp + YP)/NP - (xt + YT)/NT >= delta_go
+
+  delta_go=0.10 is retained as the macro parameter name for backward
+  compatibility; it represents the prespecified promising threshold.
 
   Future assumptions:
       YP ~ Bin(NP-np, qP)
@@ -101,7 +111,7 @@
   2. Exact joint CP for Low + High sharing one placebo arm
 
   Joint CP:
-      P(at least one active dose reaches final success
+      P(at least one active dose reaches the final promising criterion
         | actual interim data, future assumptions)
 
   Given future placebo count YP, future Low and High counts are
@@ -454,9 +464,144 @@
 %mend;
 
 
+
+
 /*-----------------------------------------------------------------
-  6. Example: actual unequal mature interim sample sizes
+  6. Exact final Phase II efficacy-classification probabilities
+
+  Program-level efficacy classification:
+
+      delta_max = max(delta_L, delta_H)
+
+      delta_max < weak_effect_boundary
+          -> No-Go leaning
+
+      weak_effect_boundary <= delta_max < promising_threshold
+          -> Consider
+
+      delta_max >= promising_threshold
+          -> Go leaning
+
+  This is an efficacy classification, not an automatic development
+  decision.
+
+  IMPORTANT:
+  Because the Stage 1 review is non-binding and no mechanical interim
+  stop rule is specified, these FINAL probabilities depend on final N
+  and true event rates, but not on the Stage 1 information fraction.
 -----------------------------------------------------------------*/
+
+%macro final_classification_oc_equal_n(
+    N=,
+    pP_true=0.45,
+    pL_true=0.30,
+    pH_true=0.30,
+    weak_effect_boundary=0.05,
+    promising_threshold=0.10,
+    out=final_classification_oc
+  );
+
+  data &out;
+    length
+      P_NoGo_leaning
+      P_Consider
+      P_Go_leaning 8;
+
+    P_NoGo_leaning = 0;
+    P_Consider = 0;
+    P_Go_leaning = 0;
+
+    do xP = 0 to &N;
+
+      p_xP = pdf(
+        'BINOMIAL',
+        xP,
+        &pP_true,
+        &N
+      );
+
+      do xL = 0 to &N;
+
+        p_xL = pdf(
+          'BINOMIAL',
+          xL,
+          &pL_true,
+          &N
+        );
+
+        delta_L =
+          (xP - xL) / &N;
+
+        do xH = 0 to &N;
+
+          p_xH = pdf(
+            'BINOMIAL',
+            xH,
+            &pH_true,
+            &N
+          );
+
+          delta_H =
+            (xP - xH) / &N;
+
+          delta_max =
+            max(
+              delta_L,
+              delta_H
+            );
+
+          pr =
+            p_xP *
+            p_xL *
+            p_xH;
+
+          if delta_max <
+             &weak_effect_boundary
+          then
+            P_NoGo_leaning + pr;
+
+          else if delta_max <
+                  &promising_threshold
+          then
+            P_Consider + pr;
+
+          else
+            P_Go_leaning + pr;
+
+        end;
+      end;
+    end;
+
+    N_per_arm = &N;
+    pP_true = &pP_true;
+    pL_true = &pL_true;
+    pH_true = &pH_true;
+
+    true_effect_low =
+      pP_true - pL_true;
+
+    true_effect_high =
+      pP_true - pH_true;
+
+    keep
+      N_per_arm
+      pP_true
+      pL_true
+      pH_true
+      true_effect_low
+      true_effect_high
+      P_NoGo_leaning
+      P_Consider
+      P_Go_leaning;
+  run;
+
+%mend;
+
+
+/*-----------------------------------------------------------------
+  7. Example: actual unequal mature interim sample sizes
+-----------------------------------------------------------------*/
+
 
 /*
 %cp_individual_actual(
@@ -478,7 +623,7 @@ run;
 
 
 /*-----------------------------------------------------------------
-  7. Example Monte Carlo validation
+  8. Example Monte Carlo validation
 -----------------------------------------------------------------*/
 
 /*
@@ -503,5 +648,25 @@ run;
 
 proc means data=sim_target mean std min p25 median p75 max;
   var effect_L effect_H cpL cpH both_below_reference;
+run;
+*/
+
+
+/*-----------------------------------------------------------------
+  9. Example exact final efficacy-classification OC
+-----------------------------------------------------------------*/
+
+/*
+%final_classification_oc_equal_n(
+  N=44,
+  pP_true=0.45,
+  pL_true=0.30,
+  pH_true=0.30,
+  weak_effect_boundary=0.05,
+  promising_threshold=0.10,
+  out=final_oc_N44_target
+);
+
+proc print data=final_oc_N44_target noobs;
 run;
 */

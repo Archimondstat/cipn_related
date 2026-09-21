@@ -1,3 +1,5 @@
+> **Superseded on 2026-09-22.** Use `docs/cp_crc_vitality_style_focused_v1_5.md`. The updated version replaces automatic futility-boundary wording with non-binding reference observed treatment-effect terminology.
+
 # Focused VITALITY-style CRC Boundary Table v1.4
 
 Date: 2026-09-21  

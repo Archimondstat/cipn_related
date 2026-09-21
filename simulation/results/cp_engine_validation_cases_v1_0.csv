@@ -1,0 +1,14 @@
+test_id,description,expected_value
+A1,"Individual CP; N=44,n1=22,D=0, qP=0.45,qT=0.30, delta_go=0.10",0.3549137605
+A2,"Joint CP; N=44,n1=22,D=0 for both active doses",0.4999095300
+A3,"Individual CP; N=44,n1=22,D=2 (9.09% observed treatment effect)",0.6019411641
+A4,"Joint CP; N=44,n1=22,D=2 for both active doses",0.7554491695
+A5,"Individual CP; N=44,n1=22,D=-1 (-4.55% observed treatment effect)",0.2451685272
+A6,"Joint CP; N=44,n1=22,D=-1 for both active doses",0.3648833940
+B1,"P(both doses at/below 0% reference); true effect 0%, n1=22",0.3965002713
+B2,"P(both doses at/below 0% reference); true effect 5%, n1=22",0.2645703173
+B3,"P(both doses at/below 0% reference); true effect 15%, n1=22",0.0824218199
+B4,"P(both doses at/below 4.55% reference); true effect 15%, n1=22",0.1492965883
+B5,"P(both doses at/below 9.09% reference); true effect 15%, n1=22",0.2445508305
+C1,"Individual CP unequal mature n: xp=10,np=23,xt=8,nt=21, NP=NT=44",0.5092724402
+C2,"Joint CP unequal mature n: xp=10,np=23,xL=8,nL=21,xH=7,nH=22, final N=44/arm",0.7583376660

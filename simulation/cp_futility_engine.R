@@ -33,7 +33,8 @@
 #   2) exact joint CP for Low/High sharing one placebo arm;
 #   3) lookup-table construction for efficient simulation;
 #   4) exact VITALITY-style calibration tables for equal nominal n;
-#   5) optional Monte Carlo validation.
+#   5) optional Monte Carlo validation;
+#   6) exact final No-Go leaning / Consider / Go leaning OCs.
 #
 # No external R packages are required.
 # ================================================================
@@ -843,7 +844,7 @@ if (sys.nframe() == 0L) {
 
   write.csv(
     all_reference,
-    "simulation/results/cp_reference_table_R_v1_0.csv",
+    "simulation/results/cp_reference_table_R_v1_1.csv",
     row.names = FALSE
   )
 

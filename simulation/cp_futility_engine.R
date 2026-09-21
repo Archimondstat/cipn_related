@@ -1,8 +1,8 @@
 # ================================================================
 # CIPN randomized Phase II
 # Conditional-power engine and calibration utilities
-# Version 1.0
-# Date: 2026-09-21
+# Version 1.1
+# Date: 2026-09-22
 #
 # Endpoint:
 #   Y = 1 if CTCAE grade >=2 CIPN (unfavorable event)
@@ -15,6 +15,13 @@
 #   p_placebo = 0.45
 #   p_treatment = 0.30
 #   target treatment effect = 0.15
+#   weak-effect boundary    = 0.05
+#   promising threshold     = 0.10
+#
+# Phase II efficacy classification (program level):
+#   max observed effect < 0.05          : No-Go leaning
+#   0.05 <= max observed effect < 0.10  : Consider
+#   max observed effect >= 0.10         : Go leaning
 #
 # IMPORTANT:
 #   CP is used as NON-BINDING decision support.
@@ -75,15 +82,18 @@ observed_treatment_effect <- function(
 
 
 # ----------------------------------------------------------------
-# 2. Final Phase II success event used inside CP
+# 2. Final Phase II promising event used inside CP
 # ----------------------------------------------------------------
 #
-# Current WORKING criterion:
+# Prespecified Phase II promising criterion for CP:
 #
-#   final observed treatment effect >= delta_go
+#   final observed treatment effect >= 0.10
 #
-# delta_go = 0.10 is NOT the assumed true treatment effect.
-# It can later be replaced without changing the CP architecture.
+# The 10% threshold is the PROMISING THRESHOLD, not the assumed true
+# treatment effect. The CRC target treatment effect remains 15%.
+#
+# Parameter name delta_go is retained for backward compatibility with
+# earlier project scripts; operationally it means promising_threshold.
 
 is_final_go <- function(
   x_placebo_final,
@@ -101,6 +111,151 @@ is_final_go <- function(
 }
 
 
+# Preferred explicit alias.
+is_final_promising <- is_final_go
+
+
+# ----------------------------------------------------------------
+# 2a. Final Phase II efficacy classification
+# ----------------------------------------------------------------
+#
+# Program-level classification uses the better observed treatment effect
+# across Low and High:
+#
+#   delta_max = max(delta_L, delta_H)
+#
+#   delta_max < 5%          -> No-Go leaning
+#   5% <= delta_max < 10%   -> Consider
+#   delta_max >= 10%        -> Go leaning
+#
+# These are efficacy classifications, not automatic development decisions.
+
+classify_phase2_efficacy <- function(
+  delta_low,
+  delta_high,
+  weak_effect_boundary = 0.05,
+  promising_threshold = 0.10
+) {
+  delta_max <- max(delta_low, delta_high)
+
+  if (delta_max < weak_effect_boundary) {
+    return("No-Go leaning")
+  }
+
+  if (delta_max < promising_threshold) {
+    return("Consider")
+  }
+
+  "Go leaning"
+}
+
+
+# ----------------------------------------------------------------
+# 2b. Exact final efficacy-classification probabilities
+# ----------------------------------------------------------------
+#
+# Equal final N per arm is used for the current design grid.
+# Shared placebo is handled exactly by conditioning on X_P.
+#
+# IMPORTANT:
+# Because the Stage 1 review is non-binding and no mechanical interim
+# stop rule has been specified, these FINAL classification probabilities
+# depend on final N and true event rates, but NOT on Stage 1 information
+# fraction. A full design OC that includes early termination would require
+# an explicit operational decision rule.
+
+final_classification_prob_exact <- function(
+  N,
+  pP_true,
+  pL_true,
+  pH_true,
+  weak_effect_boundary = 0.05,
+  promising_threshold = 0.10
+) {
+  .check_prob(pP_true, "pP_true")
+  .check_prob(pL_true, "pL_true")
+  .check_prob(pH_true, "pH_true")
+
+  x <- 0:N
+  pP <- dbinom(x, size = N, prob = pP_true)
+  pL <- dbinom(x, size = N, prob = pL_true)
+  pH <- dbinom(x, size = N, prob = pH_true)
+
+  p_nogo <- 0
+  p_consider <- 0
+  p_go <- 0
+
+  for (xP in x) {
+    for (xL in x) {
+      delta_L <- (xP - xL) / N
+
+      for (xH in x) {
+        delta_H <- (xP - xH) / N
+        pr <- pP[xP + 1] * pL[xL + 1] * pH[xH + 1]
+
+        cls <- classify_phase2_efficacy(
+          delta_low = delta_L,
+          delta_high = delta_H,
+          weak_effect_boundary = weak_effect_boundary,
+          promising_threshold = promising_threshold
+        )
+
+        if (cls == "No-Go leaning") {
+          p_nogo <- p_nogo + pr
+        } else if (cls == "Consider") {
+          p_consider <- p_consider + pr
+        } else {
+          p_go <- p_go + pr
+        }
+      }
+    }
+  }
+
+  data.frame(
+    N_per_arm = N,
+    pP_true = pP_true,
+    pL_true = pL_true,
+    pH_true = pH_true,
+    true_effect_low = pP_true - pL_true,
+    true_effect_high = pP_true - pH_true,
+    P_NoGo_leaning = p_nogo,
+    P_Consider = p_consider,
+    P_Go_leaning = p_go
+  )
+}
+
+
+make_final_classification_grid <- function(
+  N_grid = c(36, 40, 44, 48, 52),
+  true_effect_grid = c(0, 0.05, 0.10, 0.15, 0.20),
+  pP_true = 0.45,
+  weak_effect_boundary = 0.05,
+  promising_threshold = 0.10
+) {
+  rows <- list()
+  k <- 1L
+
+  for (N in N_grid) {
+    for (delta_true in true_effect_grid) {
+      pT_true <- pP_true - delta_true
+
+      rows[[k]] <- final_classification_prob_exact(
+        N = N,
+        pP_true = pP_true,
+        pL_true = pT_true,
+        pH_true = pT_true,
+        weak_effect_boundary = weak_effect_boundary,
+        promising_threshold = promising_threshold
+      )
+
+      k <- k + 1L
+    }
+  }
+
+  do.call(rbind, rows)
+}
+
+
 # ----------------------------------------------------------------
 # 3. Exact individual conditional power
 # ----------------------------------------------------------------
@@ -115,7 +270,8 @@ is_final_go <- function(
 #   YP ~ Bin(NP - np, qP)
 #   YT ~ Bin(NT - nt, qT)
 #
-# CP = P(final treatment effect >= delta_go | interim data)
+# CP = P(final treatment effect reaches the Phase II promising threshold
+#        | interim data, future-data assumption)
 
 cp_individual_exact <- function(
   xp,
@@ -175,7 +331,7 @@ cp_individual_exact <- function(
 #
 # Joint CP is defined here as:
 #
-#   P(at least one active dose reaches the final success event
+#   P(at least one active dose reaches the final promising event
 #     | actual interim data, future-data assumptions)
 #
 # The two active arms share the same future placebo count YP.
@@ -374,8 +530,11 @@ prob_both_below_reference_equal_n <- function(
 #   - joint CP;
 #   - probability both doses fall in the reference region if true
 #     effect = 0%, 5%, or 15%;
-#   - probability at least one dose ultimately reaches final observed
-#     effect >= 15%, 10%, or 5% under the working future assumption.
+#   - probability at least one dose ultimately reaches selected final
+#     observed-effect thresholds (15%, 10%, 5%) under the future assumption.
+#
+# Here 10% is the prespecified Phase II promising threshold; 5% is the
+# weak-effect boundary; 15% is the target treatment effect.
 
 make_reference_table <- function(
   N = 44,
@@ -658,7 +817,7 @@ simulate_interim_cp <- function(
 
 
 # ----------------------------------------------------------------
-# 9. Reproduce the current N=44 reference tables
+# 9. Reproduce the current N=44 reference tables and final F-framework OCs
 # ----------------------------------------------------------------
 
 if (sys.nframe() == 0L) {
@@ -689,6 +848,16 @@ if (sys.nframe() == 0L) {
   )
 
   print(all_reference)
+
+  final_classification_grid <- make_final_classification_grid()
+
+  write.csv(
+    final_classification_grid,
+    "simulation/results/cp_final_classification_grid_R_v1_1.csv",
+    row.names = FALSE
+  )
+
+  print(final_classification_grid)
 
   # Example using actual unequal mature sample sizes:
   #

@@ -1,0 +1,6 @@
+N_per_arm,n1_per_arm,nominal_CP_cutoff_group,actual_futility_boundary_d1,P_NoGo_null_pct,P_Futility_target15_pct,P_NoGo_one_target15_pct,P_NoGo_both_target15_pct,EN_A_null,EN_B_null,N_saved_A_vs_B_one_target15,ARR_95CI_halfwidth_pct
+36,18,10-15%,-3,8.72,3.55,2.16,0.73,99.18,103.29,3.49,22.09
+40,20,15-20%,-3,9.51,3.51,2.21,0.73,109.55,114.29,4.09,20.96
+44,22,10-15%,-3,10.23,3.43,2.22,0.71,119.87,125.25,4.72,19.99
+48,24,15%,-3,10.89,3.34,2.22,0.68,130.14,136.16,5.36,19.13
+52,26,10%,-3,11.49,3.23,2.20,0.66,140.37,147.03,6.02,18.38

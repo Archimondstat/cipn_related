@@ -5,11 +5,11 @@
 #   Recast the CRC Stage 1 calibration in the same structure used in
 #   VITALITY-HFpEF Table 4-2:
 #
-#     1) equivalent interim treatment-effect boundary;
-#     2) individual conditional power at that boundary;
+#     1) reference interim observed treatment effect;
+#     2) individual conditional power at that reference value;
 #     3) joint conditional power for the two active doses;
-#     4) probability of meeting the futility criterion under selected
-#        true-effect scenarios;
+#     4) probability both doses are at/below the reference region under
+#        selected true-effect scenarios;
 #     5) joint probability of observing selected final treatment effects
 #        on at least one dose.
 #
@@ -83,7 +83,7 @@ individual_cp_at_D <- function(
 # ------------------------------------------------------------
 # Joint probability that at least one dose reaches a final ARR
 # threshold, conditional on BOTH active doses being exactly at
-# the same Stage 1 boundary D.
+# the same Stage 1 reference value D.
 #
 # Shared future placebo data are handled exactly.
 # ------------------------------------------------------------

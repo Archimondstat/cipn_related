@@ -1,5 +1,5 @@
-# VITALITY-style CRC futility-boundary analysis v1.1
-# Date: 2026-09-21
+# VITALITY-style CRC reference-effect analysis v1.2
+# Date: 2026-09-22
 #
 # Purpose:
 #   Recast the CRC Stage 1 calibration in the same structure used in
@@ -18,8 +18,11 @@
 #   target active event rate = 0.30
 #   target ARR = 0.15
 #
-# Working final-Go rule used ONLY to define CP:
-#   observed final ARR >= 0.10
+# Prespecified Phase II promising criterion used to define CP:
+#   observed final treatment effect >= 0.10
+#
+# 0.05 = weak-effect boundary; 0.10 = promising threshold;
+# 0.15 = target treatment effect.
 #
 # Binary endpoint note:
 #   Unlike VITALITY's continuous KCCQ endpoint, the interim effect is
@@ -27,9 +30,10 @@
 #   boundary D:
 #
 #       d1 = xP1 - xT1
-#       futility if d1 <= D
 #
-#   The equivalent observed interim ARR boundary is D / n1.
+#   The displayed reference observed effect is D / n1.
+#   d1 <= D defines a reference region for calibration only; it is not
+#   an automatic stopping rule.
 #
 # The code supports all candidate N and Stage 1 timing choices.
 
@@ -144,11 +148,11 @@ joint_cp_at_D <- function(
 }
 
 # ------------------------------------------------------------
-# Probability that BOTH active doses satisfy the Stage 1
-# futility criterion d1 <= D under a specified true effect.
+# Probability that BOTH active doses are at or below the Stage 1
+# reference region d1 <= D under a specified true effect.
 # ------------------------------------------------------------
 
-prob_meet_futility_both <- function(
+prob_both_at_or_below_reference <- function(
   D,
   n1,
   pP_true,
@@ -180,6 +184,10 @@ prob_meet_futility_both <- function(
   ans
 }
 
+# Backward-compatible alias for historical scripts. Do not use this
+# name in new reporting.
+prob_meet_futility_both <- prob_both_at_or_below_reference
+
 # ------------------------------------------------------------
 # Build one VITALITY-style table
 # ------------------------------------------------------------
@@ -208,9 +216,9 @@ make_vitality_style_table <- function(
       Stage1_target_fraction = f1,
       n1_nominal = n1,
 
-      # VITALITY column 1 analogue
-      Event_difference_boundary_D = D,
-      Equivalent_interim_ARR_boundary =
+      # VITALITY column 1 analogue: reference/calibration value
+      Event_difference_reference_D = D,
+      Reference_interim_observed_effect =
         D / n1,
 
       # VITALITY columns 2-3 analogues
@@ -234,17 +242,17 @@ make_vitality_style_table <- function(
           p_future_t = pT_design
         ),
 
-      # VITALITY futility-criterion OC columns
-      P_meet_futility_true_ARR_0 =
-        prob_meet_futility_both(
+      # Probability both doses are at/below the displayed reference region
+      P_both_at_or_below_reference_true_effect_0 =
+        prob_both_at_or_below_reference(
           D = D,
           n1 = n1,
           pP_true = 0.45,
           pT_true = 0.45
         ),
 
-      P_meet_futility_true_ARR_15 =
-        prob_meet_futility_both(
+      P_both_at_or_below_reference_true_effect_15 =
+        prob_both_at_or_below_reference(
           D = D,
           n1 = n1,
           pP_true = 0.45,
@@ -325,7 +333,7 @@ dir.create(
 
 write.csv(
   results,
-  "simulation/results/cp_crc_vitality_style_allN_allTiming_v1_1.csv",
+  "simulation/results/cp_crc_vitality_style_allN_allTiming_v1_2.csv",
   row.names = FALSE
 )
 
@@ -339,7 +347,7 @@ for (f1 in f1_grid) {
   )
 
   outfile <- sprintf(
-    "simulation/results/cp_crc_vitality_style_N44_f1_%02d_v1_1.csv",
+    "simulation/results/cp_crc_vitality_style_N44_f1_%02d_v1_2.csv",
     round(100 * f1)
   )
 

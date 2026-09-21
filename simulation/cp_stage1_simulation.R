@@ -21,10 +21,40 @@ binom_pmf <- function(n, p) {
   dbinom(k, size = n, prob = p)
 }
 
+# ============================================================
+# Final Phase II Go rule
+# ============================================================
+#
+# IMPORTANT:
+# This function is deliberately separated from the CP engine.
+# The current implementation is only a provisional working rule:
+#
+#   observed final ARR >= delta_go
+#
+# Medical input currently indicates that an ARR of approximately
+# 0-5 percentage points would likely have limited development value,
+# but no single mandatory final-Go threshold has been fixed.
+#
+# Future versions can replace this function with, for example:
+#   - ARR >= threshold;
+#   - ARR + confidence-bound criterion;
+#   - a gray-zone decision rule;
+# without rewriting the CP machinery.
+
+is_final_go <- function(
+  xP_final,
+  xT_final,
+  NP,
+  NT,
+  delta_go = 0.10
+) {
+  arr_hat <- (xP_final / NP) - (xT_final / NT)
+
+  arr_hat >= delta_go
+}
+
 cp_lookup_design <- function(n1, N, delta_go, p_future_p, p_future_t) {
   m <- N - n1
-  threshold <- ceiling(N * delta_go - 1e-12)
-
   pmf_p <- binom_pmf(m, p_future_p)
   pmf_t <- binom_pmf(m, p_future_t)
   joint <- outer(pmf_p, pmf_t)
@@ -37,7 +67,13 @@ cp_lookup_design <- function(n1, N, delta_go, p_future_p, p_future_t) {
       prob <- 0
       for (yP in 0:m) {
         for (yT in 0:m) {
-          if ((xP + yP) - (xT + yT) >= threshold) {
+          if (is_final_go(
+            xP_final = xP + yP,
+            xT_final = xT + yT,
+            NP = N,
+            NT = N,
+            delta_go = delta_go
+          )) {
             prob <- prob + joint[yP + 1, yT + 1]
           }
         }
@@ -50,8 +86,6 @@ cp_lookup_design <- function(n1, N, delta_go, p_future_p, p_future_t) {
 
 cp_lookup_current <- function(n1, N, delta_go) {
   m <- N - n1
-  threshold <- ceiling(N * delta_go - 1e-12)
-
   out <- matrix(0, nrow = n1 + 1, ncol = n1 + 1,
                 dimnames = list(xP = 0:n1, xT = 0:n1))
 
@@ -67,7 +101,13 @@ cp_lookup_current <- function(n1, N, delta_go) {
       prob <- 0
       for (yP in 0:m) {
         for (yT in 0:m) {
-          if ((xP + yP) - (xT + yT) >= threshold) {
+          if (is_final_go(
+            xP_final = xP + yP,
+            xT_final = xT + yT,
+            NP = N,
+            NT = N,
+            delta_go = delta_go
+          )) {
             prob <- prob + joint[yP + 1, yT + 1]
           }
         }
@@ -182,8 +222,11 @@ simulate_cp_design <- function(
 # CI half-width 20% in the earlier precision-based sample-size table.
 #
 # The provisional final-Go threshold below (delta_go) is NOT a final medical
-# decision. The medical team currently regards ~0-5% ARR as weak and prefers
-# flexibility, so delta_go must be explored as a sensitivity parameter.
+# decision. It is passed only through is_final_go(), so the final decision rule
+# can later be replaced without rewriting the CP engine.
+#
+# The medical team currently regards ~0-5% ARR as weak and prefers flexibility,
+# so delta_go must be explored as a sensitivity parameter.
 
 scenarios <- data.frame(
   scenario = c(

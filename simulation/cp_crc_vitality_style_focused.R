@@ -83,7 +83,7 @@ make_focused_table <- function(
 
   base$P_both_at_or_below_reference_true_effect_05 <-
     vapply(
-      base$Event_difference_boundary_D,
+      base$Event_difference_reference_D,
       function(D) {
         prob_both_at_or_below_reference(
           D = D,

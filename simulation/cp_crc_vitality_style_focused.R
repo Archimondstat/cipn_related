@@ -49,6 +49,36 @@ make_focused_table <- function(
     D_grid = D_values
   )
 
+  # Event-count interpretation of the displayed treatment-effect boundary.
+  #
+  # D = x_placebo - x_treatment
+  #
+  # Positive D means placebo has more CTCAE >=2 CIPN events than treatment,
+  # which favors treatment.  The futility rule is D_observed <= D_boundary.
+  base$Event_count_difference_boundary <-
+    base$Event_difference_boundary_D
+
+  base$Event_count_boundary_meaning <-
+    vapply(
+      base$Event_count_difference_boundary,
+      function(D) {
+        if (D < 0) {
+          sprintf(
+            "Treatment has %d more event(s) than placebo",
+            abs(D)
+          )
+        } else if (D == 0) {
+          "Same number of events"
+        } else {
+          sprintf(
+            "Placebo has %d more event(s) than treatment",
+            D
+          )
+        }
+      },
+      character(1)
+    )
+
   base$P_meet_futility_true_effect_05 <-
     vapply(
       base$Event_difference_boundary_D,
@@ -70,6 +100,8 @@ make_focused_table <- function(
       "Stage1_target_fraction",
       "n1_nominal",
       "Equivalent_interim_ARR_boundary",
+      "Event_count_difference_boundary",
+      "Event_count_boundary_meaning",
       "Conditional_power_individual",
       "Joint_conditional_power",
       "P_meet_futility_true_ARR_0",
@@ -103,7 +135,7 @@ dir.create(
 
 write.csv(
   focused,
-  "simulation/results/cp_crc_vitality_style_focused_N44_v1_3.csv",
+  "simulation/results/cp_crc_vitality_style_focused_N44_v1_4.csv",
   row.names = FALSE
 )
 

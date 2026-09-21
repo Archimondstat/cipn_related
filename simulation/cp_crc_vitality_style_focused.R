@@ -1,5 +1,5 @@
-# Focused VITALITY-style CRC boundary table v1.3
-# Date: 2026-09-21
+# Focused VITALITY-style CRC reference table v1.5
+# Date: 2026-09-22
 #
 # Purpose:
 #   Present only the clinically relevant interim treatment-effect region
@@ -17,9 +17,10 @@
 #   p_treatment = 0.30
 #   target treatment effect = 0.15
 #
-# Main interim boundaries shown:
+# Main interim REFERENCE observed effects shown:
 #   approximately -5%, 0%, +5%, +10%
 #
+# These are calibration/reference values, not automatic futility boundaries.
 # The single negative row is retained only as a conservative reference.
 
 source("simulation/cp_crc_vitality_style_analysis.R")
@@ -30,7 +31,7 @@ make_focused_table <- function(
 ) {
   n1 <- floor(N * f1 + 0.5)
 
-  target_effect_boundaries <- c(
+  target_reference_effects <- c(
     -0.05,
     0.00,
     0.05,
@@ -39,7 +40,7 @@ make_focused_table <- function(
 
   D_values <- unique(
     round(
-      target_effect_boundaries * n1
+      target_reference_effects * n1
     )
   )
 
@@ -49,18 +50,19 @@ make_focused_table <- function(
     D_grid = D_values
   )
 
-  # Event-count interpretation of the displayed treatment-effect boundary.
+  # Event-count interpretation of the displayed reference treatment effect.
   #
   # D = x_placebo - x_treatment
   #
   # Positive D means placebo has more CTCAE >=2 CIPN events than treatment,
-  # which favors treatment.  The futility rule is D_observed <= D_boundary.
-  base$Event_count_difference_boundary <-
+  # which favors treatment.  D is used for interpretation/calibration only;
+  # it is not an automatic stopping boundary.
+  base$Event_count_difference_reference <-
     base$Event_difference_boundary_D
 
-  base$Event_count_boundary_meaning <-
+  base$Event_count_reference_meaning <-
     vapply(
-      base$Event_count_difference_boundary,
+      base$Event_count_difference_reference,
       function(D) {
         if (D < 0) {
           sprintf(
@@ -79,7 +81,7 @@ make_focused_table <- function(
       character(1)
     )
 
-  base$P_meet_futility_true_effect_05 <-
+  base$P_both_at_or_below_reference_true_effect_05 <-
     vapply(
       base$Event_difference_boundary_D,
       function(D) {
@@ -93,20 +95,29 @@ make_focused_table <- function(
       numeric(1)
     )
 
+  base$Reference_interim_observed_effect <-
+    base$Equivalent_interim_ARR_boundary
+
+  base$P_both_at_or_below_reference_true_effect_0 <-
+    base$P_meet_futility_true_ARR_0
+
+  base$P_both_at_or_below_reference_true_effect_15 <-
+    base$P_meet_futility_true_ARR_15
+
   base[
     ,
     c(
       "N_per_arm",
       "Stage1_target_fraction",
       "n1_nominal",
-      "Equivalent_interim_ARR_boundary",
-      "Event_count_difference_boundary",
-      "Event_count_boundary_meaning",
+      "Reference_interim_observed_effect",
+      "Event_count_difference_reference",
+      "Event_count_reference_meaning",
       "Conditional_power_individual",
       "Joint_conditional_power",
-      "P_meet_futility_true_ARR_0",
-      "P_meet_futility_true_effect_05",
-      "P_meet_futility_true_ARR_15",
+      "P_both_at_or_below_reference_true_effect_0",
+      "P_both_at_or_below_reference_true_effect_05",
+      "P_both_at_or_below_reference_true_effect_15",
       "P_any_final_ARR_ge_15",
       "P_any_final_ARR_ge_10",
       "P_any_final_ARR_ge_05"
@@ -135,7 +146,7 @@ dir.create(
 
 write.csv(
   focused,
-  "simulation/results/cp_crc_vitality_style_focused_N44_v1_4.csv",
+  "simulation/results/cp_crc_vitality_style_focused_N44_v1_5.csv",
   row.names = FALSE
 )
 

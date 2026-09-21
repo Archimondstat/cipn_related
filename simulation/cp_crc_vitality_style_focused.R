@@ -58,7 +58,7 @@ make_focused_table <- function(
   # which favors treatment.  D is used for interpretation/calibration only;
   # it is not an automatic stopping boundary.
   base$Event_count_difference_reference <-
-    base$Event_difference_boundary_D
+    base$Event_difference_reference_D
 
   base$Event_count_reference_meaning <-
     vapply(
@@ -85,7 +85,7 @@ make_focused_table <- function(
     vapply(
       base$Event_difference_boundary_D,
       function(D) {
-        prob_meet_futility_both(
+        prob_both_at_or_below_reference(
           D = D,
           n1 = n1,
           pP_true = 0.45,
@@ -94,15 +94,6 @@ make_focused_table <- function(
       },
       numeric(1)
     )
-
-  base$Reference_interim_observed_effect <-
-    base$Equivalent_interim_ARR_boundary
-
-  base$P_both_at_or_below_reference_true_effect_0 <-
-    base$P_meet_futility_true_ARR_0
-
-  base$P_both_at_or_below_reference_true_effect_15 <-
-    base$P_meet_futility_true_ARR_15
 
   base[
     ,

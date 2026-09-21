@@ -1,3 +1,5 @@
+> **Superseded on 2026-09-22.** Use `docs/cp_futility_formal_report_v1_1.md`. Version 1.1 adopts the three-region No-Go leaning / Consider / Go leaning efficacy framework and defines 10% as the Phase II promising threshold rather than a provisional computational rule.
+
 # CIPN Randomized Phase II Study
 ## Conditional-Power-Based Stage 1 Futility Review Framework (CRC Scenario)
 

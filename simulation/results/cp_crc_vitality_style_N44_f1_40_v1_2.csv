@@ -1,0 +1,8 @@
+Event_difference_boundary_D,Equivalent_interim_ARR_boundary_pct,Conditional_power_individual_pct,Joint_conditional_power_pct,P_meet_futility_true_ARR_0_pct,P_meet_futility_true_ARR_15_pct,P_any_final_ARR_ge_15_pct,P_any_final_ARR_ge_10_pct,P_any_final_ARR_ge_05_pct
+-4,-22.22,8.99,14.78,4.12,0.22,4.61,14.78,34.05
+-3,-16.67,14.80,23.32,8.72,0.73,8.62,23.32,46.26
+-2,-11.11,22.63,34.05,16.26,2.05,14.78,34.05,58.85
+-1,-5.56,32.32,46.26,27.00,4.94,23.32,46.26,70.60
+0,0.00,43.34,58.85,40.34,10.36,34.05,58.85,80.53
+1,5.56,54.86,70.60,54.85,19.07,46.26,70.60,88.12
+2,11.11,65.95,80.53,68.68,31.16,58.85,80.53,93.35

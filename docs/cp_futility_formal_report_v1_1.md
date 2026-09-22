@@ -1,3 +1,5 @@
+> **Superseded on 2026-09-22.** Use `docs/cp_futility_formal_report_v1_2.md`; v1.2 incorporates the Cohort 1 primary-endpoint maturity definition, randomization-order Stage 1 subject selection, and the nominal 50% information-window trigger logic.
+
 # CIPN Randomized Phase II Study
 ## Conditional-Power-Based Stage 1 Decision-Support Framework (CRC Scenario)
 

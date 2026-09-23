@@ -323,28 +323,6 @@ k <- 1L
 for (info_fraction in info_grid) {
   for (cp_cutoff in cp_cutoff_grid) {
 
-    r0 <- subset(
-      full_grid,
-      info_fraction == !!info_fraction &
-      cp_cutoff == !!cp_cutoff &
-      true_effect == 0
-    )
-
-    r10 <- subset(
-      full_grid,
-      info_fraction == !!info_fraction &
-      cp_cutoff == !!cp_cutoff &
-      true_effect == 0.10
-    )
-
-    r15 <- subset(
-      full_grid,
-      info_fraction == !!info_fraction &
-      cp_cutoff == !!cp_cutoff &
-      true_effect == 0.15
-    )
-
-    # Base R subset() does not support tidy-eval; replace with direct indexing.
     r0 <- full_grid[
       full_grid$info_fraction == info_fraction &
       full_grid$cp_cutoff == cp_cutoff &

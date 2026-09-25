@@ -73,7 +73,7 @@ It shows that an observed absolute reduction larger than 15 percentage points is
 
 It does **not** establish that AK135 should be expected to achieve a 15-point reduction, and it does not directly support an active-arm incidence of exactly 30%.
 
-Reference: A placebo-controlled, double-blind, randomized study of recombinant thrombomodulin (ART-123) to prevent oxaliplatin-induced peripheral neuropathy. doi:10.1007/s00520-020-05755-7; PMID 32965539.
+Reference: A placebo-controlled, double-blind, randomized study of recombinant thrombomodulin (ART-123) to prevent oxaliplatin-induced peripheral neuropathy. doi:10.1007/s00280-020-04135-8; PMID 32965539.
 
 ## 3. Important negative comparators
 

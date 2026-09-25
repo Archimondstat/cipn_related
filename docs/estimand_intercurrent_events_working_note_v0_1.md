@@ -3,7 +3,7 @@
 
 **Version:** 0.1  
 **Date:** 23 September 2026  
-**Status:** Working draft; several strategies remain to be confirmed by the project team.
+**Status:** Core Cohort 1 estimand/intercurrent-event rules substantially confirmed; only detailed SAP implementation and ancillary oncologic-endpoint hierarchy remain.
 
 ---
 
@@ -113,9 +113,13 @@ Participants who discontinue oxaliplatin-containing chemotherapy early may have 
 
 Therefore, the estimand interpretation depends materially on the use of the actual last mFOLFOX6 treatment as the endpoint anchor.
 
-### Open item
+### Confirmed position and supplementary analysis
 
-The project team should confirm whether this remains the intended primary strategy and whether a sensitivity analysis using an alternative fixed/planned treatment horizon is needed to assess robustness to early chemotherapy discontinuation.
+The actual last mFOLFOX6 treatment + 3 months remains the primary endpoint anchor.
+
+A fixed planned-treatment-horizon analysis may be retained as a **supplementary/exploratory analysis**, rather than as a core primary-endpoint sensitivity analysis. Its purpose is to explore whether imbalance in mFOLFOX6 exposure or early permanent discontinuation materially affects interpretation of the primary result.
+
+Relevant exposure summaries should include, where available, actual treatment cycles, cumulative oxaliplatin dose, relative dose intensity, and reasons for early permanent discontinuation.
 
 ---
 
@@ -167,19 +171,20 @@ Examples include:
 
 - loss to follow-up before the end of the required window;
 - death before the end of the required window without prior CTCAE grade >=2 CIPN;
-- other circumstances preventing determination of the endpoint.
+- initiation of a new anti-cancer treatment with a clearly established clinically relevant risk of inducing CIPN before completion of the primary endpoint window, when no prior CTCAE grade >=2 CIPN event has occurred;
+- other circumstances preventing determination of the endpoint under the prespecified observation rule.
 
-The missing-data strategy is **not yet finalized**.
+The **final primary analysis is confirmed as observed/evaluable cases**:
 
-A simple rule such as classifying every incomplete participant as a CIPN event may be excessively conservative, especially when incompleteness is unrelated to CIPN.
+[
+hat p_j = x_j/E_j,
+]
 
-Potential sensitivity-analysis approaches discussed include:
+where (E_j) is the number of participants in arm (j) with a determinate binary endpoint.
 
-- observed/evaluable cases;
-- multiple imputation;
-- tipping-point / delta-adjusted analyses.
+Indeterminate participants are not automatically classified as events or non-events. Their number, percentage, and reasons will be reported by treatment group.
 
-The primary missing-data assumption and its relationship to the Stage 1 CP analysis remain to be defined.
+Prespecified sensitivity analyses may include all-missing-as-event, differential worst-case assignment, and, if warranted by the amount of missing data, tipping-point or delta-adjusted analyses.
 
 ---
 
@@ -223,31 +228,60 @@ Therefore an indeterminate endpoint is analysis-ready even though it is not endp
 
 This prevents a permanently missing participant from indefinitely delaying Stage 1 and preserves the prespecified randomization-order cohort.
 
-The remaining unresolved issue is how indeterminate outcomes enter the Stage 1 CP calculation.
+For Stage 1, indeterminate outcomes are handled using the confirmed **available-case + consumed-slot CP** approach: the participant continues to consume a randomized sample-size slot but does not contribute an observed binary endpoint. Future recruitment capacity is calculated from randomized/consumed slots rather than from evaluable endpoint counts.
 
 ---
 
-## 8. Items still to be decided
+## 8. New anti-cancer treatment with clear CIPN risk
 
-The following remain open:
+A new anti-cancer treatment is considered an intercurrent event for the primary CIPN endpoint **only when it has a clearly established clinically relevant potential to induce CIPN**.
 
-1. Primary missing-data assumption for an indeterminate binary CIPN endpoint.
-2. How missing/indeterminate Stage 1 outcomes enter the CP calculation, including the distinction between randomized sample already consumed and evaluable endpoint information.
-3. Sensitivity analyses for missing endpoint data.
-4. Whether an alternative fixed/planned chemotherapy horizon should be included as a sensitivity analysis for early permanent discontinuation of mFOLFOX6.
-5. Whether new anti-cancer treatment should be defined as a separate intercurrent event and, if so, which estimand strategy should apply.
-6. Whether oncologic endpoints such as DFS/OS should be explicitly grouped under "oncologic safety" in the study endpoint hierarchy.
+The rule is intentionally narrower than "any subsequent anti-cancer therapy."
+
+Examples of subsequent treatments without a clear clinically relevant CIPN risk should not, solely because they are anti-cancer treatments, terminate primary CIPN follow-up.
+
+### Operational rule
+
+If CTCAE grade >=2 CIPN occurs before initiation of the new neurotoxic anti-cancer treatment:
+
+[
+Y=1.
+]
+
+If no CTCAE grade >=2 CIPN has occurred and the new neurotoxic anti-cancer treatment is initiated before completion of the participant-specific primary endpoint window:
+
+- CIPN assessments after initiation of that treatment will not contribute to the primary endpoint;
+- because the original primary window was not completed, the binary endpoint is classified as **indeterminate/missing**, rather than automatically as (Y=0).
+
+In protocol/SAP wording, "censoring" may be used informally to describe the clinical cutoff, but for the binary primary analysis the more precise wording is that **endpoint ascertainment is truncated at initiation of the new neurotoxic treatment and the endpoint becomes indeterminate if no prior event has occurred**.
+
+The exact list or rule for what qualifies as a "new anti-cancer treatment with clear CIPN risk" should be prespecified operationally, preferably by treatment class rather than adjudicated retrospectively case by case.
+
 
 ---
 
-## 9. Current working summary
+## 9. Items still to be decided
+
+The remaining open implementation items are:
+
+1. Exact operational definition/list of new anti-cancer treatments considered to have a clearly established clinically relevant CIPN risk.
+2. Detailed specification of the supplementary fixed planned-treatment-horizon analysis, if retained in the SAP.
+3. Detailed tipping-point/delta-adjusted implementation if the amount of indeterminate data makes such analysis meaningful.
+4. Whether oncologic endpoints such as DFS/OS should be explicitly grouped under "oncologic safety" in the study endpoint hierarchy.
+
+---
+
+## 10. Current working summary
 
 | Event / circumstance | Current working treatment |
 |---|---|
 | Early discontinuation of AK135 | Treatment-policy strategy; continue endpoint follow-up; discontinuation itself is not a CIPN event |
-| Early permanent discontinuation of mFOLFOX6 | Anchor primary window to actual last mFOLFOX6 + 3 months; strategy still requires project-team confirmation |
+| Early permanent discontinuation of mFOLFOX6 | Primary window remains anchored to actual last mFOLFOX6 + 3 months; fixed planned-horizon analysis may be supplementary/exploratory |
 | CTCAE grade >=2 CIPN before death | Endpoint event, (Y=1) |
 | Death before endpoint window ends, no prior CTCAE grade >=2 CIPN | CIPN endpoint becomes indeterminate/missing; death itself is not currently treated as CIPN |
-| Loss to follow-up before endpoint can be determined | Missing/indeterminate endpoint; missing-data method to be prespecified |
+| Loss to follow-up before endpoint can be determined | Missing/indeterminate endpoint; primary final analysis uses observed/evaluable cases |
 | DFS / OS death handling | Separate oncologic-safety framework; death may be an event according to the endpoint definition |
 
+
+| New anti-cancer treatment with clear clinically relevant CIPN risk before endpoint-window completion | Use CIPN data only up to its initiation; prior CIPN event remains Y=1; otherwise endpoint becomes indeterminate/missing |
+| New anti-cancer treatment without clear clinically relevant CIPN risk | Does not by itself terminate primary CIPN follow-up |

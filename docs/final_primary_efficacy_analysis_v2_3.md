@@ -2,7 +2,7 @@
 
 **Version:** 2.3  
 **Date:** 25 September 2026  
-**Status:** Working proposal for confirmation.
+**Status:** Revised to a descriptive Phase II efficacy-analysis framework; no formal hypothesis testing.
 
 ## 1. Analysis population and treatment assignment
 
@@ -130,18 +130,19 @@ A score-type 95% interval is still roughly from a small negative value to above 
 
 ## 6. Multiplicity
 
-Two active doses share one placebo group.
+Because no formal efficacy hypothesis testing is performed, confirmatory multiplicity control is not part of this Phase II design.
 
-No confirmatory family-wise type-I-error control is proposed for the current exploratory Phase II efficacy classification.
+Both dose-placebo comparisons will be summarized descriptively.
 
-Accordingly:
+The project-level efficacy classification may use the better observed risk difference:
 
-- both dose-placebo comparisons will be displayed;
-- the project-level decision may use the better observed risk difference;
-- any reported P-values, if included, should be explicitly nominal and descriptive;
-- preferably, no efficacy P-value is required for the primary decision framework.
+\[
+\Delta_{\max}=\max(\hat\Delta_L,\hat\Delta_H).
+\]
 
-The operating-characteristic simulations already evaluate the project-level rule using both active doses and the shared placebo.
+The operating-characteristic simulations already evaluate this project-level rule using both active doses and the shared placebo.
+
+No multiplicity-adjusted P-value or family-wise type-I-error procedure is required for the descriptive efficacy framework.
 
 ## 7. Important interpretation of the maximum effect
 
@@ -167,18 +168,23 @@ The maximum is used as a **screening/development statistic**, not as a bias-free
 
 ## 8. Stratification / covariate adjustment
 
-The final randomization stratification factors have not yet been fixed.
+Randomization stratification, if used, should be justified primarily for treatment-balance and operational reasons rather than for a formal hypothesis test.
 
-For the current small exploratory study, the simplest primary analysis is an unadjusted risk difference.
+The primary efficacy summaries can remain unadjusted descriptive quantities:
 
-If one or more randomization stratification factors are later adopted, a stratified Mantel-Haenszel/common risk-difference analysis can be prespecified as either:
+\[
+\hat p_P,\hat p_L,\hat p_H,
+\]
 
-- the primary adjusted analysis; or
-- a supportive analysis alongside the unadjusted risk difference.
+and:
 
-The existing AK135 SAP template already contains a CMH/Mantel-Haenszel framework for binary endpoints and treatment-placebo risk differences, so this is operationally available if needed.
+\[
+\hat\Delta_L,\hat\Delta_H.
+\]
 
-The number of stratification factors should remain small because the planned sample size is only 150 total.
+No adjusted inferential model is required merely because a stratification factor is used in randomization.
+
+If clinically useful, stratified or covariate-adjusted summaries may be presented as supportive/exploratory analyses, but they are not necessary for the core descriptive Phase II framework.
 
 ## 9. Missing-data sensitivity
 
@@ -215,9 +221,9 @@ For each dose-placebo comparison, the primary efficacy table should contain at m
 
 ## 12. Remaining decision
 
-The main unresolved item for this analysis framework is randomization stratification:
+The main unresolved item is randomization implementation:
 
-- whether stratified randomization is needed at all;
-- if yes, which one or at most two prognostic factors should be used.
+- whether simple/block randomization without prognostic stratification is sufficient;
+- or whether one clinically important stratification factor is needed for balance.
 
-Once that is decided, the exact primary/supportive risk-difference method can be locked.
+This decision is operational and design-oriented rather than driven by a planned hypothesis test.

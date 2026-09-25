@@ -183,23 +183,47 @@ The primary missing-data assumption and its relationship to the Stage 1 CP analy
 
 ---
 
-## 7. Consequence for Stage 1 timing
+## 7. Confirmed Stage 1 cohort and analysis-ready definitions
 
-Stage 1 membership remains based on **randomization order**, rather than selecting whichever participants become analyzable first.
+The following operational definitions are now confirmed.
 
-However, permanent loss to follow-up or death can prevent a participant from ever obtaining an observed (Y=0/1) under a strict "endpoint determined" definition.
+### 7.1 Stage 1 cohort
 
-Therefore, the Stage 1 trigger should distinguish between:
+For the current working design with 150 total randomized participants and a nominal 35% Stage 1 look, the Stage 1 cohort is:
 
-- **Stage 1 membership**: defined prospectively by randomization order; and
-- **analysis-ready status**: the participant has either:
-  - already experienced CTCAE grade >=2 CIPN;
-  - completed the required primary-endpoint observation without the event; or
-  - reached the point at which the endpoint can no longer be observed and is therefore classified as missing/indeterminate.
+[
+oxed{	ext{the first 54 randomized participants overall}}
+]
 
-This prevents a permanently missing participant from indefinitely delaying Stage 1 while preserving the randomization-order rule.
+according to randomization order.
 
-The corresponding missing endpoint must then be handled according to the prespecified Stage 1 analysis rule rather than replaced by a later randomized participant.
+Later randomized participants must not replace an earlier Stage 1 participant merely because their primary endpoint becomes available sooner.
+
+The exact CP calculation will use the realized arm-specific Stage 1 sample sizes rather than assuming exact 18/18/18 allocation.
+
+### 7.2 Participant-level Stage 1 status
+
+Each Stage 1 participant ultimately enters one of three primary-endpoint states:
+
+[
+oxed{Y=1,quad Y=0,quad Y=	ext{indeterminate}}
+]
+
+where:
+
+- (Y=1): CTCAE grade >=2 CIPN occurs during the participant-specific primary endpoint window;
+- (Y=0): the required primary endpoint window is completed without CTCAE grade >=2 CIPN;
+- **indeterminate**: the endpoint can no longer be classified as 0 or 1 because the required observation cannot be completed, for example because of death before endpoint-window completion without prior event or permanent loss to follow-up.
+
+### 7.3 Analysis-ready is not the same as endpoint-evaluable
+
+A Stage 1 participant is **analysis-ready** once one of the three states above is final.
+
+Therefore an indeterminate endpoint is analysis-ready even though it is not endpoint-evaluable.
+
+This prevents a permanently missing participant from indefinitely delaying Stage 1 and preserves the prespecified randomization-order cohort.
+
+The remaining unresolved issue is how indeterminate outcomes enter the Stage 1 CP calculation.
 
 ---
 
@@ -207,14 +231,12 @@ The corresponding missing endpoint must then be handled according to the prespec
 
 The following remain open:
 
-1. Exact estimand strategy for early permanent discontinuation of mFOLFOX6.
-2. Whether an alternative fixed/planned chemotherapy horizon should be included as a sensitivity analysis.
-3. Formal strategy for death before completion of the CIPN observation window.
-4. Primary missing-data assumption for an indeterminate binary CIPN endpoint.
-5. Sensitivity analyses for missing endpoint data.
-6. How missing/indeterminate Stage 1 outcomes enter the CP calculation.
-7. Whether new anti-cancer treatment should be defined as a separate intercurrent event and, if so, which estimand strategy should apply.
-8. Whether oncologic endpoints such as DFS/OS should be explicitly grouped under "oncologic safety" in the study endpoint hierarchy.
+1. Primary missing-data assumption for an indeterminate binary CIPN endpoint.
+2. How missing/indeterminate Stage 1 outcomes enter the CP calculation, including the distinction between randomized sample already consumed and evaluable endpoint information.
+3. Sensitivity analyses for missing endpoint data.
+4. Whether an alternative fixed/planned chemotherapy horizon should be included as a sensitivity analysis for early permanent discontinuation of mFOLFOX6.
+5. Whether new anti-cancer treatment should be defined as a separate intercurrent event and, if so, which estimand strategy should apply.
+6. Whether oncologic endpoints such as DFS/OS should be explicitly grouped under "oncologic safety" in the study endpoint hierarchy.
 
 ---
 

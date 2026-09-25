@@ -219,11 +219,10 @@ For each dose-placebo comparison, the primary efficacy table should contain at m
 | 95% CI for risk difference | | | |
 | Exploratory classification | | | |
 
-## 12. Remaining decision
+## 12. Deferred item: randomization stratification
 
-The main unresolved item is randomization implementation:
+Randomization stratification is intentionally deferred for now.
 
-- whether simple/block randomization without prognostic stratification is sufficient;
-- or whether one clinically important stratification factor is needed for balance.
+The current efficacy framework does not depend on resolving this item because the Phase II efficacy analysis is descriptive and can remain based on unadjusted arm-specific event proportions and risk differences.
 
-This decision is operational and design-oriented rather than driven by a planned hypothesis test.
+If stratification is considered later, it should be justified primarily for treatment-balance and operational reasons rather than for formal hypothesis testing.

@@ -1,121 +1,67 @@
-# CIPN-related Phase II adaptive design
+# CIPN-related Phase II design
 
-## Working structure
+This repository contains statistical-design work for the AK135 CIPN program.
 
-This repository contains two linked but separate workstreams:
+## Current design
 
-1. **Design workstream** — the main focus of the current design discussion.
-2. **Competitor-analysis workstream** — maintained separately and used to inform design assumptions.
+The current Cohort 1 design is archived in:
 
-The competitor review is archived in `docs/competitor_landscape.md`. A separate conversation will be used for expanding that landscape. The current design discussion should stay focused on the adaptive Phase II design itself and only import competitor-derived assumptions once they are sufficiently supported.
+- **docs/current_design_master_v2_4.md**
 
-## Current design question
+That document is the authoritative working design summary as of 25 September 2026.
 
-Three-arm randomized Phase II study of drug C given concurrently with neurotoxic chemotherapy:
+Core features:
 
-- Low-dose C
-- High-dose C
-- Placebo
+- randomized 1:1:1: AK135 low dose / AK135 high dose / placebo;
+- colon-cancer patients receiving adjuvant mFOLFOX6 after curative surgery;
+- binary primary endpoint: CTCAE grade >=2 CIPN through 3 months after the **actual last mFOLFOX6 treatment**;
+- final sample size: **50 per arm / 150 total**;
+- Stage 1 cohort: **first 54 randomized participants overall**;
+- Stage 1 decision: **Project Go if max(CP_L, CP_H) >= 70%**, otherwise binding Project No-Go;
+- both AK135 doses continue after Go; no Stage 1 dose dropping;
+- CP future assumptions: placebo 45%, active treatment 30%;
+- final efficacy analysis is descriptive, based on observed/evaluable cases;
+- final descriptive effect-size framework: <5% No-Go leaning, 5% to <10% Consider, >=10% Go leaning.
 
-A two-stage Go/No-Go design is required. Interim decisions should allow flexibility in dose continuation/selection.
+The 45% versus 30% planning scenario implies a 15-percentage-point absolute risk difference. The 15% value is a **design alternative implied by the planning rates**, not an assumed invariant AK135 treatment effect.
 
-## Primary endpoint for design and sample size
+## Current code
 
-**Binary primary endpoint: CTCAE grade >=2 CIPN.**
+The central calculation engines are:
 
-The exact estimand still needs to be frozen, especially:
-- assessment horizon (e.g. Month 4, Month 6, or cumulative through a fixed horizon);
-- whether the endpoint is "CTCAE grade >=2 at the landmark visit" or "ever developed CTCAE grade >=2 by the horizon";
-- handling of death, discontinuation, chemotherapy discontinuation, missing assessment, and competing/intercurrent events.
+- simulation/cp_futility_engine.R
+- simulation/cp_futility_engine.sas
 
-## Candidate statistical frameworks
+A current-design regression/validation script is:
 
-### FREQ-01
+- simulation/current_design_validation_v2_0.R
 
-Two-stage adaptive multi-arm frequentist design with:
+The R engine implements exact individual conditional power, available-case + consumed-slot CP for permanently indeterminate Stage 1 endpoints, the project-level Stage 1 rule based on max(CP_L, CP_H), final descriptive efficacy classification, and exact operating-characteristic utilities.
 
-- Low vs placebo and High vs placebo comparisons;
-- stagewise binary-endpoint tests;
-- inverse-normal combination test;
-- strong family-wise type I error control using closed testing / Dunnett-type multiplicity adjustment;
-- adaptive dose selection after Stage 1;
-- conditional-error-based sample-size reassessment;
-- non-binding futility / clinically defined gray zone for medical flexibility.
+## Important supporting analyses
 
-Allowed interim actions:
-- No-Go;
-- continue Low only;
-- continue High only;
-- continue both;
-- reassess Stage 2 sample size within a prespecified maximum.
+Current-design development analyses include:
 
-### BAYES-01
+- docs/N50_stage1_full_design_oc_v1_3.md
+- docs/N50_why_35_not_40_v1_4.md
+- docs/N50_IA35_CP70_joint_rate_robustness_v1_6.md
+- docs/active_rate_30pct_external_plausibility_v1_7.md
+- docs/stage1_indeterminate_consumed_slot_v1_8.md
+- docs/stage1_indeterminate_stress_v1_9.md
+- docs/final_primary_missing_data_strategy_v2_0.md
+- docs/stage1_nogo_operational_handling_v2_2.md
+- docs/final_primary_efficacy_analysis_v2_3.md
 
-Bayesian binary-endpoint model with:
+## Historical analyses
 
-- initially weakly informative priors;
-- separate Low and High treatment effects versus shared placebo;
-- no monotonic dose-response assumption in the first version;
-- posterior probability of clinically worthwhile benefit;
-- predictive probability of final trial success for interim Go/No-Go and dose selection;
-- optional Stage 2 sample-size adaptation.
+Earlier exploratory files are retained for the design audit trail. They include work on N=44 candidate designs, alternative Stage 1 timing grids, three-region CP rules, dose-selection ideas, non-binding futility formulations, Bayesian alternatives, and fixed-risk-difference placebo robustness.
 
-## Common clinical quantities to define before simulation
+These files are historical and should not be treated as the current design when they conflict with docs/current_design_master_v2_4.md.
 
-Let
+## Competitor evidence
 
-- p0 = placebo probability of CTCAE grade >=2 CIPN;
-- pL = low-dose probability;
-- pH = high-dose probability.
+The separate competitor evidence archive remains in:
 
-Because lower incidence is better, define benefit using absolute risk reduction:
+- docs/competitor_landscape.md
 
-- Delta_L = p0 - pL;
-- Delta_H = p0 - pH.
-
-The first simulation should use the same clinically meaningful thresholds under FREQ-01 and BAYES-01:
-
-- delta_min = minimum worthwhile absolute risk reduction;
-- delta_target = target absolute risk reduction.
-
-## Current methodological position
-
-The project will compare two primary adaptive frameworks:
-
-- **FREQ-01:** inverse-normal combination testing + closed testing / Dunnett-type multiplicity control + adaptive dose selection + conditional-error-based sample-size reassessment.
-- **BAYES-01:** weak-prior Bayesian binary model + posterior clinically worthwhile benefit + predictive probability of final success.
-
-Both designs should permit the same Stage 1 actions:
-
-- No-Go;
-- Low only;
-- High only;
-- Both.
-
-The designs should be compared under common clinical scenarios rather than under different treatment-effect definitions.
-
-## Competitor evidence: archived, not yet converted into design assumptions
-
-Initial competitor work indicates substantial heterogeneity in CTCAE grade >=2 CIPN control rates and observed treatment effects. These findings are intentionally **not yet** converted into fixed values of p0, delta_min, or delta_target.
-
-See:
-
-- `docs/competitor_landscape.md`
-
-The competitor-analysis workstream will separately refine:
-- chemotherapy-backbone-specific control rates;
-- endpoint-horizon definitions;
-- realistic absolute risk reductions;
-- endpoint evaluability and attrition;
-- design precedents for dose selection and Go/No-Go.
-
-## Next design step
-
-After the competitor-analysis workstream returns a sufficiently supported range for p0 and plausible treatment effects, the design workstream will:
-
-1. freeze the binary estimand;
-2. specify candidate p0, delta_min, and delta_target scenarios;
-3. specify Stage 1 timing/information fraction;
-4. define FREQ-01 interim decision rules;
-5. define BAYES-01 posterior/PPoS decision rules;
-6. compare operating characteristics by simulation.
+Competitor/control literature is used to motivate plausible planning scenarios and sensitivity ranges; it is not used as a substitute for the concurrent randomized placebo arm.

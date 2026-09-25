@@ -11,7 +11,7 @@
 #   CP future assumptions: qP=0.45, qT=0.30
 #   Final promising threshold: RD >= 10%
 #
-# Candidate missing-data method:
+# Current Stage 1 missing-data method:
 #   available-case + consumed-slot CP
 #
 # Stress-test assumptions:
@@ -49,27 +49,12 @@ cp_ac_cs <- function(
   xp, EP, RP,
   xt, ET, RT
 ) {
-  FP <- N - RP
-  FT <- N - RT
-
-  denP <- EP + FP
-  denT <- ET + FT
-
-  yP <- 0:FP
-  pyP <- dbinom(yP, size=FP, prob=qP)
-
-  max_yT <- floor(
-    denT * ((xp+yP)/denP - delta_go) -
-      xt + 1e-12
-  )
-
-  sum(
-    pyP *
-      pbinom(
-        max_yT,
-        size=FT,
-        prob=qT
-      )
+  cp_individual_consumed_slot_exact(
+    xp = xp, EP = EP, RP = RP,
+    xt = xt, ET = ET, RT = RT,
+    NP = N, NT = N,
+    delta_go = delta_go,
+    qP = qP, qT = qT
   )
 }
 

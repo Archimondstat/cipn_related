@@ -1,7 +1,7 @@
 # ================================================================
 # CIPN randomized Phase II - Cohort 1
 # Stage 1 CP with permanent indeterminate endpoints
-# Candidate method: available-case + consumed-slot
+# Current method: available-case + consumed-slot
 # Version 1.8
 # Date: 2026-09-25
 #
@@ -23,7 +23,7 @@
 #   Permanent indeterminate participants do not re-enter as future subjects.
 #   Final available-case denominator is E_j + F_j = N_j - U_j.
 #
-# This is a candidate Stage 1 method, not yet the final missing-data rule.
+# This is the confirmed Stage 1 method for permanently indeterminate endpoints.
 # ================================================================
 
 source("simulation/cp_futility_engine.R")
@@ -37,68 +37,29 @@ cp_available_case_consumed_slot <- function(
   qP = 0.45,
   qT = 0.30
 ) {
-  .check_count(xp, EP, "xp")
-  .check_count(xt, ET, "xt")
-  .check_prob(qP, "qP")
-  .check_prob(qT, "qT")
-
-  if (EP > RP || ET > RT) {
-    stop("Evaluable count cannot exceed randomized/consumed count.")
-  }
-
-  if (RP > NP || RT > NT) {
-    stop("Randomized/consumed count cannot exceed final planned N.")
-  }
-
-  UP <- RP - EP
-  UT <- RT - ET
-
-  FP <- NP - RP
-  FT <- NT - RT
-
-  final_eval_P <- EP + FP
-  final_eval_T <- ET + FT
-
-  yP <- 0:FP
-  p_yP <- dbinom(
-    yP,
-    size = FP,
-    prob = qP
-  )
-
-  max_yT <- floor(
-    final_eval_T *
-      (
-        (xp + yP) / final_eval_P -
-        delta_go
-      ) -
-      xt +
-      1e-12
-  )
-
-  p_treat_success <- pbinom(
-    max_yT,
-    size = FT,
-    prob = qT
-  )
-
-  cp <- sum(
-    p_yP * p_treat_success
+  cp <- cp_individual_consumed_slot_exact(
+    xp = xp, EP = EP, RP = RP,
+    xt = xt, ET = ET, RT = RT,
+    NP = NP, NT = NT,
+    delta_go = delta_go,
+    qP = qP, qT = qT
   )
 
   data.frame(
     xp = xp,
     EP = EP,
     RP = RP,
-    UP = UP,
-    FP = FP,
+    UP = RP - EP,
+    FP = NP - RP,
     xt = xt,
     ET = ET,
     RT = RT,
-    UT = UT,
-    FT = FT,
-    final_available_case_denominator_P = final_eval_P,
-    final_available_case_denominator_T = final_eval_T,
+    UT = RT - ET,
+    FT = NT - RT,
+    final_available_case_denominator_P =
+      EP + (NP - RP),
+    final_available_case_denominator_T =
+      ET + (NT - RT),
     CP = cp
   )
 }

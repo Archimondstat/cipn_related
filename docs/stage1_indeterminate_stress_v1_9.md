@@ -2,7 +2,7 @@
 
 **Version:** 1.9  
 **Date:** 25 September 2026  
-**Status:** Stress test of the candidate available-case + consumed-slot CP method.
+**Status:** Supporting stress test of the confirmed available-case + consumed-slot Stage 1 CP method.
 
 ## 1. Objective
 
@@ -171,7 +171,7 @@ The first stress test suggests:
 
 ## 8. Working implication
 
-The results support keeping:
+The results support the confirmed use of:
 
 [
 oxed{	ext{available-case + consumed-slot CP}}

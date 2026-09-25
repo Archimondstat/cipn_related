@@ -257,6 +257,25 @@ In protocol/SAP wording, "censoring" may be used informally to describe the clin
 
 The exact list or rule for what qualifies as a "new anti-cancer treatment with clear CIPN risk" should be prespecified operationally, preferably by treatment class rather than adjudicated retrospectively case by case.
 
+### Medical confirmation required: operational definition
+
+The statistical rule is fixed conceptually, but the **medical definition of which subsequent anti-cancer treatments are considered to have a clearly established clinically relevant CIPN risk remains to be confirmed by Medical**.
+
+Proposed question to Medical:
+
+> 对于主要终点观察期内开始的后续抗肿瘤治疗，拟仅将“明确具有临床相关CIPN风险的新的抗肿瘤治疗”作为影响主要终点判定的伴发事件。若受试者在该治疗开始前已发生CTCAE >=2级CIPN，则仍判定为事件；若此前未发生事件且主要终点观察窗尚未完成，则该治疗开始后的CIPN评估不纳入主要终点判定，主要终点记为无法判定。请医学确认哪些后续抗肿瘤治疗应归入“明确具有CIPN风险”的范围，并建议是否需要在方案/SAP中预先列明药物类别。
+
+For Medical review, the following categories can be considered:
+
+- **Clearly relevant candidate:** oxaliplatin re-exposure/rechallenge.
+- **Other anti-cancer drug classes known to potentially cause peripheral neuropathy:** other platinum agents, taxanes, vinca alkaloids, proteasome inhibitors, and other agents judged by Medical to have clinically meaningful CIPN risk.
+- **Treatments that should not automatically trigger truncation solely because they are subsequent anti-cancer therapy:** regimens or agents without a clear clinically relevant CIPN risk, as judged by Medical.
+- If a combination regimen contains any component meeting the CIPN-risk definition, the regimen should be treated as a triggering treatment.
+- Surgery, radiotherapy, or other local treatment should not automatically be treated as a CIPN-triggering treatment unless Medical identifies a specific reason.
+
+The existing AK135-101 study documents use the broader phrase "new anti-cancer therapy that may lead to CIPN or hand-foot skin reactions." For the current prophylactic Phase II endpoint, the proposed operational rule should be narrowed to **CIPN risk**, unless Medical considers hand-foot skin reactions relevant to this endpoint.
+
+
 
 ---
 

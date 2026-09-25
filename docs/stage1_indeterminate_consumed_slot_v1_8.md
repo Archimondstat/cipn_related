@@ -2,7 +2,7 @@
 
 **Version:** 1.8  
 **Date:** 25 September 2026  
-**Status:** Candidate method for discussion; not yet the final missing-data rule.
+**Status:** Method confirmed for Stage 1 handling of permanently indeterminate endpoints; retained as supporting derivation.
 
 ## 1. Confirmed Stage 1 structure
 
@@ -238,7 +238,7 @@ The examples show that near the 70% boundary, one or two indeterminate endpoints
 
 They also show why the protocol rule should be the exact CP calculation rather than an event-count mnemonic once denominators become unequal.
 
-## 7. Interpretation of this candidate method
+## 7. Interpretation of the confirmed Stage 1 method
 
 The method has three attractive properties:
 
@@ -252,7 +252,7 @@ However, it has an important limitation:
 
 Therefore this method is most internally coherent if the final primary analysis also has an available-case interpretation, or if CP is explicitly described as an operational decision-support approximation rather than as the exact predictive probability under the final missing-data analysis.
 
-The final primary missing-data strategy has not yet been fixed, so this candidate should not yet be written as the definitive protocol method.
+The final primary missing-data strategy has not yet been fixed, so the Stage 1 method is now confirmed; the final primary analysis remains observed/evaluable cases with separate sensitivity analyses.
 
 ## 8. Sensitivity around indeterminate outcomes
 

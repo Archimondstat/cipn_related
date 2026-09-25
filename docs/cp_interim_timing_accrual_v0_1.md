@@ -1,6 +1,6 @@
 # CP interim timing under different accrual speeds
 
-**Version:** 0.1  
+**Version:** 0.2  
 **Date:** 25 September 2026  
 **Status:** Working literature + operational note; no Stage 1 timing selected.
 
@@ -18,7 +18,7 @@ This note therefore separates:
 2. **operational decision time**: the calendar time at which that mature information becomes available;
 3. **randomized fraction at decision**: how much of the maximum trial has already been enrolled by the time the CP decision can actually be made.
 
-The current operational working assumption is continuous recruitment without a design-level hard pause or formal overrun cap.
+The current operational working assumption is **planned accrual slowdown after the Stage 1 cohort has been fully randomized**, rather than a hard pause or a formal design-level overrun cap.
 
 ---
 
@@ -349,3 +349,190 @@ For this trial, the operationally relevant quantity is:
 ]
 
 because it tells us how much of the current trial is already committed before CP can change recruitment.
+
+
+---
+
+## 11. Working operational strategy: slow accrual after Stage 1 is fully randomized
+
+The preferred operational concept is now:
+
+1. Randomize the prespecified Stage 1 cohort at the ordinary recruitment rate.
+2. Once the Stage 1 randomization target is reached, **slow recruitment rather than pause it**.
+3. Continue the reduced recruitment rate while the prespecified Stage 1 cohort matures to the primary-endpoint horizon.
+4. Conduct the CP analysis using the prespecified Stage 1 decision cohort only.
+5. Participants randomized after the Stage 1 target is reached do not enter the Stage 1 CP calculation, but remain part of the full Phase II study and contribute to final analyses.
+6. After the interim decision:
+   - if No-Go, stop new randomization;
+   - if one dose continues, stop assigning new participants to the dropped dose and continue recruitment to the selected dose/placebo structure as prespecified;
+   - if both doses continue, restore or revise the recruitment rate according to the Stage 2 operational plan.
+
+This deliberately avoids a hard recruitment stop while still preserving a useful decision window.
+
+### 11.1 Two-rate accrual model
+
+Let:
+
+- \(r_0\) = ordinary recruitment rate before the Stage 1 accrual target is reached;
+- \(s\) = slowdown multiplier, with \(0<s\le1\);
+- \(r_s=s r_0\) = reduced recruitment rate during the Stage 1 maturation period;
+- \(L\) = endpoint maturation delay;
+- \(N_1\) = Stage 1 randomization target;
+- \(N\) = maximum total sample size.
+
+If the slowdown starts immediately after the Stage 1 cohort is fully randomized, then:
+
+\[
+t_{slow} \approx \frac{N_1}{r_0},
+\]
+
+\[
+t_{IA} \approx \frac{N_1}{r_0}+L,
+\]
+
+and the number randomized by the time the interim decision becomes available is approximately:
+
+\[
+\boxed{
+N_{rand,IA}
+\approx
+\min\left(N,\;N_1+s r_0 L\right)
+}
+\]
+
+instead of:
+
+\[
+N_1+r_0L
+\]
+
+under unrestricted continuous accrual.
+
+Thus the slowdown multiplier \(s\) becomes an explicit operational design parameter.
+
+### 11.2 Illustration for a 6-month endpoint delay
+
+The table below compares unrestricted accrual with 75%, 50%, and 25% of the original recruitment rate after the Stage 1 cohort is accrued.
+
+#### Stage 1 = 35% mature information: N1 = 45
+
+| Ordinary recruitment rate | No slowdown | 75% rate | 50% rate | 25% rate |
+|---:|---:|---:|---:|---:|
+| 3/month | 63 (48%) | 59 (44%) | 54 (41%) | 50 (38%) |
+| 6/month | 81 (61%) | 72 (55%) | 63 (48%) | 54 (41%) |
+| 9/month | 99 (75%) | 86 (65%) | 72 (55%) | 59 (44%) |
+| 12/month | 117 (89%) | 99 (75%) | 81 (61%) | 63 (48%) |
+
+#### Stage 1 = 40% mature information: N1 = 54
+
+| Ordinary recruitment rate | No slowdown | 75% rate | 50% rate | 25% rate |
+|---:|---:|---:|---:|---:|
+| 3/month | 72 (55%) | 68 (51%) | 63 (48%) | 59 (44%) |
+| 6/month | 90 (68%) | 81 (61%) | 72 (55%) | 63 (48%) |
+| 9/month | 108 (82%) | 95 (72%) | 81 (61%) | 68 (51%) |
+| 12/month | 126 (95%) | 108 (82%) | 90 (68%) | 72 (55%) |
+
+The difference is operationally large.
+
+For example, with:
+
+- ordinary accrual = 9/month;
+- 6-month endpoint maturation;
+- Stage 1 = 40% information;
+
+unrestricted recruitment gives approximately:
+
+\[
+108/132=82\%
+\]
+
+randomized before the CP decision is available.
+
+If recruitment is slowed to 50% of the original rate after the Stage 1 cohort is accrued:
+
+\[
+N_{rand,IA}\approx54+0.5\times9\times6=81,
+\]
+
+or only:
+
+\[
+81/132=61\%.
+\]
+
+This restores a meaningful decision window without imposing a hard pause.
+
+### 11.3 The slowdown trigger should be based on Stage 1 accrual, not on mature data
+
+The operational slowdown should begin when the prespecified Stage 1 randomization cohort has been accrued.
+
+It should **not** wait until 35-40% of the trial has mature primary-endpoint data, because by then the main opportunity to control post-Stage-1 recruitment has already been lost.
+
+Thus there are two distinct triggers:
+
+- **slowdown trigger:** Stage 1 cohort fully randomized;
+- **interim-analysis trigger:** Stage 1 cohort has mature primary-endpoint data.
+
+This distinction should be built directly into the simulation.
+
+### 11.4 Why slowdown is preferable to a hard pause for the current project
+
+A slowdown has several practical advantages:
+
+- avoids complete site shutdown and restart;
+- reduces the chance of losing recruitment momentum;
+- allows already activated sites to continue screening/enrollment;
+- limits the number of participants committed before the Stage 1 decision;
+- does not require a strict design-level overrun cap;
+- makes the design less sensitive to small fluctuations in actual accrual speed.
+
+The statistical Stage 1 rule remains based on a fixed prespecified decision cohort, so the operational slowdown does not change the CP definition.
+
+### 11.5 New simulation parameters
+
+The calendar-time simulation should now include:
+
+- ordinary recruitment rate \(r_0\): 3, 6, 9, 12/month;
+- slowdown multiplier \(s\): 1.00, 0.75, 0.50, 0.25;
+- endpoint maturity \(L\): 4, 5, 6 months;
+- Stage 1 information: 30%, 35%, 40%, 45%, 50%;
+- CP cutoff: 25%, 30%, 35%.
+
+Key new outputs:
+
+1. calendar time to Stage 1 accrual completion;
+2. calendar time to interim decision;
+3. number randomized between Stage 1 accrual completion and the interim decision;
+4. total number randomized when the interim decision is available;
+5. fraction of maximum sample already randomized at the decision;
+6. number of future randomizations actually avoidable under No-Go;
+7. expected total sample size under each true-effect scenario;
+8. probability of reaching full accrual before the interim decision;
+9. operational penalty of slowdown if the trial ultimately continues.
+
+### 11.6 The main trade-off introduced by slowdown
+
+Slowdown solves one problem but creates another.
+
+A stronger slowdown:
+
+\[
+s\downarrow
+\]
+
+reduces pre-decision commitment and increases the number of patients that can be saved after a No-Go decision.
+
+But if Stage 1 is positive, it also lengthens the time needed to complete the trial.
+
+Therefore the optimal slowdown should be selected from a joint criterion:
+
+\[
+\boxed{
+\text{protect the decision window}
+\quad\text{vs}\quad
+\text{avoid excessive calendar-time penalty under Go}
+}
+\]
+
+This is now a separate design dimension from the CP cutoff itself.
+

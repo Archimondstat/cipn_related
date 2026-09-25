@@ -2,7 +2,7 @@
 
 **Version:** 2.0  
 **Date:** 25 September 2026  
-**Status:** Working proposal for discussion; final SAP wording not yet locked.
+**Status:** Primary analysis approach confirmed; detailed SAP wording and tipping-point implementation remain to be finalized.
 
 ## 1. Context already fixed
 

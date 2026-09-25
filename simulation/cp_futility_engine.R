@@ -1,55 +1,82 @@
 # ================================================================
-# CIPN randomized Phase II
-# Conditional-power engine and calibration utilities
-# Version 1.1
-# Date: 2026-09-22
+# AK135 CIPN randomized Phase II - Cohort 1
+# Current conditional-power and descriptive-efficacy engine
+# Version 2.0
+# Date: 2026-09-25
 #
-# Endpoint:
-#   Y = 1 if CTCAE grade >=2 CIPN (unfavorable event)
+# CURRENT WORKING DESIGN
+#   Final N = 50 per arm; total N = 150
+#   Stage 1 cohort = first 54 randomized participants overall
+#   Nominal equal Stage 1 allocation = 18/18/18
+#   Endpoint: CTCAE grade >=2 CIPN (unfavorable event)
+#   Effect: Delta = p_placebo - p_treatment; positive favors AK135
 #
-# Unified treatment-effect definition:
-#   Delta = p_placebo - p_treatment
-#   Positive Delta favors treatment.
-#
-# Current CRC design assumptions:
-#   p_placebo = 0.45
-#   p_treatment = 0.30
-#   target treatment effect = 0.15
-#   weak-effect boundary    = 0.05
-#   promising threshold     = 0.10
-#
-# Phase II efficacy classification (program level):
-#   max observed effect < 0.05          : No-Go leaning
-#   0.05 <= max observed effect < 0.10  : Consider
-#   max observed effect >= 0.10         : Go leaning
+# Planning rates used for CP projection:
+#   p_placebo_design = 0.45
+#   p_treatment_design = 0.30
+#   implied design-alternative RD = 0.15
 #
 # IMPORTANT:
-#   CP is used as NON-BINDING decision support.
-#   The reference treatment-effect values generated below are calibration
-#   values, not automatic stopping boundaries.
+#   The 0.15 RD is implied by the central planning rates. It is NOT
+#   assumed to be an invariant drug effect across placebo rates.
 #
-# This file contains:
-#   1) exact individual CP using actual interim sample sizes;
-#   2) exact joint CP for Low/High sharing one placebo arm;
-#   3) lookup-table construction for efficient simulation;
-#   4) exact VITALITY-style calibration tables for equal nominal n;
-#   5) optional Monte Carlo validation;
-#   6) exact final No-Go leaning / Consider / Go leaning OCs.
+# Final descriptive efficacy framework:
+#   Delta_max < 0.05          -> No-Go leaning
+#   0.05 <= Delta_max < 0.10  -> Consider
+#   Delta_max >= 0.10         -> Go leaning
 #
-# No external R packages are required.
+# Stage 1 binding rule:
+#   M = max(CP_L, CP_H)
+#   M >= 0.70 -> Project Go
+#   M <  0.70 -> Project No-Go
+#
+# No Stage 1 dose dropping. Both doses continue after Project Go.
+# No formal efficacy hypothesis testing is part of the Phase II
+# descriptive framework.
+#
+# Permanently indeterminate Stage 1 endpoints use:
+#   available-case + consumed-slot CP.
 # ================================================================
 
 
 # ----------------------------------------------------------------
-# 0. Basic validation
+# 0. Current design specification
+# ----------------------------------------------------------------
+
+cipn_design_spec <- function() {
+  list(
+    N_per_arm = 50L,
+    N_total = 150L,
+    stage1_total = 54L,
+    stage1_nominal_per_arm = 18L,
+    p_placebo_design = 0.45,
+    p_treatment_design = 0.30,
+    design_alternative_rd = 0.15,
+    weak_effect_boundary = 0.05,
+    promising_threshold = 0.10,
+    stage1_cp_cutoff = 0.70
+  )
+}
+
+
+# ----------------------------------------------------------------
+# 1. Validation helpers
 # ----------------------------------------------------------------
 
 .check_count <- function(x, n, name = "x") {
   if (length(x) != 1L || length(n) != 1L ||
+      is.na(x) || is.na(n) ||
       x < 0 || n < 0 || x > n ||
       abs(x - round(x)) > 1e-12 ||
       abs(n - round(n)) > 1e-12) {
     stop(sprintf("%s must be an integer count between 0 and n.", name))
+  }
+}
+
+.check_nonnegative_integer <- function(x, name = "x") {
+  if (length(x) != 1L || is.na(x) || x < 0 ||
+      abs(x - round(x)) > 1e-12) {
+    stop(sprintf("%s must be a non-negative integer.", name))
   }
 }
 
@@ -61,12 +88,8 @@
 
 
 # ----------------------------------------------------------------
-# 1. Observed treatment effect
+# 2. Observed treatment effect
 # ----------------------------------------------------------------
-#
-# Treatment effect = placebo event rate - treatment event rate.
-#
-# Positive value = fewer CTCAE >=2 CIPN events in treatment.
 
 observed_treatment_effect <- function(
   x_placebo,
@@ -77,59 +100,18 @@ observed_treatment_effect <- function(
   .check_count(x_placebo, n_placebo, "x_placebo")
   .check_count(x_treatment, n_treatment, "x_treatment")
 
+  if (n_placebo == 0 || n_treatment == 0) {
+    stop("Observed treatment effect requires positive evaluable denominators.")
+  }
+
   x_placebo / n_placebo -
     x_treatment / n_treatment
 }
 
 
 # ----------------------------------------------------------------
-# 2. Final Phase II promising event used inside CP
+# 3. Final descriptive efficacy classification
 # ----------------------------------------------------------------
-#
-# Prespecified Phase II promising criterion for CP:
-#
-#   final observed treatment effect >= 0.10
-#
-# The 10% threshold is the PROMISING THRESHOLD, not the assumed true
-# treatment effect. The CRC target treatment effect remains 15%.
-#
-# Parameter name delta_go is retained for backward compatibility with
-# earlier project scripts; operationally it means promising_threshold.
-
-is_final_go <- function(
-  x_placebo_final,
-  n_placebo_final,
-  x_treatment_final,
-  n_treatment_final,
-  delta_go = 0.10
-) {
-  observed_treatment_effect(
-    x_placebo = x_placebo_final,
-    n_placebo = n_placebo_final,
-    x_treatment = x_treatment_final,
-    n_treatment = n_treatment_final
-  ) >= delta_go
-}
-
-
-# Preferred explicit alias.
-is_final_promising <- is_final_go
-
-
-# ----------------------------------------------------------------
-# 2a. Final Phase II efficacy classification
-# ----------------------------------------------------------------
-#
-# Program-level classification uses the better observed treatment effect
-# across Low and High:
-#
-#   delta_max = max(delta_L, delta_H)
-#
-#   delta_max < 5%          -> No-Go leaning
-#   5% <= delta_max < 10%   -> Consider
-#   delta_max >= 10%        -> Go leaning
-#
-# These are efficacy classifications, not automatic development decisions.
 
 classify_phase2_efficacy <- function(
   delta_low,
@@ -151,22 +133,356 @@ classify_phase2_efficacy <- function(
 }
 
 
+final_descriptive_summary <- function(
+  xP, EP,
+  xL, EL,
+  xH, EH,
+  weak_effect_boundary = 0.05,
+  promising_threshold = 0.10
+) {
+  .check_count(xP, EP, "xP")
+  .check_count(xL, EL, "xL")
+  .check_count(xH, EH, "xH")
+
+  if (EP == 0 || EL == 0 || EH == 0) {
+    stop("Final descriptive summary requires positive evaluable denominators.")
+  }
+
+  pP <- xP / EP
+  pL <- xL / EL
+  pH <- xH / EH
+
+  dL <- pP - pL
+  dH <- pP - pH
+
+  data.frame(
+    p_placebo = pP,
+    p_low = pL,
+    p_high = pH,
+    delta_low = dL,
+    delta_high = dH,
+    delta_max = max(dL, dH),
+    classification = classify_phase2_efficacy(
+      delta_low = dL,
+      delta_high = dH,
+      weak_effect_boundary = weak_effect_boundary,
+      promising_threshold = promising_threshold
+    ),
+    stringsAsFactors = FALSE
+  )
+}
+
+
 # ----------------------------------------------------------------
-# 2b. Exact final efficacy-classification probabilities
+# 4. Exact individual CP when all already-randomized outcomes are
+#    determinate
 # ----------------------------------------------------------------
 #
-# Equal final N per arm is used for the current design grid.
-# Shared placebo is handled exactly by conditioning on X_P.
+# Final promising event:
 #
-# IMPORTANT:
-# Because the Stage 1 review is non-binding and no mechanical interim
-# stop rule has been specified, these FINAL classification probabilities
-# depend on final N and true event rates, but NOT on Stage 1 information
-# fraction. A full design OC that includes early termination would require
-# an explicit operational decision rule.
+#   (xp + YP)/NP - (xt + YT)/NT >= promising_threshold
+#
+# Future assumptions:
+#   YP ~ Bin(NP - np, qP)
+#   YT ~ Bin(NT - nt, qT)
+#
+# This is the no-indeterminate special case of the consumed-slot CP.
+
+cp_individual_exact <- function(
+  xp,
+  np,
+  xt,
+  nt,
+  NP = 50,
+  NT = 50,
+  delta_go = 0.10,
+  qP = 0.45,
+  qT = 0.30
+) {
+  .check_count(xp, np, "xp")
+  .check_count(xt, nt, "xt")
+  .check_nonnegative_integer(NP, "NP")
+  .check_nonnegative_integer(NT, "NT")
+  .check_prob(qP, "qP")
+  .check_prob(qT, "qT")
+
+  if (NP < np || NT < nt) {
+    stop("Final planned sample size must be >= interim sample size.")
+  }
+
+  mP <- NP - np
+  mT <- NT - nt
+
+  yP <- 0:mP
+  p_yP <- dbinom(yP, size = mP, prob = qP)
+
+  max_yT <- floor(
+    NT * ((xp + yP) / NP - delta_go) -
+      xt +
+      1e-12
+  )
+
+  p_treatment_success <- pbinom(
+    q = max_yT,
+    size = mT,
+    prob = qT
+  )
+
+  sum(p_yP * p_treatment_success)
+}
+
+
+# ----------------------------------------------------------------
+# 5. Exact available-case + consumed-slot CP
+# ----------------------------------------------------------------
+#
+# R = randomized / final-N slots already consumed
+# E = endpoint-evaluable participants among R
+# U = R - E = permanently indeterminate endpoints
+# F = N - R = future recruitment capacity
+#
+# Indeterminate participants are not assigned an artificial binary
+# endpoint and are not counted as future replaceable participants.
+#
+# Final available-case denominator under the projection:
+#   E + F = N - U
+
+cp_individual_consumed_slot_exact <- function(
+  xp,
+  EP,
+  RP,
+  xt,
+  ET,
+  RT,
+  NP = 50,
+  NT = 50,
+  delta_go = 0.10,
+  qP = 0.45,
+  qT = 0.30
+) {
+  .check_count(xp, EP, "xp")
+  .check_count(xt, ET, "xt")
+  .check_nonnegative_integer(RP, "RP")
+  .check_nonnegative_integer(RT, "RT")
+  .check_nonnegative_integer(NP, "NP")
+  .check_nonnegative_integer(NT, "NT")
+  .check_prob(qP, "qP")
+  .check_prob(qT, "qT")
+
+  if (EP > RP || ET > RT) {
+    stop("Evaluable count cannot exceed randomized/consumed count.")
+  }
+
+  if (RP > NP || RT > NT) {
+    stop("Randomized/consumed count cannot exceed final planned N.")
+  }
+
+  FP <- NP - RP
+  FT <- NT - RT
+
+  final_eval_P <- EP + FP
+  final_eval_T <- ET + FT
+
+  if (final_eval_P <= 0 || final_eval_T <= 0) {
+    stop("Projected final available-case denominators must be positive.")
+  }
+
+  yP <- 0:FP
+  p_yP <- dbinom(yP, size = FP, prob = qP)
+
+  max_yT <- floor(
+    final_eval_T *
+      ((xp + yP) / final_eval_P - delta_go) -
+      xt +
+      1e-12
+  )
+
+  p_treatment_success <- pbinom(
+    q = max_yT,
+    size = FT,
+    prob = qT
+  )
+
+  sum(p_yP * p_treatment_success)
+}
+
+
+# ----------------------------------------------------------------
+# 6. Current Stage 1 project-level decision
+# ----------------------------------------------------------------
+#
+# The current decision statistic is NOT joint CP.
+#
+#   M = max(CP_L, CP_H)
+#
+# Project Go if M >= 0.70; otherwise Project No-Go.
+#
+# Each individual CP uses available-case + consumed-slot handling.
+
+stage1_project_decision <- function(
+  xp, EP, RP,
+  xL, EL, RL,
+  xH, EH, RH,
+  NP = 50,
+  NL = 50,
+  NH = 50,
+  promising_threshold = 0.10,
+  qP = 0.45,
+  qL = 0.30,
+  qH = 0.30,
+  cp_cutoff = 0.70
+) {
+  cpL <- cp_individual_consumed_slot_exact(
+    xp = xp, EP = EP, RP = RP,
+    xt = xL, ET = EL, RT = RL,
+    NP = NP, NT = NL,
+    delta_go = promising_threshold,
+    qP = qP, qT = qL
+  )
+
+  cpH <- cp_individual_consumed_slot_exact(
+    xp = xp, EP = EP, RP = RP,
+    xt = xH, ET = EH, RT = RH,
+    NP = NP, NT = NH,
+    delta_go = promising_threshold,
+    qP = qP, qT = qH
+  )
+
+  M <- max(cpL, cpH)
+
+  data.frame(
+    CP_L = cpL,
+    CP_H = cpH,
+    M = M,
+    CP_cutoff = cp_cutoff,
+    Project_Decision = ifelse(
+      M >= cp_cutoff,
+      "Go",
+      "No-Go"
+    ),
+    stringsAsFactors = FALSE
+  )
+}
+
+
+# ----------------------------------------------------------------
+# 7. Exact joint CP utility
+# ----------------------------------------------------------------
+#
+# Retained for historical/sensitivity work only.
+# It is NOT the current Stage 1 project decision statistic.
+
+cp_joint_exact <- function(
+  xp,
+  np,
+  xL,
+  nL,
+  xH,
+  nH,
+  NP = 50,
+  NL = 50,
+  NH = 50,
+  delta_go = 0.10,
+  qP = 0.45,
+  qL = 0.30,
+  qH = 0.30
+) {
+  .check_count(xp, np, "xp")
+  .check_count(xL, nL, "xL")
+  .check_count(xH, nH, "xH")
+
+  .check_prob(qP, "qP")
+  .check_prob(qL, "qL")
+  .check_prob(qH, "qH")
+
+  if (NP < np || NL < nL || NH < nH) {
+    stop("Final planned sample size must be >= interim sample size.")
+  }
+
+  mP <- NP - np
+  mL <- NL - nL
+  mH <- NH - nH
+
+  yP <- 0:mP
+  p_yP <- dbinom(yP, size = mP, prob = qP)
+
+  max_yL <- floor(
+    NL * ((xp + yP) / NP - delta_go) -
+      xL +
+      1e-12
+  )
+
+  max_yH <- floor(
+    NH * ((xp + yP) / NP - delta_go) -
+      xH +
+      1e-12
+  )
+
+  pL_success <- pbinom(
+    q = max_yL,
+    size = mL,
+    prob = qL
+  )
+
+  pH_success <- pbinom(
+    q = max_yH,
+    size = mH,
+    prob = qH
+  )
+
+  p_any_success_given_yP <-
+    1 - (1 - pL_success) * (1 - pH_success)
+
+  sum(p_yP * p_any_success_given_yP)
+}
+
+
+# ----------------------------------------------------------------
+# 8. CP lookup for no-indeterminate simulations
+# ----------------------------------------------------------------
+
+make_cp_lookup <- function(
+  nP,
+  nT,
+  NP = 50,
+  NT = 50,
+  delta_go = 0.10,
+  qP = 0.45,
+  qT = 0.30
+) {
+  out <- expand.grid(
+    xp = 0:nP,
+    xt = 0:nT,
+    KEEP.OUT.ATTRS = FALSE
+  )
+
+  out$cp <- mapply(
+    FUN = cp_individual_exact,
+    xp = out$xp,
+    xt = out$xt,
+    MoreArgs = list(
+      np = nP,
+      nt = nT,
+      NP = NP,
+      NT = NT,
+      delta_go = delta_go,
+      qP = qP,
+      qT = qT
+    )
+  )
+
+  out
+}
+
+
+# ----------------------------------------------------------------
+# 9. Exact final descriptive-classification operating characteristics
+# ----------------------------------------------------------------
+#
+# This is a design OC utility. It is not a formal hypothesis test.
 
 final_classification_prob_exact <- function(
-  N,
+  N = 50,
   pP_true,
   pL_true,
   pH_true,
@@ -227,30 +543,41 @@ final_classification_prob_exact <- function(
 
 
 make_final_classification_grid <- function(
-  N_grid = c(36, 40, 44, 48, 52),
-  true_effect_grid = c(0, 0.05, 0.10, 0.15, 0.20),
-  pP_true = 0.45,
+  N = 50,
+  scenarios = data.frame(
+    scenario = c(
+      "null",
+      "one_weak",
+      "one_promising",
+      "one_design_alternative",
+      "both_design_alternative"
+    ),
+    pP = c(0.45, 0.45, 0.45, 0.45, 0.45),
+    pL = c(0.45, 0.45, 0.45, 0.45, 0.30),
+    pH = c(0.45, 0.40, 0.35, 0.30, 0.30)
+  ),
   weak_effect_boundary = 0.05,
   promising_threshold = 0.10
 ) {
-  rows <- list()
-  k <- 1L
+  rows <- vector("list", nrow(scenarios))
 
-  for (N in N_grid) {
-    for (delta_true in true_effect_grid) {
-      pT_true <- pP_true - delta_true
+  for (i in seq_len(nrow(scenarios))) {
+    z <- final_classification_prob_exact(
+      N = N,
+      pP_true = scenarios$pP[i],
+      pL_true = scenarios$pL[i],
+      pH_true = scenarios$pH[i],
+      weak_effect_boundary = weak_effect_boundary,
+      promising_threshold = promising_threshold
+    )
 
-      rows[[k]] <- final_classification_prob_exact(
-        N = N,
-        pP_true = pP_true,
-        pL_true = pT_true,
-        pH_true = pT_true,
-        weak_effect_boundary = weak_effect_boundary,
-        promising_threshold = promising_threshold
-      )
-
-      k <- k + 1L
-    }
+    rows[[i]] <- cbind(
+      data.frame(
+        scenario = scenarios$scenario[i],
+        stringsAsFactors = FALSE
+      ),
+      z
+    )
   }
 
   do.call(rbind, rows)
@@ -258,469 +585,79 @@ make_final_classification_grid <- function(
 
 
 # ----------------------------------------------------------------
-# 3. Exact individual conditional power
+# 10. Current nominal Stage 1 reference table
 # ----------------------------------------------------------------
 #
-# Inputs:
-#   xp, np : observed placebo events and mature placebo n at interim
-#   xt, nt : observed treatment events and mature treatment n at interim
-#   NP, NT : planned final evaluable sample sizes
-#   qP, qT : future-data event-rate assumptions
-#
-# Future counts:
-#   YP ~ Bin(NP - np, qP)
-#   YT ~ Bin(NT - nt, qT)
-#
-# CP = P(final treatment effect reaches the Phase II promising threshold
-#        | interim data, future-data assumption)
+# Equal 18/18/18 allocation is for calibration only.
+# Operational Stage 1 uses actual realized R/E counts.
 
-cp_individual_exact <- function(
-  xp,
-  np,
-  xt,
-  nt,
-  NP,
-  NT,
-  delta_go = 0.10,
+make_current_stage1_reference_table <- function(
+  event_differences = 0:4,
+  N = 50,
+  n1 = 18,
+  promising_threshold = 0.10,
   qP = 0.45,
-  qT = 0.30
+  qT = 0.30,
+  cp_cutoff = 0.70
 ) {
-  .check_count(xp, np, "xp")
-  .check_count(xt, nt, "xt")
-  .check_prob(qP, "qP")
-  .check_prob(qT, "qT")
+  rows <- vector("list", length(event_differences))
 
-  if (NP < np || NT < nt) {
-    stop("Final planned sample size must be >= mature interim sample size.")
-  }
+  for (i in seq_along(event_differences)) {
+    D <- event_differences[i]
 
-  mP <- NP - np
-  mT <- NT - nt
+    xp0 <- D
+    xt0 <- 0
 
-  yP <- 0:mP
-  p_yP <- dbinom(yP, size = mP, prob = qP)
-
-  # Final success:
-  #
-  #   (xp + yP)/NP - (xt + yT)/NT >= delta_go
-  #
-  # Therefore:
-  #
-  #   yT <= NT * ((xp + yP)/NP - delta_go) - xt
-  #
-  # Because yT is integer, use floor().
-
-  max_yT <- floor(
-    NT * ((xp + yP) / NP - delta_go) -
-      xt +
-      1e-12
-  )
-
-  p_treatment_success <- pbinom(
-    q = max_yT,
-    size = mT,
-    prob = qT
-  )
-
-  sum(p_yP * p_treatment_success)
-}
-
-
-# ----------------------------------------------------------------
-# 4. Exact joint conditional power for Low + High vs shared placebo
-# ----------------------------------------------------------------
-#
-# Joint CP is defined here as:
-#
-#   P(at least one active dose reaches the final promising event
-#     | actual interim data, future-data assumptions)
-#
-# The two active arms share the same future placebo count YP.
-# Conditional on YP, future Low and High counts are independent.
-
-cp_joint_exact <- function(
-  xp,
-  np,
-  xL,
-  nL,
-  xH,
-  nH,
-  NP,
-  NL,
-  NH,
-  delta_go = 0.10,
-  qP = 0.45,
-  qL = 0.30,
-  qH = 0.30
-) {
-  .check_count(xp, np, "xp")
-  .check_count(xL, nL, "xL")
-  .check_count(xH, nH, "xH")
-
-  .check_prob(qP, "qP")
-  .check_prob(qL, "qL")
-  .check_prob(qH, "qH")
-
-  if (NP < np || NL < nL || NH < nH) {
-    stop("Final planned sample size must be >= mature interim sample size.")
-  }
-
-  mP <- NP - np
-  mL <- NL - nL
-  mH <- NH - nH
-
-  yP <- 0:mP
-  p_yP <- dbinom(yP, size = mP, prob = qP)
-
-  max_yL <- floor(
-    NL * ((xp + yP) / NP - delta_go) -
-      xL +
-      1e-12
-  )
-
-  max_yH <- floor(
-    NH * ((xp + yP) / NP - delta_go) -
-      xH +
-      1e-12
-  )
-
-  pL_success <- pbinom(
-    q = max_yL,
-    size = mL,
-    prob = qL
-  )
-
-  pH_success <- pbinom(
-    q = max_yH,
-    size = mH,
-    prob = qH
-  )
-
-  p_any_success_given_yP <-
-    1 - (1 - pL_success) * (1 - pH_success)
-
-  sum(
-    p_yP *
-      p_any_success_given_yP
-  )
-}
-
-
-# ----------------------------------------------------------------
-# 5. CP lookup table for efficient Monte Carlo simulation
-# ----------------------------------------------------------------
-#
-# This supports unequal mature interim n and unequal final N.
-# A separate lookup can be built for Low and High if needed.
-
-make_cp_lookup <- function(
-  nP,
-  nT,
-  NP,
-  NT,
-  delta_go = 0.10,
-  qP = 0.45,
-  qT = 0.30
-) {
-  out <- expand.grid(
-    xp = 0:nP,
-    xt = 0:nT,
-    KEEP.OUT.ATTRS = FALSE
-  )
-
-  out$cp <- mapply(
-    FUN = cp_individual_exact,
-    xp = out$xp,
-    xt = out$xt,
-    MoreArgs = list(
-      np = nP,
-      nt = nT,
-      NP = NP,
-      NT = NT,
-      delta_go = delta_go,
-      qP = qP,
-      qT = qT
-    )
-  )
-
-  out
-}
-
-
-# ----------------------------------------------------------------
-# 6. Exact probability that BOTH active doses fall at or below a
-#    displayed interim reference treatment effect
-# ----------------------------------------------------------------
-#
-# Equal nominal Stage 1 n is used only for the design-calibration table.
-#
-# Let:
-#   D = xP - xT
-#
-# and display:
-#   reference treatment effect = D / n1.
-#
-# "Both doses meet the reference region" means:
-#   xP - xL <= D  AND  xP - xH <= D.
-#
-# This is a calibration probability, NOT automatically P(stop).
-
-prob_both_below_reference_equal_n <- function(
-  D,
-  n1,
-  pP_true,
-  pL_true,
-  pH_true
-) {
-  .check_prob(pP_true, "pP_true")
-  .check_prob(pL_true, "pL_true")
-  .check_prob(pH_true, "pH_true")
-
-  p_xP <- dbinom(
-    0:n1,
-    size = n1,
-    prob = pP_true
-  )
-
-  ans <- 0
-
-  for (xP in 0:n1) {
-
-    # xP - xT <= D
-    # <=> xT >= xP - D
-
-    min_xT <- xP - D
-
-    pL_region <- 1 - pbinom(
-      q = min_xT - 1,
-      size = n1,
-      prob = pL_true
-    )
-
-    pH_region <- 1 - pbinom(
-      q = min_xT - 1,
-      size = n1,
-      prob = pH_true
-    )
-
-    ans <-
-      ans +
-      p_xP[xP + 1] *
-      pL_region *
-      pH_region
-  }
-
-  ans
-}
-
-
-# ----------------------------------------------------------------
-# 7. VITALITY-style calibration table
-# ----------------------------------------------------------------
-#
-# The displayed reference treatment-effect values are rounded to the
-# nearest attainable event-count difference for equal nominal n.
-#
-# Default displayed values:
-#   approximately -5%, 0%, +5%, +10%
-#
-# Columns:
-#   - reference observed treatment effect;
-#   - event-count difference xP-xT;
-#   - individual CP;
-#   - joint CP;
-#   - probability both doses fall in the reference region if true
-#     effect = 0%, 5%, or 15%;
-#   - probability at least one dose ultimately reaches selected final
-#     observed-effect thresholds (15%, 10%, 5%) under the future assumption.
-#
-# Here 10% is the prespecified Phase II promising threshold; 5% is the
-# weak-effect boundary; 15% is the target treatment effect.
-
-make_reference_table <- function(
-  N = 44,
-  f1 = 0.50,
-  reference_effects = c(-0.05, 0, 0.05, 0.10),
-  delta_go = 0.10,
-  qP = 0.45,
-  qT = 0.30
-) {
-  n1 <- floor(N * f1 + 0.5)
-
-  D_values <- unique(
-    round(
-      reference_effects * n1
-    )
-  )
-
-  rows <- vector(
-    "list",
-    length(D_values)
-  )
-
-  for (i in seq_along(D_values)) {
-
-    D <- D_values[i]
-
-    # Any valid interim count pair with difference D gives the same
-    # individual CP under equal n, equal final N, and fixed qP/qT.
-    if (D >= 0) {
-      xp0 <- D
-      xt0 <- 0
-    } else {
-      xp0 <- 0
-      xt0 <- -D
-    }
-
-    cp_ind <- cp_individual_exact(
+    cp <- cp_individual_exact(
       xp = xp0,
       np = n1,
       xt = xt0,
       nt = n1,
       NP = N,
       NT = N,
-      delta_go = delta_go,
+      delta_go = promising_threshold,
       qP = qP,
       qT = qT
     )
 
-    cp_joint <- cp_joint_exact(
-      xp = xp0,
-      np = n1,
-      xL = xt0,
-      nL = n1,
-      xH = xt0,
-      nH = n1,
-      NP = N,
-      NL = N,
-      NH = N,
-      delta_go = delta_go,
-      qP = qP,
-      qL = qT,
-      qH = qT
-    )
-
-    p_ref_true0 <-
-      prob_both_below_reference_equal_n(
-        D = D,
-        n1 = n1,
-        pP_true = 0.45,
-        pL_true = 0.45,
-        pH_true = 0.45
-      )
-
-    p_ref_true5 <-
-      prob_both_below_reference_equal_n(
-        D = D,
-        n1 = n1,
-        pP_true = 0.45,
-        pL_true = 0.40,
-        pH_true = 0.40
-      )
-
-    p_ref_true15 <-
-      prob_both_below_reference_equal_n(
-        D = D,
-        n1 = n1,
-        pP_true = 0.45,
-        pL_true = 0.30,
-        pH_true = 0.30
-      )
-
-    # Conditional probability of at least one final dose showing
-    # selected observed treatment effects.
-    p_final15 <- cp_joint_exact(
-      xp = xp0,
-      np = n1,
-      xL = xt0,
-      nL = n1,
-      xH = xt0,
-      nH = n1,
-      NP = N,
-      NL = N,
-      NH = N,
-      delta_go = 0.15,
-      qP = qP,
-      qL = qT,
-      qH = qT
-    )
-
-    p_final10 <- cp_joint
-
-    p_final05 <- cp_joint_exact(
-      xp = xp0,
-      np = n1,
-      xL = xt0,
-      nL = n1,
-      xH = xt0,
-      nH = n1,
-      NP = N,
-      NL = N,
-      NH = N,
-      delta_go = 0.05,
-      qP = qP,
-      qL = qT,
-      qH = qT
-    )
-
     rows[[i]] <- data.frame(
       N_per_arm = N,
-      Stage1_target_fraction = f1,
-      n1_nominal = n1,
+      Stage1_nominal_n_per_arm = n1,
       Event_count_difference_xP_minus_xT = D,
-      Reference_observed_treatment_effect =
-        D / n1,
-      Individual_CP = cp_ind,
-      Joint_CP = cp_joint,
-      P_both_below_reference_true_effect_0 =
-        p_ref_true0,
-      P_both_below_reference_true_effect_5 =
-        p_ref_true5,
-      P_both_below_reference_true_effect_15 =
-        p_ref_true15,
-      P_any_final_effect_ge_15 =
-        p_final15,
-      P_any_final_effect_ge_10 =
-        p_final10,
-      P_any_final_effect_ge_05 =
-        p_final05
+      Nominal_observed_RD = D / n1,
+      Individual_CP = cp,
+      Meets_CP70 = cp >= cp_cutoff
     )
   }
 
-  do.call(
-    rbind,
-    rows
-  )
+  do.call(rbind, rows)
 }
 
 
 # ----------------------------------------------------------------
-# 8. Optional Monte Carlo validation using fixed actual mature n
+# 11. Monte Carlo utility for current complete-case Stage 1 design
 # ----------------------------------------------------------------
 #
-# This simulation does NOT apply an automatic Go/No-Go decision.
-# It returns the distribution of observed effects and CP values.
-#
-# To evaluate a displayed reference region, set reference_effect to a
-# value such as 0, 0.05, or 0.10.
+# This assumes all nominal Stage 1 outcomes are determinate.
+# Use the indeterminate-endpoint stress-test script when U > 0.
 
-simulate_interim_cp <- function(
+simulate_current_stage1 <- function(
   nsim = 100000,
   pP_true = 0.45,
   pL_true = 0.30,
   pH_true = 0.30,
-  nP = 22,
-  nL = 22,
-  nH = 22,
-  NP = 44,
-  NL = 44,
-  NH = 44,
-  delta_go = 0.10,
+  nP = 18,
+  nL = 18,
+  nH = 18,
+  NP = 50,
+  NL = 50,
+  NH = 50,
+  promising_threshold = 0.10,
   qP = 0.45,
   qL = 0.30,
   qH = 0.30,
-  reference_effect = NULL,
-  seed = 20260921
+  cp_cutoff = 0.70,
+  seed = 20260925
 ) {
   set.seed(seed)
 
@@ -729,7 +666,7 @@ simulate_interim_cp <- function(
     nT = nL,
     NP = NP,
     NT = NL,
-    delta_go = delta_go,
+    delta_go = promising_threshold,
     qP = qP,
     qT = qL
   )
@@ -739,7 +676,7 @@ simulate_interim_cp <- function(
     nT = nH,
     NP = NP,
     NT = NH,
-    delta_go = delta_go,
+    delta_go = promising_threshold,
     qP = qP,
     qT = qH
   )
@@ -756,117 +693,69 @@ simulate_interim_cp <- function(
     ncol = nH + 1
   )
 
-  xP <- rbinom(
-    nsim,
-    size = nP,
-    prob = pP_true
-  )
+  xP <- rbinom(nsim, size = nP, prob = pP_true)
+  xL <- rbinom(nsim, size = nL, prob = pL_true)
+  xH <- rbinom(nsim, size = nH, prob = pH_true)
 
-  xL <- rbinom(
-    nsim,
-    size = nL,
-    prob = pL_true
-  )
+  cpL <- cp_mat_L[cbind(xP + 1, xL + 1)]
+  cpH <- cp_mat_H[cbind(xP + 1, xH + 1)]
+  M <- pmax(cpL, cpH)
 
-  xH <- rbinom(
-    nsim,
-    size = nH,
-    prob = pH_true
-  )
-
-  effect_L <-
-    xP / nP -
-    xL / nL
-
-  effect_H <-
-    xP / nP -
-    xH / nH
-
-  cpL <- cp_mat_L[
-    cbind(
-      xP + 1,
-      xL + 1
-    )
-  ]
-
-  cpH <- cp_mat_H[
-    cbind(
-      xP + 1,
-      xH + 1
-    )
-  ]
-
-  out <- data.frame(
+  data.frame(
     sim = seq_len(nsim),
     xP = xP,
     xL = xL,
     xH = xH,
-    effect_L = effect_L,
-    effect_H = effect_H,
+    effect_L = xP / nP - xL / nL,
+    effect_H = xP / nP - xH / nH,
     cpL = cpL,
-    cpH = cpH
+    cpH = cpH,
+    M = M,
+    Project_Go = M >= cp_cutoff
   )
-
-  if (!is.null(reference_effect)) {
-    out$both_below_reference <-
-      effect_L <= reference_effect &
-      effect_H <= reference_effect
-  }
-
-  out
 }
 
 
 # ----------------------------------------------------------------
-# 9. Reproduce the current N=44 reference tables and final F-framework OCs
+# 12. Current-design outputs when executed directly
 # ----------------------------------------------------------------
 
 if (sys.nframe() == 0L) {
-
   dir.create(
     "simulation/results",
     recursive = TRUE,
     showWarnings = FALSE
   )
 
-  all_reference <- do.call(
-    rbind,
-    lapply(
-      c(0.40, 0.50, 0.60),
-      function(f1) {
-        make_reference_table(
-          N = 44,
-          f1 = f1
-        )
-      }
-    )
-  )
+  spec <- cipn_design_spec()
+  print(spec)
+
+  stage1_reference <- make_current_stage1_reference_table()
 
   write.csv(
-    all_reference,
-    "simulation/results/cp_reference_table_R_v1_1.csv",
+    stage1_reference,
+    "simulation/results/current_stage1_reference_v2_0.csv",
     row.names = FALSE
   )
 
-  print(all_reference)
+  print(stage1_reference)
 
-  final_classification_grid <- make_final_classification_grid()
+  final_oc <- make_final_classification_grid(
+    N = spec$N_per_arm
+  )
 
   write.csv(
-    final_classification_grid,
-    "simulation/results/cp_final_classification_grid_R_v1_1.csv",
+    final_oc,
+    "simulation/results/current_final_classification_oc_v2_0.csv",
     row.names = FALSE
   )
 
-  print(final_classification_grid)
+  print(final_oc)
 
-  # Example using actual unequal mature sample sizes:
-  #
-  # cp_individual_exact(
-  #   xp = 10, np = 23,
-  #   xt = 8,  nt = 21,
-  #   NP = 44, NT = 44,
-  #   delta_go = 0.10,
-  #   qP = 0.45, qT = 0.30
+  # Example:
+  # stage1_project_decision(
+  #   xp = 8, EP = 18, RP = 18,
+  #   xL = 6, EL = 18, RL = 18,
+  #   xH = 7, EH = 18, RH = 18
   # )
 }

@@ -1,53 +1,40 @@
 /*=================================================================
-  CIPN randomized Phase II
-  Conditional-power engine and calibration utilities
-  Version 1.1
-  Date: 2026-09-22
+  AK135 CIPN randomized Phase II - Cohort 1
+  Current conditional-power engine
+  Version 2.0
+  Date: 2026-09-25
 
-  Endpoint:
-    Y=1 if CTCAE grade >=2 CIPN (unfavorable event)
+  CURRENT WORKING DESIGN
+    Final N = 50 per arm; total N = 150
+    Stage 1 cohort = first 54 randomized participants overall
+    Nominal equal Stage 1 allocation = 18/18/18
+    Endpoint: CTCAE grade >=2 CIPN
+    Effect: Delta = p_placebo - p_treatment
 
-  Unified treatment-effect definition:
-    Delta = p_placebo - p_treatment
-    Positive Delta favors treatment.
+  Planning rates used inside CP:
+    p_placebo_design = 0.45
+    p_treatment_design = 0.30
+    implied design-alternative RD = 0.15
 
-  Current CRC design assumptions:
-    p_placebo = 0.45
-    p_treatment = 0.30
-    target treatment effect = 0.15
-    weak-effect boundary    = 0.05
-    promising threshold     = 0.10
+  The 0.15 RD is implied by the central planning rates; it is not
+  assumed to be an invariant AK135 effect.
 
-  Phase II efficacy classification (program level):
-    max observed effect < 0.05          : No-Go leaning
-    0.05 <= max observed effect < 0.10  : Consider
-    max observed effect >= 0.10         : Go leaning
+  Stage 1 binding rule:
+    M = max(CP_L, CP_H)
+    M >= 0.70 -> Project Go
+    M <  0.70 -> Project No-Go
 
-  IMPORTANT:
-    Conditional power is NON-BINDING decision support.
-    Reference treatment-effect values below are calibration values,
-    not automatic stopping boundaries.
+  No dose dropping after Project Go.
 
-  This program uses Base SAS DATA step functions only.
-  PROC IML is not required.
+  Final efficacy summaries are descriptive. No formal efficacy
+  hypothesis test or multiplicity-adjusted P-value is required.
+
+  Base SAS only; PROC IML is not required.
 =================================================================*/
 
 
 /*-----------------------------------------------------------------
-  1. Exact individual CP using ACTUAL interim sample sizes
-
-  Final Phase II promising event:
-      (xp + YP)/NP - (xt + YT)/NT >= delta_go
-
-  delta_go=0.10 is retained as the macro parameter name for backward
-  compatibility; it represents the prespecified promising threshold.
-
-  Future assumptions:
-      YP ~ Bin(NP-np, qP)
-      YT ~ Bin(NT-nt, qT)
-
-  Output:
-      one-row data set &out with variable CP
+  1. Exact individual CP with complete already-randomized outcomes
 -----------------------------------------------------------------*/
 
 %macro cp_individual_actual(
@@ -55,8 +42,8 @@
     np=,
     xt=,
     nt=,
-    NP=,
-    NT=,
+    NP=50,
+    NT=50,
     delta_go=0.10,
     qP=0.45,
     qT=0.30,
@@ -68,20 +55,18 @@
     mP = &NP - &np;
     mT = &NT - &nt;
 
+    if mP < 0 or mT < 0 then do;
+      put "ERROR: final planned N must be >= interim n.";
+      stop;
+    end;
+
     CP = 0;
 
     do yP = 0 to mP;
-
-      p_yP = pdf(
-        'BINOMIAL',
-        yP,
-        &qP,
-        mP
-      );
+      p_yP = pdf('BINOMIAL', yP, &qP, mP);
 
       max_yT = floor(
-        &NT *
-        ((&xp + yP) / &NP - &delta_go)
+        &NT * ((&xp + yP) / &NP - &delta_go)
         - &xt
         + 1E-12
       );
@@ -108,14 +93,174 @@
 
 
 /*-----------------------------------------------------------------
-  2. Exact joint CP for Low + High sharing one placebo arm
+  2. Available-case + consumed-slot CP
 
-  Joint CP:
-      P(at least one active dose reaches the final promising criterion
-        | actual interim data, future assumptions)
+  R = randomized / final-N slots consumed
+  E = endpoint-evaluable participants
+  U = R - E = permanently indeterminate
+  F = N - R = future recruitment capacity
 
-  Given future placebo count YP, future Low and High counts are
-  conditionally independent.
+  Final projected available-case denominator = E + F = N - U.
+-----------------------------------------------------------------*/
+
+%macro cp_individual_consumed_slot(
+    xp=,
+    EP=,
+    RP=,
+    xt=,
+    ET=,
+    RT=,
+    NP=50,
+    NT=50,
+    delta_go=0.10,
+    qP=0.45,
+    qT=0.30,
+    out=cp_consumed_slot_out
+  );
+
+  data &out;
+    length CP 8;
+
+    if &EP > &RP or &ET > &RT then do;
+      put "ERROR: evaluable count cannot exceed randomized count.";
+      stop;
+    end;
+
+    if &RP > &NP or &RT > &NT then do;
+      put "ERROR: randomized count cannot exceed final planned N.";
+      stop;
+    end;
+
+    FP = &NP - &RP;
+    FT = &NT - &RT;
+
+    final_eval_P = &EP + FP;
+    final_eval_T = &ET + FT;
+
+    CP = 0;
+
+    do yP = 0 to FP;
+      p_yP = pdf('BINOMIAL', yP, &qP, FP);
+
+      max_yT = floor(
+        final_eval_T *
+          ((&xp + yP) / final_eval_P - &delta_go)
+        - &xt
+        + 1E-12
+      );
+
+      if max_yT < 0 then
+        p_treatment_success = 0;
+      else if max_yT >= FT then
+        p_treatment_success = 1;
+      else
+        p_treatment_success = cdf(
+          'BINOMIAL',
+          max_yT,
+          &qT,
+          FT
+        );
+
+      CP + p_yP * p_treatment_success;
+    end;
+
+    U_P = &RP - &EP;
+    U_T = &RT - &ET;
+
+    keep
+      CP
+      FP FT
+      final_eval_P final_eval_T
+      U_P U_T;
+  run;
+
+%mend;
+
+
+/*-----------------------------------------------------------------
+  3. Current Stage 1 project-level rule
+
+  M = max(CP_L, CP_H)
+  M >= cp_cutoff -> Go
+  otherwise      -> No-Go
+-----------------------------------------------------------------*/
+
+%macro stage1_project_decision(
+    xp=,
+    EP=,
+    RP=,
+    xL=,
+    EL=,
+    RL=,
+    xH=,
+    EH=,
+    RH=,
+    NP=50,
+    NL=50,
+    NH=50,
+    promising_threshold=0.10,
+    qP=0.45,
+    qL=0.30,
+    qH=0.30,
+    cp_cutoff=0.70,
+    out=stage1_decision
+  );
+
+  %cp_individual_consumed_slot(
+    xp=&xp,
+    EP=&EP,
+    RP=&RP,
+    xt=&xL,
+    ET=&EL,
+    RT=&RL,
+    NP=&NP,
+    NT=&NL,
+    delta_go=&promising_threshold,
+    qP=&qP,
+    qT=&qL,
+    out=_cp_low
+  );
+
+  %cp_individual_consumed_slot(
+    xp=&xp,
+    EP=&EP,
+    RP=&RP,
+    xt=&xH,
+    ET=&EH,
+    RT=&RH,
+    NP=&NP,
+    NT=&NH,
+    delta_go=&promising_threshold,
+    qP=&qP,
+    qT=&qH,
+    out=_cp_high
+  );
+
+  data &out;
+    merge
+      _cp_low(rename=(CP=CP_L))
+      _cp_high(rename=(CP=CP_H));
+
+    M = max(CP_L, CP_H);
+    CP_cutoff = &cp_cutoff;
+
+    length Project_Decision $5;
+    if M >= CP_cutoff then
+      Project_Decision = "Go";
+    else
+      Project_Decision = "No-Go";
+
+    keep CP_L CP_H M CP_cutoff Project_Decision;
+  run;
+
+%mend;
+
+
+/*-----------------------------------------------------------------
+  4. Exact joint CP utility
+
+  Retained for historical/sensitivity work only.
+  It is NOT the current Stage 1 project statistic.
 -----------------------------------------------------------------*/
 
 %macro cp_joint_actual(
@@ -125,9 +270,9 @@
     nL=,
     xH=,
     nH=,
-    NP=,
-    NL=,
-    NH=,
+    NP=50,
+    NL=50,
+    NH=50,
     delta_go=0.10,
     qP=0.45,
     qL=0.30,
@@ -145,50 +290,28 @@
     Joint_CP = 0;
 
     do yP = 0 to mP;
-
-      p_yP = pdf(
-        'BINOMIAL',
-        yP,
-        &qP,
-        mP
-      );
+      p_yP = pdf('BINOMIAL', yP, &qP, mP);
 
       max_yL = floor(
-        &NL *
-        ((&xp + yP) / &NP - &delta_go)
-        - &xL
-        + 1E-12
+        &NL * ((&xp + yP) / &NP - &delta_go)
+        - &xL + 1E-12
       );
 
       max_yH = floor(
-        &NH *
-        ((&xp + yP) / &NP - &delta_go)
-        - &xH
-        + 1E-12
+        &NH * ((&xp + yP) / &NP - &delta_go)
+        - &xH + 1E-12
       );
 
       if max_yL < 0 then pL_success = 0;
       else if max_yL >= mL then pL_success = 1;
-      else pL_success = cdf(
-        'BINOMIAL',
-        max_yL,
-        &qL,
-        mL
-      );
+      else pL_success = cdf('BINOMIAL', max_yL, &qL, mL);
 
       if max_yH < 0 then pH_success = 0;
       else if max_yH >= mH then pH_success = 1;
-      else pH_success = cdf(
-        'BINOMIAL',
-        max_yH,
-        &qH,
-        mH
-      );
+      else pH_success = cdf('BINOMIAL', max_yH, &qH, mH);
 
       p_any_success =
-        1 -
-        (1 - pL_success) *
-        (1 - pH_success);
+        1 - (1 - pL_success) * (1 - pH_success);
 
       Joint_CP + p_yP * p_any_success;
     end;
@@ -200,16 +323,14 @@
 
 
 /*-----------------------------------------------------------------
-  3. Build an exact CP lookup table for efficient simulation
-
-  This supports unequal mature n and unequal final N.
+  5. CP lookup for complete-case Stage 1 simulation
 -----------------------------------------------------------------*/
 
 %macro build_cp_lookup(
     nP=,
     nT=,
-    NP=,
-    NT=,
+    NP=50,
+    NT=50,
     delta_go=0.10,
     qP=0.45,
     qT=0.30,
@@ -228,19 +349,11 @@
         CP = 0;
 
         do yP = 0 to mP;
-
-          p_yP = pdf(
-            'BINOMIAL',
-            yP,
-            &qP,
-            mP
-          );
+          p_yP = pdf('BINOMIAL', yP, &qP, mP);
 
           max_yT = floor(
-            &NT *
-            ((xp + yP) / &NP - &delta_go)
-            - xt
-            + 1E-12
+            &NT * ((xp + yP) / &NP - &delta_go)
+            - xt + 1E-12
           );
 
           if max_yT < 0 then
@@ -269,37 +382,26 @@
 
 
 /*-----------------------------------------------------------------
-  4. Monte Carlo simulation of interim observed effects and CP
-
-  This macro DOES NOT impose an automatic Go/No-Go rule.
-
-  It returns:
-    observed Low/High treatment effects;
-    Low/High individual CP;
-    indicator that BOTH observed treatment effects are at or below
-    a displayed reference value.
-
-  Separate lookup tables are built for Low and High so unequal
-  mature sample sizes are supported.
+  6. Current complete-case Stage 1 Monte Carlo utility
 -----------------------------------------------------------------*/
 
 %macro simulate_interim_cp(
     nsim=100000,
-    seed=20260921,
+    seed=20260925,
     pP_true=0.45,
     pL_true=0.30,
     pH_true=0.30,
-    nP=22,
-    nL=22,
-    nH=22,
-    NP=44,
-    NL=44,
-    NH=44,
+    nP=18,
+    nL=18,
+    nH=18,
+    NP=50,
+    NL=50,
+    NH=50,
     delta_go=0.10,
     qP=0.45,
     qL=0.30,
     qH=0.30,
-    reference_effect=0,
+    cp_cutoff=0.70,
     out=sim_cp
   );
 
@@ -329,36 +431,12 @@
     call streaminit(&seed);
 
     do sim = 1 to &nsim;
+      xp = rand('BINOMIAL', &pP_true, &nP);
+      xL = rand('BINOMIAL', &pL_true, &nL);
+      xH = rand('BINOMIAL', &pH_true, &nH);
 
-      xp = rand(
-        'BINOMIAL',
-        &pP_true,
-        &nP
-      );
-
-      xL = rand(
-        'BINOMIAL',
-        &pL_true,
-        &nL
-      );
-
-      xH = rand(
-        'BINOMIAL',
-        &pH_true,
-        &nH
-      );
-
-      effect_L =
-        xp / &nP -
-        xL / &nL;
-
-      effect_H =
-        xp / &nP -
-        xH / &nH;
-
-      both_below_reference =
-        (effect_L <= &reference_effect) and
-        (effect_H <= &reference_effect);
+      effect_L = xp / &nP - xL / &nL;
+      effect_H = xp / &nP - xH / &nH;
 
       output;
     end;
@@ -368,8 +446,10 @@
     create table &out as
     select
       a.*,
-      b.CP as cpL,
-      c.CP as cpH
+      b.CP as CP_L,
+      c.CP as CP_H,
+      max(b.CP,c.CP) as M,
+      calculated M >= &cp_cutoff as Project_Go
     from _stage1 as a
 
     left join _lookup_L as b
@@ -387,112 +467,13 @@
 
 
 /*-----------------------------------------------------------------
-  5. Exact probability that BOTH active doses fall at or below
-     a displayed reference treatment effect
+  7. Exact final descriptive-classification operating characteristics
 
-  Equal nominal n is used only for the design-calibration table.
-
-  D = xP - xT
-
-  Reference region:
-      xP - xL <= D
-      xP - xH <= D
-
-  This probability is NOT automatically P(stop).
------------------------------------------------------------------*/
-
-%macro prob_both_reference_equal_n(
-    D=,
-    n1=,
-    pP_true=,
-    pL_true=,
-    pH_true=,
-    out=prob_reference_out
-  );
-
-  data &out;
-    length Probability 8;
-    Probability = 0;
-
-    do xP = 0 to &n1;
-
-      p_xP = pdf(
-        'BINOMIAL',
-        xP,
-        &pP_true,
-        &n1
-      );
-
-      min_xT = xP - (&D);
-
-      if min_xT <= 0 then do;
-        pL_region = 1;
-        pH_region = 1;
-      end;
-      else if min_xT > &n1 then do;
-        pL_region = 0;
-        pH_region = 0;
-      end;
-      else do;
-
-        pL_region =
-          1 - cdf(
-            'BINOMIAL',
-            min_xT - 1,
-            &pL_true,
-            &n1
-          );
-
-        pH_region =
-          1 - cdf(
-            'BINOMIAL',
-            min_xT - 1,
-            &pH_true,
-            &n1
-          );
-      end;
-
-      Probability +
-        p_xP *
-        pL_region *
-        pH_region;
-    end;
-
-    keep Probability;
-  run;
-
-%mend;
-
-
-
-
-/*-----------------------------------------------------------------
-  6. Exact final Phase II efficacy-classification probabilities
-
-  Program-level efficacy classification:
-
-      delta_max = max(delta_L, delta_H)
-
-      delta_max < weak_effect_boundary
-          -> No-Go leaning
-
-      weak_effect_boundary <= delta_max < promising_threshold
-          -> Consider
-
-      delta_max >= promising_threshold
-          -> Go leaning
-
-  This is an efficacy classification, not an automatic development
-  decision.
-
-  IMPORTANT:
-  Because the Stage 1 review is non-binding and no mechanical interim
-  stop rule is specified, these FINAL probabilities depend on final N
-  and true event rates, but not on the Stage 1 information fraction.
+  This is a design-OC utility, not a formal hypothesis test.
 -----------------------------------------------------------------*/
 
 %macro final_classification_oc_equal_n(
-    N=,
+    N=50,
     pP_true=0.45,
     pL_true=0.30,
     pH_true=0.30,
@@ -512,62 +493,25 @@
     P_Go_leaning = 0;
 
     do xP = 0 to &N;
-
-      p_xP = pdf(
-        'BINOMIAL',
-        xP,
-        &pP_true,
-        &N
-      );
+      p_xP = pdf('BINOMIAL', xP, &pP_true, &N);
 
       do xL = 0 to &N;
-
-        p_xL = pdf(
-          'BINOMIAL',
-          xL,
-          &pL_true,
-          &N
-        );
-
-        delta_L =
-          (xP - xL) / &N;
+        p_xL = pdf('BINOMIAL', xL, &pL_true, &N);
+        delta_L = (xP - xL) / &N;
 
         do xH = 0 to &N;
+          p_xH = pdf('BINOMIAL', xH, &pH_true, &N);
+          delta_H = (xP - xH) / &N;
+          delta_max = max(delta_L, delta_H);
 
-          p_xH = pdf(
-            'BINOMIAL',
-            xH,
-            &pH_true,
-            &N
-          );
+          pr = p_xP * p_xL * p_xH;
 
-          delta_H =
-            (xP - xH) / &N;
-
-          delta_max =
-            max(
-              delta_L,
-              delta_H
-            );
-
-          pr =
-            p_xP *
-            p_xL *
-            p_xH;
-
-          if delta_max <
-             &weak_effect_boundary
-          then
+          if delta_max < &weak_effect_boundary then
             P_NoGo_leaning + pr;
-
-          else if delta_max <
-                  &promising_threshold
-          then
+          else if delta_max < &promising_threshold then
             P_Consider + pr;
-
           else
             P_Go_leaning + pr;
-
         end;
       end;
     end;
@@ -576,12 +520,8 @@
     pP_true = &pP_true;
     pL_true = &pL_true;
     pH_true = &pH_true;
-
-    true_effect_low =
-      pP_true - pL_true;
-
-    true_effect_high =
-      pP_true - pH_true;
+    true_effect_low = pP_true - pL_true;
+    true_effect_high = pP_true - pH_true;
 
     keep
       N_per_arm
@@ -599,74 +539,49 @@
 
 
 /*-----------------------------------------------------------------
-  7. Example: actual unequal mature interim sample sizes
+  8. Current examples
 -----------------------------------------------------------------*/
 
-
 /*
-%cp_individual_actual(
-  xp=10,
-  np=23,
-  xt=8,
-  nt=21,
-  NP=44,
-  NT=44,
-  delta_go=0.10,
-  qP=0.45,
-  qT=0.30,
-  out=example_cp
+%stage1_project_decision(
+  xp=8,
+  EP=18,
+  RP=18,
+  xL=6,
+  EL=18,
+  RL=18,
+  xH=7,
+  EH=18,
+  RH=18,
+  out=current_stage1_example
 );
 
-proc print data=example_cp noobs;
+proc print data=current_stage1_example noobs;
 run;
-*/
 
 
-/*-----------------------------------------------------------------
-  8. Example Monte Carlo validation
------------------------------------------------------------------*/
-
-/*
-%simulate_interim_cp(
-  nsim=100000,
-  pP_true=0.45,
-  pL_true=0.30,
-  pH_true=0.30,
-  nP=22,
-  nL=22,
-  nH=22,
-  NP=44,
-  NL=44,
-  NH=44,
-  delta_go=0.10,
-  qP=0.45,
-  qL=0.30,
-  qH=0.30,
-  reference_effect=0,
-  out=sim_target
+%cp_individual_consumed_slot(
+  xp=7,
+  EP=17,
+  RP=18,
+  xt=6,
+  ET=18,
+  RT=18,
+  out=one_placebo_indeterminate
 );
 
-proc means data=sim_target mean std min p25 median p75 max;
-  var effect_L effect_H cpL cpH both_below_reference;
+proc print data=one_placebo_indeterminate noobs;
 run;
-*/
 
 
-/*-----------------------------------------------------------------
-  9. Example exact final efficacy-classification OC
------------------------------------------------------------------*/
-
-/*
 %final_classification_oc_equal_n(
-  N=44,
+  N=50,
   pP_true=0.45,
-  pL_true=0.30,
+  pL_true=0.45,
   pH_true=0.30,
-  weak_effect_boundary=0.05,
-  promising_threshold=0.10,
-  out=final_oc_N44_target
+  out=current_final_oc
 );
 
-proc print data=final_oc_N44_target noobs;
+proc print data=current_final_oc noobs;
 run;
 */

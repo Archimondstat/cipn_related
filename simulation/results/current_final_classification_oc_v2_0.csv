@@ -1,0 +1,6 @@
+scenario,N_per_arm,pP_true,pL_true,pH_true,true_effect_low,true_effect_high,P_NoGo_leaning,P_Consider,P_Go_leaning
+null,50,0.45,0.45,0.45,0,0,0.547967,0.163664,0.288369
+one_weak,50,0.45,0.45,0.40,0,0.05,0.419283,0.172633,0.408084
+one_promising,50,0.45,0.45,0.35,0,0.10,0.269221,0.157725,0.573053
+one_design_alternative,50,0.45,0.45,0.30,0,0.15,0.137573,0.116025,0.746402
+both_design_alternative,50,0.45,0.30,0.30,0.15,0.15,0.058876,0.076286,0.864839

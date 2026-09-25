@@ -4,6 +4,8 @@
 **Date:** 25 September 2026  
 **Status:** Working robustness analysis for the current main design.
 
+> **SUPERSEDED INTERPRETATION:** This analysis holds the true absolute risk difference fixed while varying the placebo rate. The current design instead treats placebo and active-arm event rates as separate scenario parameters. See `docs/N50_IA35_CP70_joint_rate_robustness_v1_6.md` and `docs/current_design_master_v2_4.md`.
+
 ## 1. Current design held fixed
 
 This analysis holds the current working design fixed:

@@ -176,13 +176,71 @@ The equal-allocation event-count shorthand is only a calibration aid. The operat
 
 Accrual may continue at a reduced rate while Stage 1 endpoints mature. Participants randomized after the first 54 and before the Stage 1 decision are pipeline/overrun participants.
 
-The current operational budget principle is:
+The current operational budget / commitment principle is:
 
 \[
 P\left(N_{IA}\ge\lceil0.70N_{total}\rceil\right)\le0.05.
 \]
 
-Pipeline participants do not enter Stage 1 CP and do not replace Stage 1 participants, but remain part of the randomized study population.
+For the current total sample size:
+
+\[
+N_{total}=150,
+\qquad
+\lceil0.70N_{total}\rceil=105.
+\]
+
+After the first 54 Stage 1 participants are randomized, let the number of additional randomized participants before the Stage 1 decision be:
+
+\[
+X\sim Poisson(r_{slow}L),
+\]
+
+where \(L\) is the endpoint-maturation delay in months and \(r_{slow}\) is the post-Stage-1 average randomization rate.
+
+Crossing the 70% budget boundary is equivalent to:
+
+\[
+X\ge105-54=51.
+\]
+
+The maximum allowed Poisson mean is defined by:
+
+\[
+P\{Poisson(\lambda_{max})\ge51\}=0.05,
+\]
+
+which gives:
+
+\[
+\lambda_{max}\approx39.85.
+\]
+
+Therefore:
+
+\[
+\boxed{r_{slow,max}=39.85/L}.
+\]
+
+Under the central operational assumptions:
+
+\[
+r_0=9/month,
+\qquad
+L=6\ months,
+\]
+
+the maximum post-Stage-1 accrual rate is approximately:
+
+\[
+6.64/month,
+\]
+
+or approximately 73.8% of ordinary accrual.
+
+Thus, after the 54th participant is randomized, accrual should be slowed sufficiently to keep the overall average rate at or below the derived cap until the Stage 1 CP decision is available. If Project Go, ordinary accrual may resume; if Project No-Go, new randomization stops.
+
+This constraint is operational and independent of the statistical CP cutoff. Pipeline participants do not enter Stage 1 CP and do not replace Stage 1 participants, but remain part of the randomized study population.
 
 ## 11. Project No-Go operational handling
 
@@ -294,6 +352,7 @@ Important supporting analyses:
 - simulation/N50_IA35_CP70_joint_rate_robustness_v1_6.R
 - simulation/stage1_indeterminate_consumed_slot_v1_8.R
 - simulation/stage1_indeterminate_stress_v1_9.R
+- simulation/current_accrual_poisson_constraint_v2_1.R
 
 Historical exploratory files remain in the repository for audit trail but do not define the current design.
 

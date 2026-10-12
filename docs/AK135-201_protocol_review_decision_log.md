@@ -127,12 +127,83 @@
 - 乳腺癌含新辅助/辅助、多种Q3W/Q4W治疗方案；需在后续审阅时明确其主要评价窗口、Stage 1信息比例、CP参数和样本量。
 - 其他实体瘤队列尚未在本次讨论完成Stage 1与样本量定位；不作未经确认的推断。
 
-### CP-06｜OS、DFS与EFS在CP中的归类
-**状态：统计建议/待进一步讨论，未决定**
-**涉及：** §2次要终点、§11.5–11.6
-- 先前统计审阅建议：**OS**可作为治疗期间及随访期的**长期生存安全信号/肿瘤学安全监测**，避免解释成AK135改善抗肿瘤生存获益的正式有效性终点；但OS不同于普通AE，定义和分析应保持单独清楚。
-- 结肠癌DFS、乳腺癌辅助DFS及新辅助EFS，更适合先作为**探索性肿瘤疾病结局**考虑；也可支持评估AK135是否影响标准抗肿瘤治疗有效性。
-- 这些是**待讨论建议，并非用户确认的CP修改决定**。随访成熟度、事件定义、删失及呈现方式待后续逐项审阅。
+### CP-06｜OS、DFS与EFS在CP中的归类及指导原则依据
+**状态：终点定位已由用户确认；事件定义、分析与随访细节待后续审阅**  
+**确认日期：2026-10-12**  
+**涉及：** 方案摘要/研究终点、§2目的和终点、§6.3随访、§11.5–11.6及SAP
+
+#### 1. 已确认的修改方向（针对当前探索性Ⅱ期）
+| 终点 | CP建议归类 | 对应人群 | 用途 |
+|---|---|---|---|
+| OS | **预设长期生存安全性/潜在生存损害评价**，不作为AK135抗肿瘤生存获益的验证性有效性终点 | 适用的全部随机队列，分队列解释 | 探查是否可能影响长期生存；与普通TEAE分开定义和报告 |
+| DFS | **探索性肿瘤疾病结局（oncologic disease outcome）**，区别于CIPN有效性 | 结肠癌根治术后辅助；乳腺癌术后辅助 | 复发/死亡等疾病结局，辅助观察是否可能干扰抗肿瘤治疗 |
+| EFS | **探索性肿瘤疾病结局**，区别于CIPN有效性 | 乳腺癌新辅助 | 术前影响根治手术的进展、复发或死亡等疾病结局 |
+
+说明：FDA指出OS**同时可以是有效性与安全性终点**。本项目选择将OS定位为长期安全评价，是基于**当前研究目的、II期规模、不设置验证性生存优势检验**的项目判断；不得笼统称FDA认为OS只能是安全终点。DFS/EFS不应作为常规TEAE的一部分，也不拟评价AK135改善抗肿瘤疗效。
+
+#### 2. 指导原则/法规证据表（已核查FDA/ICH原文）
+
+**[G1] FDA, January 2025, DRAFT**  
+*Prevention and Treatment of Chemotherapy-Induced Peripheral Neuropathy: Developing Drug and Biological Products in Oncology*  
+指导页：https://www.fda.gov/regulatory-information/search-fda-guidance-documents/prevention-and-treatment-chemotherapy-induced-peripheral-neuropathy-developing-drug-and-biological  
+原文PDF：https://www.fda.gov/media/185154/download  
+**对应段落：** Section II Background；III.A *Trial Population and Design*（PDF印刷第2–3页，约line 44–80）；III.B *Primary and Secondary Endpoints*（PDF印刷第4页，约line 129–151）。  
+**直接支持：**
+- 防治CIPN药物可能降低既定肿瘤治疗效果或促进肿瘤生长，开发过程需要考虑该风险。
+- 对拟支持上市申请的CIPN临床研究，FDA建议纳入oncology-specific endpoints，以评估对原抗肿瘤治疗的潜在干扰；在**early-stage**疾病，举例包括 **DFS、EFS、OS**；在metastatic疾病，举例包括ORR、DOR、PFS、OS。
+- 对**拟支持上市申请**的研究，该Draft进一步建议这些oncology-specific secondary endpoints进入统计层级并配置适当alpha，**即使对其充分把握度可能不可行**；同时建议预设足够的长期随访，并在CIPN主要有效性分析时对肿瘤终点作正式期中评价。**这是重要限定，不能声称FDA普遍赞同所有CIPN研究均不为肿瘤结局分配alpha。**
+- III.A（约line 69–80）另有关于早期可治愈患者临床研究入组先后顺序的建议：若尚无研究药在癌症患者中的肿瘤相互作用临床数据，建议初始临床研究先纳入不可治愈/转移性肿瘤患者；具备有利的非临床和先前临床数据后，方考虑有适当理由纳入早期可治愈人群。**此为单独的医学/开发策略核对项，非本轮已确认的方案修订。**
+
+**[G2] FDA, August 2025, DRAFT**  
+*Approaches to Assessment of Overall Survival in Oncology Clinical Trials*  
+指导页：https://www.fda.gov/regulatory-information/search-fda-guidance-documents/approaches-assessment-overall-survival-oncology-clinical-trials  
+原文PDF：https://www.fda.gov/media/188274/download  
+**对应段落：** Section II *Background*（印刷第2页）；Section III *Recommendations*（印刷第3页）；Section III.A *Trial Design Considerations*；Section III.B.2 *Assessment of Harm*（印刷第9–10页）。  
+**直接支持：**
+- Section II明确OS同时是疗效和安全性指标；当不开展正式alpha控制的OS有效性检验时，历史上会以描述性OS结果作为安全性评价。
+- Section III（约lines 96–100）明确推荐：OS不作为正式alpha控制的主要/次要有效性终点时，**预设作为安全性终点的分析，以识别潜在harm**。OS通常定义为自随机至任何原因死亡。
+- 推荐预先制定OS采集/随访/分析计划，认识到低死亡事件数时推断高度不确定；并非任何小规模研究均须进行OS期中检验，III.A明确指出一些小规模随机研究或OS事件率较低的研究可不适合实施OS期中分析。
+- III.B.2强调要想**排除有临床意义的生存损害**，原则上需要预设阈值和足够精度。本Ⅱ期目前**无法声称有统计能力排除伤害**；OS只能作初步安全信号描述/监测，而不是“证实未损害生存”的结论。
+
+**[G3] FDA, December 2018, FINAL**  
+*Clinical Trial Endpoints for the Approval of Cancer Drugs and Biologics*  
+指导页：https://www.fda.gov/regulatory-information/search-fda-guidance-documents/clinical-trial-endpoints-approval-cancer-drugs-and-biologics  
+原文PDF：https://www.fda.gov/media/71195/download  
+**对应段落：** Section III.B *Endpoints Based on Tumor Assessments*，尤其III.B.1 *Disease-Free Survival (and Event-Free Survival)*（印刷第8–9页）。  
+**直接支持：**
+- DFS通常为**随机至疾病复发或任何原因死亡**；常用于完成根治性治疗后的辅助场景（如辅助结肠癌/乳腺癌）。
+- EFS可用于**根治性手术前随机的新辅助场景**；指导原则举例事件包括阻止手术的疾病进展、局部或远处复发、全因死亡；并指出EFS适用于新辅助乳腺癌。
+- 对DFS/EFS须预先定义事件、随访计划、评估时点、死亡处理与删失；不同组访视频率差异、非随机脱落可产生偏倚。
+- **适用性界限：** 该Final Guidance旨在肿瘤药治疗既有肿瘤、支持抗肿瘤有效性主张的语境下阐述终点；将其用于本CIPN支持治疗研究的DFS/EFS定义属于**方法学参照**，而不是声称它要求本试验将DFS/EFS归为“探索性”。
+
+**[G4] FDA, October 2022, FINAL**  
+*Multiple Endpoints in Clinical Trials*  
+指导页：https://www.fda.gov/regulatory-information/search-fda-guidance-documents/multiple-endpoints-clinical-trials  
+原文PDF：https://www.fda.gov/media/162416/download  
+**对应段落：** Section III.A.2 *Secondary and Exploratory Endpoint Families*（印刷第7页）。  
+**直接支持：** 探索性终点可用于研究/产生新假设；当**不用于确证性结论**时，一般无需 multiplicity adjustment。**项目判断：** 本探索性Ⅱ期拟以DFS/EFS描述和信号识别为目的，不实施抗肿瘤效果的正式确证性检验。此结论**不能覆盖**[G1]对未来**支持上市申请试验**提出的统计层级/alpha建议。
+
+**[G5] ICH E9(R1), final, Step 4 (2019)**  
+*Addendum on Estimands and Sensitivity Analysis in Clinical Trials*  
+原文PDF：https://database.ich.org/sites/default/files/E9-R1_Step4_Guideline_2019_1203.pdf  
+**对应段落：** Section A.3.1（Intercurrent Events）、A.3.2（Strategies）、A.3.3（Estimand Attributes）、A.6（Documenting Estimands）。  
+**直接支持：** 应预先定义目标变量、随访、干预后事件和估计目标；例如治疗停止、后续抗肿瘤治疗、死亡会影响不同终点的解释；**不能**用该指南作为将DFS或OS划入某个章节的监管指令。
+
+**引用状态：** [G1]与[G2]均为 *Draft — Not for Implementation*，属于非约束性建议；[G3]与[G4]为FDA Final Guidance；[G5]为ICH最终指南。引用CP时不应把Draft写成强制法规。
+
+#### 3. AK135-201拟修改的表达方向（非最终Word定稿）
+
+- **OS：** 从“常规CIPN次要有效性/AK135抗肿瘤获益”语境中分离，定义为**预设的长期生存安全性及潜在不利生存影响的评价指标**。分析上可在安全/长期生存专节列出死亡人数、随访情况及视成熟度的描述性生存结果；不做OS优效性检验，不宣称无害或排除临床显著损害。是否放在“安全性终点”抑或“长期生存监测”独立段落，由统一修稿时决定。
+- **DFS：** 结肠癌术后辅助、乳腺癌辅助人群：标为**探索性肿瘤疾病结局**，作为可能影响抗肿瘤治疗效果的辅助观察，不是AK135预防CIPN的疗效结局，不作正式假设检验。
+- **EFS：** 乳腺癌新辅助人群：标为**探索性肿瘤疾病结局**，符合新辅助疾病路径；不将辅助和新辅助人群简单合并为同一个DFS/EFS分析。
+- **长随访：** 当前CP仅规定结束治疗后12个月、每3个月收集疾病状态和生存；此时间长度对治愈性肿瘤疾病结局的成熟性尚不能视为充分。必须在CP/SAP中保留解释局限，并与医学核实有无更长期收集安排及是否足以观察有意义的肿瘤学安全信号。
+
+#### 4. 后续需要医学/统计共同核查（不要在本轮自行定稿）
+1. **DFS/EFS事件和起始时点：** 随机日起算是否适宜，乳腺癌新辅助EFS是否包括进展导致无法手术，术前术后事件判定以及肿瘤复发、死亡的具体规则；DFS/EFS的失访、后续治疗、疾病评估缺失处理。
+2. **长期随访可行性：** 目前12个月的随访与疾病结局成熟度能否匹配；不同队列影像学采集依据SOC，不可凭空承诺统一影像复核。
+3. **OS报告形式：** 预计死亡事件数、数据成熟度、是否可合理展示KM；事件数很少时优先死亡/存活状态及随访完整性描述，避免报告易被误读的HR。
+4. **监管开发路径：** 目前为探索性Ⅱ期、非拟凭此直接申请支持AK135上市的关键验证性临床研究这一定位，需要申办方确认；若拟作为上市关键证据，则[G1]对oncology-specific secondary endpoints层级/alpha及充分随访的建议须重新审议。
+5. **早期可治愈人群使用依据：** [G1] III.A针对尚无癌症患者肿瘤交互作用临床数据的CIPN药物开发设有警示；请医学检查本项目已有非临床/临床证据及纳入结肠癌/乳腺癌可治愈患者的依据。此为另行提出的医学风险点，**不等于断言AK135当前开发不符合指导原则**。
 
 ---
 
@@ -147,7 +218,7 @@
 | PRO/神经功能指标 | 部分已确定 | CIPN20及FACT/GOG-Ntx方向、阈值、次要终点和各访视 |
 | 伴随治疗与intercurrent events | 部分已确定 | 明确诱发CIPN的新抗肿瘤治疗清单（医学）、支持性分析 |
 | 安全性 | 未逐项审阅 | TEAE定义及窗口、免疫相关不良事件、OS归类、监测 |
-| 肿瘤长期结局 | 未逐项审阅 | DFS/EFS/OS分类、事件/删失规则、随访可行性 |
+| 肿瘤长期结局 | 部分已确认 | CP-06定位及法规依据已确认；DFS/EFS事件/删失规则、OS成熟度、随访可行性仍需审阅 |
 | PK/免疫原性 | 未审阅 | §11.7及各队列适用分析 |
 | 随机化/盲态治理 | 待医学及运营 | 两阶段实施、揭盲访问、队列独立性、DMC/IDMC |
 | 文稿与访视表一致性 | 待全篇结束 | 摘要/正文/表格/流程图/SAP联动、删除未填占位符 |
@@ -165,3 +236,4 @@
 | 日期 | 更新 |
 |---|---|
 | 2026-10-12 | 新建独立审阅归档文件，回溯此前CP-01（主要终点）、CP-02（C18D14/约3个月）、CP-03（提前停化疗评价）、CP-04（40% Stage 1）、CP-05（乳腺癌独立假设）以及CP-06（OS/DFS/EFS待讨论）。建立“先审完整篇、再统一改Word”的工作规则。 |
+| 2026-10-12 | CP-06：用户确认OS作长期生存安全性监测，DFS/EFS作探索性肿瘤结局。核查并归档FDA 2025 CIPN专项Draft、2025 OS Draft、2018肿瘤终点Final、2022多终点Final、ICH E9(R1)；特别记录FDA针对**上市申请**的oncology-specific endpoints与alpha层级建议、长期随访成熟度及可治愈早期癌人群开发风险。 |

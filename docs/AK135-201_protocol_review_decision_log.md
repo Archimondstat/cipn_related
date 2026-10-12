@@ -986,7 +986,7 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 | 伴随治疗与intercurrent events | 部分已确定 | 明确诱发CIPN的新抗肿瘤治疗清单（医学）、支持性分析 |
 | 安全性 | CP-15 §11.6已按AK135-101 SAP §3.9拟稿，带Comment | §9.2收集/报告属于医学/PV，统计不审。§11.6仅借鉴101的SS/TEAE/TRAE/SOC-PT/实验室Shift/生命体征/ECG及体检统计结构；CTCAE用201 v6.0，不照搬101转换期和模板阈值；TEAE分析期及AESI等保留统计衔接Comment，Word未改 |
 | 肿瘤长期结局 | 部分已确认 | CP-06定位及法规依据已确认；DFS/EFS事件/删失规则、OS成熟度、随访可行性仍需审阅 |
-| PK/免疫原性 | 未审阅 | §11.7及各队列适用分析 |
+| PK/免疫原性 | CP-16已拟§11.7统计工作稿，待用户/药理确认 | 按AK135-101 SAP参考PK浓度曲线、ADA/NAb阳性汇总及PD/标志物变化；§8仍是模板，访视表引用不存在的§8.4.1，具体采样/BQL/ADA滴度/PK分析集名称/IL-RAP命名保留Comment，Word未改 |
 | 随机化/盲态治理 | 统计团队负责起草，待独立章节审阅 | 现方案按队列1:1:1区组随机；乳腺癌是否按背景化疗/计划周期等分层及具体随机方案待统计撰写时讨论，参考CONTRoL/SWOG等；先保留C-BC-14药物组成医学Comment，揭盲访问、DMC/IDMC另议 |
 | 文稿与访视表一致性 | 待全篇结束 | 摘要/正文/表格/流程图/SAP联动、删除未填占位符 |
 

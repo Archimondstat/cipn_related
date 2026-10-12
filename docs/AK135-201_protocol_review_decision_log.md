@@ -752,6 +752,42 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 - **C-BC-12**：确认“4–6周期”是否真实允许随机前计划5周期；若允许，补充5周期末EOT/访视安排；若仅4或6则修正文稿以避免歧义。
 - **C-BC-13**：随机前收集的完整背景方案、给药日与计划周期数是总体EOT结局的关键解释变量，支持按方案/周期/频率描述性呈现；不强制新增验证性调整模型。
 
+
+#### 乳腺癌不同背景化疗能否合并入同一随机治疗组：随机试验一手案例复核（2026-10-12）
+
+**统计建议/尚待用户确认写入CP：** **可以按AK135 12 mg/kg、20 mg/kg、安慰剂三个随机组对队列2所有符合方案允许背景治疗的受试者进行总体描述性主要有效性分析**，不要求以AC-T、TCbHP、TAC、TC分别设独立主要分析组；但应在随机组别内展示**随机前计划背景化疗方案、紫杉类实际药物、计划4/5/6周期、Q3W/Q4W、计划累计剂量和实际曝露/因CIPN修改**，必要时开展探索性按方案、计划周期或给药节律分层描述/敏感性。**总体风险差是研究实际纳入化疗方案混合分布下的边际差（placebo−AK135）**，不能表述为“所有不同方案具有相同风险或同样保护作用”。两项主要终点仍**仅按各个患者实际EOT当次**，无验证性统计检验，不改变现有CP、Stage1或随机化方法。
+
+**最贴近本队列的已有研究及“合并而非拆队列”实施证据：**
+
+| 研究（原始正式论文） | 纳入的背景化疗异质性 | 实际随机/总体分析/辅助处理 | 与AK135-201的限制 |
+|---|---|---|---|
+| **CONTRoL**：Accordino MK et al. *Randomized Adaptive Selection Trial of Cryotherapy, Compression Therapy, and Placebo to Prevent Taxane Induced Peripheral Neuropathy in Patients with Breast Cancer*. *Breast Cancer Res Treat*. 2024;204:49–59. DOI **10.1007/s10549-023-07172-y**. [开放全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC10840989/) | 早期乳腺癌，**nab-paclitaxel、paclitaxel、docetaxel**均允许；入组要求计划紫杉类治疗至少12周。实际n=63，**每3周docetaxel 38 (60.3%)，每周paclitaxel 25 (39.7%)**，另记录carboplatin联用等，Table 1按3随机干预组列出化疗构成。 | 三臂（冷却、压迫、安慰对照），**在chemotherapy strata内按triplet随机**（Methods: Statistical Analysis）；主要评价为**12周FACT-NTX变化<5的成功率**，最终合并各背景化疗后的三个治疗组总体比例（Results）；按照化疗类别均衡随机/基线表呈现，不为各个化疗方案设置另一套主要终点。 | **最接近本试验乳腺癌三臂+预防CIPN的先例**，但干预是非药物、主要时点固定为12周，而本方案采用患者特异EOT。**不能照搬其自适应淘汰、triplet随机或固定成功阈值**。 |
+| **SWOG S0715**：Hershman DL et al. *Randomized double-blind placebo-controlled trial of acetyl-L-carnitine for prevention of taxane-induced neuropathy in women undergoing adjuvant breast cancer therapy*. *J Clin Oncol*. 2013;31:2627–2633. DOI **10.1200/JCO.2012.44.8738**. [开放全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC3699727/) | 女性早期乳腺癌，**weekly paclitaxel ×12，paclitaxel Q2W ×4/6，docetaxel Q3W ×4/6**，涵盖不同药物、节律和周期。约409例用于分析。 | ALC与安慰剂**两个治疗组总体比较**；随机化**按随机前计划的taxane方案及年龄分层**；12周FACT-NTX总体变化为主要终点，主分析**调整基线FACT-NTX与预设分层变量**；另报告背景化疗类别效应与次要二分类结果。 | 最直接说明**允许不同药物/频率/周期数而不拆独立队列**，但该试验按方案分层并调整、**主要评价固定12周**，不能推断本AK135-201无分层和个体EOT的风险完全相同。 |
+| **Lu et al. GM1乳腺癌试验**：*Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral Neurotoxicity in Patients with Breast Cancer*. *J Natl Cancer Inst*. 2020;112:55–62. DOI **10.1093/jnci/djz086**. [全文](https://academic.oup.com/jnci/article/112/1/55/5489913) | 允许AC→paclitaxel、AC→docetaxel、TC (docetaxel/cyclophosphamide)等不同辅助背景；进入试验均为**4个taxane治疗周期**。 | GM1与安慰剂**一个两臂总体比较**，以4周期治疗完成后2周FACT-Ntx为主要；论文还进行**包含taxane类型的多因素分析**，并在补充资料探索paclitaxel/docetaxel亚组。论文只说明1:1中心随机，**不能声称按化疗类型分层随机**。 | 非常类似本项目药物预防场景，但它**统一了紫杉类周期数和定点评价**，因此其总体合并比分别4/6周期、EOT可变的本项目更易解释。 |
+| **Alliance A221805**：Lavoie Smith EM et al. *JCO Oncology Advances*. 2026;3:e2500107. DOI **10.1200/OA-25-00107**. [全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC13120771/) | 结直肠癌、**FOLFOX Q2W六周期或CAPOX Q3W四周期**（约同为3个月奥沙利铂暴露），两剂量+安慰剂3臂。 | **按FOLFOX/CAPOX及性别分层随机**，主要结果按随机组总体汇总，额外多变量logistic回归包含化疗方案、累计剂量等。 | 跨方案合并总体二分类主要结果的支撑先例，但**不是乳腺癌、不同给药周期趋于同一历时**，不能当作EOT异时长已解决的案例。 |
+
+**背景方案影响CIPN风险的独立实证：** [JAMA Network Open 2022乳腺癌不同紫杉类与患者报告CIPN的前瞻性研究](https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2798100)显示**nab-paclitaxel、paclitaxel及docetaxel相关的CIPN风险与症状谱并不一致**；因此AK135-201的总体队列平均效应随实际纳入方案构成变化，亚组报告有科学意义，但当前探索性II期不需以交互检验判断药物对某方案是否有效。
+
+**现版AK135-201 CP源文件必须据实区分：**
+1. §5.7.2写**按队列分别1:1:1区组随机**，**没有确认乳腺癌队列还按背景化疗方案分层随机**。不能把CONTRoL/S0715的分层随机技术误写成AK135-201已经采用或必须临时改变；优先保持现有随机方法，若医学/IRT另决定分层则另行同步。
+2. §3.1、§4.1列队列2可采用AC-T、TCbHP、TAC、TC，另称本队列研究药须在**白蛋白结合型紫杉醇**治疗前使用。国际通用**TAC**指docetaxel+doxorubicin+cyclophosphamide（[NCI Drug Dictionary](https://www.cancer.gov/publications/dictionaries/cancer-drug/def/tac-regimen)），**TC**通常指docetaxel+cyclophosphamide（[NCI乳腺癌PDQ](https://www.cancer.gov/types/breast/hp/breast-treatment-pdq)），**TCbHP**通常指docetaxel+carboplatin+trastuzumab+pertuzumab（[Neopeaks II期](https://pmc.ncbi.nlm.nih.gov/articles/PMC7031180/)）。它们**按标准缩写并不自动包含nab-paclitaxel**。本CP可能是计划把相应T替换为nab-paclitaxel的改良方案，也可能存在医学文字待澄清；不擅自认定具体方案不合格，也**不能在没核实真实神经毒性药物前假设全队列均为同一种nab-paclitaxel暴露**。
+3. 原CP乳腺癌计划4–6周期、Q3W/Q4W，**EOT为每人末次计划化疗周期结束或提前终止访视**，不是统一时间点。若每组不同方案分布不平衡，总体未调整发生率/风险差会被方案基础CIPN风险及暴露差异影响；即使各亚方案内AK135无效，也可能因随机小样本方案分布差异造成总体差值。不是说随机合并分析在方法上无效，而是需展示基线方案构成并谨慎解释。
+4. 按已选EOT endpoint，较理想的**分析解释变量是随机前已确定的化疗方案/计划周期/给药节律**；**实际累积剂量和实际治疗天数可能受AK135疗效或CIPN本身影响**，作为结局/描述性暴露比直接作为主分析固定基线协变量更安全，避免调整掉真实治疗效应或产生选择偏倚。
+
+**推荐的简化研究专属分析框架（待用户批准后写为正式CP）：**
+- **主要分析**：每个随机治疗组**合并全部乳腺癌队列**，独立对EOT的CIPN20 18-item ≥10以及CTCAE≥2二项主要终点呈现randomized N、EOT可确定N、事件n/%、95%描述性CI；给安慰剂−各AK135剂量组的绝对风险差和95%描述性CI，延用既有missing策略和无正式检验规则。
+- **随机前背景治疗分布**：按组描述预定化疗方案名称和所含实际神经毒性药物、计划周期数（4/5/6若适用）、Q3W/Q4W、计划给药日、计划累计剂量、HER2及辅助/新辅助治疗背景（按实际采集）；为避免微小类别导致极不稳定亚组，仅对样本量允许的临床上有意义分类展示探索性汇总，报告各格有效N和事件n。
+- **支持性/敏感性**：若不同随机组计划背景方案有明显不平衡且样本数可支持，可**探索性**按背景方案或计划周期组别比较描述性分层风险差；必要时使用**预随机方案类别分层标准化的边际风险差**，明确仅敏感性、无检验，并提供模型不稳定/无某方案组样本的限制。不可提前声称模型调整必然消除因EOT历时、停药选择和不均衡导致的所有偏倚。
+- **治疗过程**：汇总实际累计紫杉类剂量、相对剂量强度、实际周期和早停原因，以及治疗过程中PRO/CTCAE纵向曲线；**不把事后实际剂量直接作为确定性混杂协变量强行调整**。
+- **不做的事**：不拆成4种独立主要终点、不要求每方案重新计算样本量、不设治疗×方案正式交互检验、不新增检验性多重比较、不重新讨论结肠癌CP/进组决策。
+
+**建议CP§11.5.1可加入的简短文字：**
+> 乳腺癌队列内符合方案规定的不同背景化疗方案的试验参与者合并进行总体有效性分析，按随机分配的AK135 12 mg/kg组、AK135 20 mg/kg组及安慰剂组分别呈现两项EOT主要终点。随机前预先确定的背景化疗方案、计划治疗周期数及给药频率将按组进行描述。考虑到不同化疗方案的神经毒性风险及计划暴露时间可能存在差异，将根据实际样本量按临床相关背景化疗类别和/或计划治疗周期数进行探索性分层描述，必要时开展相应敏感性分析，以辅助解释总体结果。各分层分析不进行正式统计假设检验，不改变主要终点的EOT评价定义。
+
+**新增医学Comment：C-BC-14**：明确AC-T、TCbHP、TAC、TC等具体方案中**实际使用的神经毒性药物**（nab-paclitaxel/docetaxel/其他），若在标准名称中“用nab-paclitaxel替换docetaxel”需明确方案药物组成、标准剂量、周期及T的含义；核实随机前计划化疗可被采集，并说明能否与“AK135/安慰剂每次均先于白蛋白结合型紫杉醇”的要求一致。医学决定实际允许方案后再考虑用哪些临床合理的治疗背景分类做支持性汇总。
+
+**状态：** 外部原始随机试验核对已完成，已在日志明确可合并、同时报告化疗构成和可选支持性分层的**统计建议**；待用户确认后统一落实CP Word，**未改Word**。
+
 ---
 
 ## 4. 其余未完成的CP审阅项目（供逐项推进）
@@ -804,4 +840,5 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 | 2026-10-12 | CP-12乳腺癌主要终点：用户明确乳腺癌队列仅女性；两主要终点与CRC统一为C1D1–EOT且**EOT当次判定**，期间曲线仅描述。18-item CIPN20计分不变：模块1–18项；驾驶条件题19与男性生活功能题20均不进入综合评分，后者对女性不适用，须核对eCOA结构性不适用处理。现CP§4.1.1共同“男女均可”且队列2尚无女性限定，留医学Comment修订队列特定入组标准。乳腺癌§11.5.1已起草、保留C4/C6次要终点去重问题，未改Word。 |
 | 2026-10-12 | 用户更正CP-12并进入CP-13：全研究“男女均可”是共同适用人群范围，仍需同时符合队列特定条件，撤销此前要求修改性别条款的C-BC-01 Comment。CP-13乳腺癌次要分析工作稿按随机前计划4或6周期/Q3W或Q4W区分C4/C6与实际EOT，CIPN20>19、FACT>12、音叉、Grooved Pegboard、化疗完成与剂量调整、DFS/EFS/OS沿原CP保留并给出描述性拟稿；计划6周期完成者C6 CIPN20≥10与EOT主要重合，另列与否待用户确认。未修改Word。 |
 | 2026-10-12 | CP-13异质乳腺癌方案：经方案§6.1–6.2核对，统一“C1D1至EOT”可作为个体化研究治疗及CIPN评价窗口，两个主要终点仍只看各自EOT；但不同4–6周期/Q3W/Q4W背景下EOT不等于共同固定暴露风险时点。建议按随机前方案/计划周期及给药频率报告构成、必要时探索性分层，并留下AC-T序贯C1D1定义及“4–6周期”与访视表只明列4/6（5周期可能性）两项Comment；不改CP算法、未改Word。 |
+| 2026-10-12 | CP-13 pooled breast cohort文献核查：CONTRoL 2024三臂含nab-paclitaxel/paclitaxel/docetaxel、分化疗层随机合并报告；SWOG S0715 2013含paclitaxel weekly/Q2W及docetaxel Q3W 4/6、分预定化疗随机并主模型调整；Lu等GM1 2020含多种taxane背景统一4周期并总体比较+taxane类型调整；Alliance A221805含FOLFOX/CAPOX并分层。建议AK135-201乳腺癌按随机组总体合并EOT二主要终点、按预定背景方案/周期展示构成，必要时探索性分层/标准化而非正式检验。发现传统TAC/TC/TCbHP通常含docetaxel，而本CP要求白蛋白结合型紫杉醇，留C-BC-14医学Comment核实药物组成。未改Word。 |
 

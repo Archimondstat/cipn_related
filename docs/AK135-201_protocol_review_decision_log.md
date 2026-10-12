@@ -554,6 +554,41 @@
 
 **现阶段动作：** 研究资料和源链接归档完成；方案Word一律不改。
 
+
+#### GM1 Gypsophila III期：登记核实与AK135-201建议写法（2026-10-12）
+
+**资料来源及辨识：** Gypsophila，NCT06994507，国内登记号CTR20252247，试验编号QLGM1-CIPN-301，齐鲁制药。原始研究登记：https://clinicaltrials.gov/study/NCT06994507 ；中国登记记录汇总：https://www.pharnexcloud.com/data/lcsy_16865910958cae0d06f6685634f72712.html ；可读取详细登记终点的ClinicalTrials.gov转录：https://trial.medpath.com/clinical-trial/0a4de67f1131affa/nct06994507-gm1-prophylaxis-nab-paclitaxel-neuropathy-breast-cancer 。该研究为乳腺癌白蛋白结合型紫杉醇Q3W背景下，GM1 400 mg对照安慰剂、1:1随机III期，计划352人（176/组）。截至检索，注册最近更新2025-08-06，未找到公开III期完整Protocol/SAP或该试验结果；**登记终点不能冒充其未公开的SAP操作定义**。
+
+| GM1 III期登记类型 | 实际指标 | 时点 |
+|---|---|---|
+| 主要 | FACT/GOG-Ntx评分较基线变化**>12分**的比例 | **C4D21** |
+| 次要 | FACT/GOG-Ntx评分较基线变化>12分的比例 | **C6D21** |
+| 次要 | **CTCAE≥2级CIPN** | **C4D21、C6D21** |
+| 次要 | **振动觉（Vibration sensitivity test）及Grooved Pegboard Test** | **C4D21、C6D21** |
+| 次要 | EORTC QLQ-C30 | C4D21、C6D21 |
+
+**与本CP的关系：** AK135-201 v0.1乳腺癌部分的“C4主评价、C6（如适用）补充评价、FACT>12、CTCAE≥2、音叉、凹槽钉板”与GM1 III期登记高度相近。但**不据此断言来源借鉴/抄写，也不据此变更本项目已确定的双EOT主要终点**。用户要求暂缓乳腺癌去重问题，本节只做三项次要指标写作依据。
+
+**公开GM1 III期登记没有说明：**
+1. FACT/GOG-Ntx究竟11项还是13项、有无reverse scoring、标准分数范围及“恶化”方向；其“score change >12”仅确认有该设计阈值，**不是完整可复现的衍生规则**。虽入排有“FACT最前4题任一≥1”，这不决定总分的正/反向。
+2. 振动觉使用的音叉频率、刻度、测量部位与重复规则；Grooved Pegboard的优势/非优势手、秒数、未完成或超时处理。
+3. 分析集、缺失处理、假设检验、风险差/CI以及具体模型；不可伪称来自GM1 SAP。
+
+**另一项已经发表的GM1紫杉类RCT（不是上述Gypsophila试验）可以补足FACT实际计分先例：**
+Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral Neurotoxicity in Patients with Breast Cancer: A Randomized Trial*. *J Natl Cancer Inst*. 2020;112(1):55–62. DOI: https://doi.org/10.1093/jnci/djz086 ，PMID: https://pubmed.ncbi.nlm.nih.gov/31093677/ ，全文：https://academic.oup.com/jnci/article/112/1/55/5489913 。其Methods **明确FACT-Ntx为11-item subscale、0–44分，高分神经毒性更轻**；主要终点为四周期完成后2周的**连续型**FACT-Ntx评分，且按各周期评价绘制均值轨迹。它没有将>12分二分类设为主要终点。HELEN-004 Phase II（NCT04222790，2024 AACR摘要）也使用四周期后FACT-Ntx连续得分而非Gypsophila的>12二分类：https://aacrjournals.org/cancerres/article/84/9_Supplement/PO3-28-04/743778/Abstract-PO3-28-04-Ganglioside-Monosialic-Acid-for 。
+
+**对本项目§11.5.2的推荐文本（用户尚未确认量表版本，暂为统计建议）：**
+
+> **FACT/GOG-Ntx：** 在各队列规定的次要有效性评价访视，根据预先明确的FACT/GOG-Ntx量表版本及计分规则计算神经毒性分量表得分及较基线变化；描述各组神经毒性恶化幅度>12分的受试者人数和比例，并按访视汇总连续得分及较基线变化。**建议采用11项FACT-Ntx、0–44分标准反向计分（高分更好），则“恶化>12分”定义为Baseline Score−Visit Score>12**。若本研究最后采用未反向症状原始得分（高分更差）或13项版本，须另行明确算法；上述11项定义来自Lu 2020及FACIT标准，而**非已核实的Gypsophila III期评分规则**。
+>
+> **音叉振动觉：** 在原方案规定的访视，以项目统一的音叉检查SOP记录振动觉评分/阈值，按测量部位及侧别描述原值、相对基线变化和各组可评价人数。**128Hz、0–8刻度、左右外踝**是POLAR-A原始Protocol的实施先例（https://cdn.clinicaltrials.gov/large-docs/55/NCT04034355/Prot_000.pdf ），**GM1公开登记未证实使用这些参数**，本研究要以临床选定设备/SOP为准。
+>
+> **Grooved Pegboard Test：** 在规定访视记录非优势手完成测试所需时间（秒），各组描述原值、基线变化及访视轨迹，变化值为Visit−Baseline，正值代表变慢/变差。未完成、超时、练习次数由统一SOP规定。非优势手秒数及原值/变化的例子见POLAR SAP §5.3.6（https://cdn.clinicaltrials.gov/large-docs/55/NCT04034355/SAP_001.pdf ），**GM1 III期登记仅说明使用该检查，未公开手别和量纲**。
+
+**方法边界：** 三项次要终点均以描述性统计为主，不因外部III期采用正式假设检验就在AK135-201中引入alpha、复杂模型或新阈值；维持既定各队列访视及EOT原则。**不修改Word、不提前讨论乳腺癌C6去重。**
+
+**最少需确认：** FACT/GOG-Ntx采用11-item FACT-Ntx（FACIT标准反向计分、高分较好）还是项目原本采用的其他正式版本？音叉和Pegboard设备操作属临床SOP，可后续同步。
+
 ---
 
 ## 4. 其余未完成的CP审阅项目（供逐项推进）
@@ -601,3 +636,5 @@
 | 2026-10-12 | CP-10选定18项综合评分：用户确认QLQ-CIPN20前18条目均值经0–100线性转换的18-item summary score，排除条件题19/20，仅EOT vs baseline判定≥10恶化、周期内用折线图描述。原始文献完整归档：Kieffer et al., Quality of Life Research 2017;26(11):2999–3010, DOI 10.1007/s11136-017-1626-1, PMID 28634676，并记录原文计分位置、50%最低回答率为文献规则尚需本研究确认、10分截点非该文已验证也非AK135-101来源。Word未改。 |
 | 2026-10-12 | CP-11启动次要有效性审阅：按原§2.2核对三队列次要PRO、神经功能、化疗实施和DFS/EFS/OS。识别乳腺癌C6（若6周期正常完成）CIPN20≥10次要终点与新EOT主要终点重复；确认FACIT标准FACT/GOG-Ntx逆向得分方向（高分更好，恶化为下降>12）须在CP明确，具体版本待核对。其余建议以描述性类别整合，待用户确认后统一Word修改。 |
 | 2026-10-12 | CP-11同类研究专题：按用户要求先研究FACT/GOG-Ntx、音叉振动觉、Grooved Pegboard，暂不讨论乳腺癌终点去重。核对POLAR-A原始Protocol§8.1.2.3–4及POLAR SAP§5.3.4/5.3.6：音叉128Hz、左右外踝、0–8、首两次差>1重测、各访视变化；非优势手Grooved Pegboard完成秒数及变化。FACT具有FACIT反向11项高分好与POLAR原始13项高分差两套评分，须指定版本和方向；NCT06994507中FACT>12及两功能测试作为同类注册先例。参考文献与链接已归档，Word未改。 |
+| 2026-10-12 | CP-11核实GM1 III期：Gypsophila NCT06994507/CTR20252247/QLGM1-CIPN-301登记C4D21 FACT/GOG-Ntx变化>12为主要、C6D21次要、CTCAE≥2及音叉/Grooved Pegboard在C4/C6次要；登记未披露评分方向或操作SOP。另核查已发表Lu等GM1紫杉类RCT（JNCI 2020，DOI 10.1093/jnci/djz086）实际采用11项0–44 FACT-Ntx高分更好，定点连续评分，并将其与2025 III期明确区分。已提出三项指标研究专属描述性文字建议，乳腺癌去重暂缓，未改Word。 |
+

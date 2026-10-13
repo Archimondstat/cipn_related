@@ -1194,6 +1194,19 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 **下一轮唯一需用户确认：** BC辅助治疗究竟按STEEP 2.0的**IDFS（计入第二原发非乳腺侵袭性癌）**还是**IBCFS（不计入这类第二原发，但全因死亡依旧计入）**？如果接受推荐IDFS，归档后继续BC新辅助EFS（NeoSTEEP2023），再OS。本轮**未修改原CP Word**。
 
 
+
+#### CP-22补充｜用户询问BC IDFS有无同类型研究直接先例（2026-10-13）
+
+**用户原话：** “我认为IDFS可以，但是有没有同类型研究支持”。**暂记录为用户倾向IDFS，正在验证充分性；不把问题提前当作毫无条件的最终批准。**
+
+2026-10-13查阅**原始研究文献/试验方案**后得到三层、互补的证据：
+1. **POLAR-A，PledOx预防辅助结肠癌mFOLFOX6引起CIPN**，[原始Protocol v8.0 §Synopsis/§10.1.7.1](https://cdn.clinicaltrials.gov/large-docs/29/NCT03654729/Prot_000.pdf)：将**DFS明确列为Safety Objectives**，从随机至CRC复发/全因死亡、末次疾病评估删失。与CIPN预防项目目的**直接相同**，但**疾病不是乳腺癌**，也未定义STEEP IDFS。
+2. **ABCSG-18，denosumab预防芳香化酶抑制剂相关骨折、早期乳腺癌双盲安慰剂试验**，[2019 *Lancet Oncology*原始文章](https://pubmed.ncbi.nlm.nih.gov/30795951/)及[2022 *NEJM Evidence*长期结果](https://evidence.nejm.org/doi/full/10.1056/EVIDoa2200162)：主要终点骨折，**DFS为次要结局**；DFS从随机至局部/远处复发、对侧乳腺癌、**第二原发癌**或全因死亡。**研究定位“治疗副作用预防药+肿瘤疾病结局”与AK135-201 BC最接近**。原始文章称**DFS**，不擅自称其严格使用STEEP IDFS。
+3. **MA.32，metformin+标准辅助乳腺癌治疗vs placebo**，[2022 *JAMA*原始论文](https://pmc.ncbi.nlm.nih.gov/articles/PMC9131745/)，[2026 STEEP2复算大会摘要](https://aacrjournals.org/clincancerres/article/32/4_Supplement/PS4-08-11/773497)：明确采用**IDFS**，事件包括侵袭性乳腺复发、**新发侵袭性非乳腺第二原发癌**及全因死亡；原论文Table 2实际报告第二原发非乳腺癌为第一事件：ER/PR+组metformin49/1268(3.9%)、placebo48/1265(3.8%)。但MA.32主要研究metformin潜在**抗肿瘤效应**，不是CIPN预防。
+4. **STEEP 2.0 [Tolaney et al. JCO 2021](https://pmc.ncbi.nlm.nih.gov/articles/PMC10166345/)**为BC IDFS/IBCFS事件定义直接标准。原文警示非乳腺第二原发癌会稀释或掩盖乳腺复发治疗差异，因此即使采用IDFS作为探索性潜在**harm**评价，仍应**分别汇总首次事件组成**，不能用复合事件“没有显著差异”证明无肿瘤学损害。
+
+**严谨结论：** 已有足够**不同维度的同型先例**支持BC术后辅助人群将STEEP2 **IDFS作为探索性、描述性肿瘤结局**，尤其第二原发非乳腺侵袭性癌的纳入有MA.32直接操作案例。**尚未核实到一项“乳腺癌CIPN预防随机试验明确把STEEP IDFS作为预设终点”的完全同型直接先例**，不能夸大为已有。相关病种/研究目的的交叉支持比单一研究完全同型更严谨。**无需增加DFS专门访视、样本量、正式检验或独立多重性控制。** 详细引用、事件集和限制已更新[BC辅助DFS工作稿v0.1](./AK135-201_BC_adjuvant_DFS_STEEP2_working_v0_1.md)。现有原始Word继续不改。
+
 ## 4. 其余未完成的CP审阅项目（供逐项推进）
 
 | 项目 | 当前状态 | 待解决内容 |
@@ -1263,3 +1276,4 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 | 2026-10-13 | CP-21依用户最新要求**不核对AK135-201原DFS文字**，改从CIPN竞品资料和已归档FDA 2018终点指南出发，新增结肠癌辅助治疗DATECAN2020共识，独立拟CRC DFS：随机化到局部/吻合口/远处复发、第二原发CRC或全因死亡；第二原发非CRC不计DFS事件（待用户确认）、新抗/停药不自动删失、无事件取末次疾病评估删失、KM描述不正式检验。完整文稿存docs/AK135-201_CRC_DFS_design_working_v0_1.md，原Word未改。 |
 | 2026-10-13 | CP-21用户答复“可以”：采纳DATECAN2020 CRC辅助DFS，**第二原发结直肠癌纳入事件，第二原发非结直肠癌不直接计事件**；随机化起算、局部/远处复发与全因死亡事件、治疗更改不自动删失等原则性定义归档为已确认。医学/DM只核查现有资料采集可能性和SAP日期优先级，Word不改。下一步BC辅助DFS。 |
 | 2026-10-13 | CP-22乳腺癌辅助DFS采用STEEP2.0(2021 JCO)原始PDF Table1，与2007 STEEP及CAMBRIA使用案例核对：共同纳入同侧侵袭性复发、区域/远处复发、对侧侵袭性乳腺癌、全因死亡，不计DCIS；IDFS另含第二原发非乳腺侵袭性癌（排除皮肤基底/鳞癌、原位癌），IBCFS不含。因AK135支持疗法潜在harm监测统计建议IDFS，但**待用户确认**；CRC DATECAN事件集不同不可悄然同化。已保存BC STEEP工作稿v0.1及CP建议正文，Word不改。 |
+| 2026-10-13 | CP-22用户倾向STEEP IDFS但要求同型文献。核对一手试验：POLAR-A CIPN预防在原Protocol把DFS列为Safety Objective（CRC）；ABCSG-18辅助乳腺癌denosumab预防AI骨折，DFS次要含第二原发癌；MA.32乳腺癌辅助metformin+SOC安慰剂RCT明确STEEP式IDFS含新发非乳腺侵袭性癌（Table 2有实际事件计数）。三层互补支持探索性BC IDFS，但尚未证实完全同型“BC CIPN预防RCT用STEEP IDFS”；STEEP2警示复合终点可能掩盖复发差异，建议单列首次事件类型。归档到BC STEEP v0.1；未将用户倾向过早标为绝对定案，Word未改。 |

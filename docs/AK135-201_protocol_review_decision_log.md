@@ -1428,6 +1428,21 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 **现状：** GitHub记录最终决策；原始Word保持冻结，待统计审阅与医学Comment全面完成后统一改稿。见[CP-29 18-item有效问卷确认稿](./AK135-201_CIPN20_18item_validity_confirmed_v0_1.md)。
 
 
+
+### CP-30｜FACT/GOG-Ntx量表版本、方向与CIPN20 >19及FACT >12证据核对（2026-10-13）
+
+**用户指令：** 在CP-29结束后，同意进入CP-30，并特别要求“**同理，写明同类型研究**”。这表示需将具体同类试验实际怎么做及其证据适用性写明，**不构成用户已批准某一FACT版本或把文献组平均值认定为个体已验证cut-off**。
+
+**归档工作稿：** [AK135-201_CP30_FACT_GOG_Ntx_CIPN20_threshold_evidence_working_v0_1.md](./AK135-201_CP30_FACT_GOG_Ntx_CIPN20_threshold_evidence_working_v0_1.md)。
+
+**原Protocol v0.1已核对：** §3.2.3直接引用Li等2023 CTCAE 0→2组平均恶化CIPN20 19.24、FACT 12.22；原次要终点分别设>19、>12。方案重筛条件另用FACT前4题原始症状码≥1，不能与反向汇总混淆。
+
+**同类研究证据：** GM1 Gypsophila（NCT06994507，nab-paclitaxel乳腺癌III期）确有C4D21 FACT/GOG-Ntx“变化>12分者比例”预设，**但登记没有清楚版本/方向及阈值外部验证**；POLAR-A/M用13项及4个原始症状题达3/4级二分类，而非11项总分>12；Bao等2016 taxane预防试验采用FACT-NTX反向方向（高分好、下降恶化），但预设的临床变化是下降≥5分。Li等2023主要是按CTCAE锚定分组的**平均变化**及MID/CID估计，而非患者级二分类cut-off性能验证；其计分方法涉及缩短版本，不能未经核实宣称19.24直接验证本项目**18-item CIPN20 summary**的>19阈值。FACIT提供正式版本/反向计分原则。
+
+**统计工作建议（非已批准决定）：** 更倾向共用FACT/GOG-Ntx11 v4标准Ntx subscale 0–44（高分好）；若得到医学/量表授权确认，则恶化>12应定义为`baseline−visit>12`；否则根据11/13及计分方向重新定义。CIPN20 >19维持原预设的探索性/次要较大恶化分类，但不宣称个体临床验证。Protocol明确版本、评分方向、阈值性质和同类研究出处，SAP放条目级和缺失算法；不照搬CIPN20有效问卷9/18规则给FACT。
+
+**需后续确认：** (1) 最终FACT版本/评分方向/授权手册与医学Comment CP-30-M01；(2) 保留19和12作为探索性阈值时如何措辞，避免将参考组平均差写成已验证cutoff。用户未就此两个事项作最终选择，**原始AK135-201 Word未修改**。
+
 ## 4. 其余未完成的CP审阅项目（供逐项推进）
 
 | 项目 | 当前状态 | 待解决内容 |

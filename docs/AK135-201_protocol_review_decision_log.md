@@ -1429,6 +1429,16 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 
 
 
+### CP-30主题纠正｜FACT-Ntx11有效问卷门槛及部分条目缺失（2026-10-13）
+
+**用户指出：** “我们这部分的讨论，不是应该参考量表缺失的处理吗？” 前文用户所说“同理，写明同类型研究”实际承接CP-29的**最低有效答题数与缺失处理**，不是再次确认CP-11已经接受的FACT-Ntx11 v4反向评分方向或>12阈值。此前将CP-30转为版本/阈值复核，属于错误理解；此前专题仍保留为补充文献，不构成待用户再次选择的主议题。
+
+**真正的CP-30工作稿：** [FACT-Ntx11 missing items/prorating v0.1](./AK135-201_CP30_FACT_Ntx11_missing_items_prorating_working_v0_1.md)。
+
+**文献与官方计分证据：** FACIT官方subscale大于50%有效回答时可以prorate；成人GOG随机III期试验FACT/GOG-Ntx 0–44分且答题>50%时prorate；COG AHOD1331研究11项FACT/GOG-Ntx采用至少半数有效答题；ECOG-ACRIN E2511成人随机II期采用缺失少于50%时比例校正。**对11项相当于至少6项有效回答**。官方的FACT总体量表>80%回答要求不可用在独立11项Ntx subscale。
+
+**建议、尚待用户拍板：** FACT-Ntx11每访视>=6/11项有效可计算，先按FACIT反向计分，然后`11*sum(valid scored items)/m` prorating得到0–44；<6条missing；只有有效基线及目标访视均有评分才能判`baseline−visit>12`，否则该FACT恶化状态不可判定（不自动赋0），可评价分母按实际有效成对评分；Protocol §11.5.2说明6/11最低要求及prorating原则，SAP详细衍生。**用户只是纠正议题，未确认6/11规则**；原Word未改。
+
 ### CP-30｜FACT/GOG-Ntx量表版本、方向与CIPN20 >19及FACT >12证据核对（2026-10-13）
 
 **用户指令：** 在CP-29结束后，同意进入CP-30，并特别要求“**同理，写明同类型研究**”。这表示需将具体同类试验实际怎么做及其证据适用性写明，**不构成用户已批准某一FACT版本或把文献组平均值认定为个体已验证cut-off**。

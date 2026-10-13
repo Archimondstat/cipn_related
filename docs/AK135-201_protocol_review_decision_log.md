@@ -1210,7 +1210,7 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 
 ### CP-23｜BC新辅助EFS：NeoSTEEP 2023独立设计及术前进展两种实施规则（2026-10-13）
 
-**状态：原始共识和代表性RCT证据已核对，统计工作稿已准备；用户尚未确认术前局部/区域进展触发规则。原始CP Word未改。**
+**状态：用户于2026-10-13确认采用A：术前局部/区域疾病进展必须导致无法进行根治性手术才算EFS事件；NeoSTEEP EFS其余事件及原则性删失已确认，CP中文工作稿完成；原始CP Word未改。**
 
 用户上一轮答复“可以，我们继续”，表明**BC术后辅助IDFS已获最终认可**，本轮转为BC新辅助EFS。继续**不核对AK135-201原方案EFS模板**。
 
@@ -1227,7 +1227,20 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 - **A：KEYNOTE-522型，**仅当明确局部区域进展**导致无法根治手术**才为EFS事件；术前远处进展独立为事件。
 - **B：NSABP B-59型，**在A外，若**经确证的局部区域进展导致必须额外启动/更换非预先计划抗癌治疗**，即使之后仍能根治手术也认定EFS事件，事件日取进展首证据日，非毒性换药日。**本次统计建议B**，因探索AK135可能干扰背景治疗；但需医学确认诊疗记录能区分进展导致的更换与因神经毒性等非进展原因的更换，且不加影像访视。
 
-**完整证据、矩阵、CP中文稿、Comment：** [NeoSTEEP EFS工作稿v0.1](./AK135-201_BC_neoadjuvant_EFS_NeoSTEEP_working_v0_1.md)。**现仅建议；用户未批准A/B，不能提前将B作为最终EFS事件定义。** 下一轮问用户选择后再锁定，随后进入OS。原Word不修改。
+**完整证据和历史A/B讨论：** [NeoSTEEP EFS工作稿v0.1（已过时）](./AK135-201_BC_neoadjuvant_EFS_NeoSTEEP_working_v0_1.md)。**现行已确认方案文字及以后CRF设计接口见[NeoSTEEP EFS确认稿v0.2](./AK135-201_BC_neoadjuvant_EFS_NeoSTEEP_confirmed_v0_2.md)**。用户已选A，旧版B及其统计倾向只作历史记录。下一项OS；原Word不修改。
+
+
+#### CP-23确认及“先协议后CRF”的实施安排（2026-10-13）
+
+**用户确认：** “我们选择‘进展导致不能进行根治性手术’规则，现在是方案设置阶段，可以我们先写清楚，后续crf上设计。”
+
+**结论：BC新辅助EFS事件与原则性删失定义已锁定。** 对术前**局部/区域疾病进展**采用**KEYNOTE-522型A规则**：须经确认且**进展导致不能进行根治性手术**才作为EFS事件；局部/区域进展后仍可根治手术者**不因这次进展直接记EFS事件**；**即使因进展需要新增/改变抗肿瘤治疗，但未达到不能进行根治性手术条件，也不单独计EFS事件**。此前建议B（加“进展导致非方案治疗”）已明确被否决，禁止将B偷偷写入最终CP或CRF衍生。
+
+**其他EFS事件继续采用NeoSTEEP标准：** 随机至术前远处进展/转移、术后侵袭性局部/区域/远处复发、对侧侵袭性乳腺癌、第二原发非乳腺侵袭性癌（STEEP排除皮肤基底/鳞状细胞及原位癌）或任何原因死亡；术后事件与已确认BC辅助IDFS一致。非pCR、非进展原因不能手术、停药、单纯换疗和手术日期自身均**不是自动事件或删失**。以首次疾病证据日/死亡日为事件日；无事件末次能确认无EFS事件疾病评估日删失；无postbaseline且无已知事件者随机日删失。无正式检验、无额外计划访视及样本量分配。
+
+**方法学阶段分工：** 用户明确**当前先写清CP事件定义，再在后续CRF/EDC设计时实现**。因此不再以“现有CRF暂无原因字段”为方案定稿前置条件；CRF后续应记录术前进展类别及首次证据日期、疾病进展是否**导致根治性手术不可行**的医学判断及原因、未手术原因（毒性/个人选择/其他）、实际手术信息、术后复发、新发侵袭性癌和死亡。SAP最后细化多来源事件证据日期、同日事件和不完整日期。**不能让CRF实施细节倒置已确认的临床事件定义。**
+
+**完整可直接放入CP的中文正文：** [BC新辅助EFS确认稿v0.2](./AK135-201_BC_neoadjuvant_EFS_NeoSTEEP_confirmed_v0_2.md)。[早期v0.1](./AK135-201_BC_neoadjuvant_EFS_NeoSTEEP_working_v0_1.md)已标记为历史A/B比较且包含不再适用的B推荐。**原始Word仍未修改；待全篇CP统计审阅完成后统一改稿。下一项全队列OS。**
 
 ## 4. 其余未完成的CP审阅项目（供逐项推进）
 
@@ -1240,7 +1253,7 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 | PRO/神经功能指标 | CP-11 CRC工作稿已写，Comment保留 | CRC FACT-Ntx-11、音叉及非优势手Grooved Pegboard按文献先例描述，正式版本/SOP待医学确认；C12D14/EOT的PRO/客观功能/化疗指标均已编写；乳腺癌去重后置 |
 | 伴随治疗与intercurrent events | 部分已确定 | 明确诱发CIPN的新抗肿瘤治疗清单（医学）、支持性分析 |
 | 安全性 | CP-15 §11.6已按AK135-101 SAP §3.9拟稿，带Comment | §9.2收集/报告属于医学/PV，统计不审。§11.6仅借鉴101的SS/TEAE/TRAE/SOC-PT/实验室Shift/生命体征/ECG及体检统计结构；CTCAE用201 v6.0，不照搬101转换期和模板阈值；TEAE分析期及AESI等保留统计衔接Comment，Word未改 |
-| 肿瘤长期结局 | **CRC DFS CP-21、BC辅助IDFS CP-22已确认；BC新辅助EFS CP-23待术前进展阈值选择** | CRC按DATECAN2020；BC术后辅助按STEEP2.0 IDFS（计第二原发非乳腺侵袭性癌，按首次事件类型描述）；BC新辅助建议NeoSTEEP EFS，术后事件与IDFS一致，随机化起算，术前远处进展及满足预设标准的局部区域进展为事件；**A仅导致不能手术、B另包括因明确进展必须改变非方案治疗（统计建议B）**待用户选择。见[BC EFS v0.1](./AK135-201_BC_neoadjuvant_EFS_NeoSTEEP_working_v0_1.md)；其后OS |
+| 肿瘤长期结局 | **CRC DFS CP-21、BC辅助IDFS CP-22、BC新辅助EFS CP-23均已确认；下一个OS** | CRC按DATECAN2020；BC辅助按STEEP2.0 IDFS；BC新辅助按NeoSTEEP EFS，并**确认术前局部/区域进展必须导致不能进行根治性手术才构成事件（KEYNOTE-522型A，不纳入单纯进展后改药）**，术前远处进展独立计事件，术后事件与IDFS一致。详见[BC EFS确认稿v0.2](./AK135-201_BC_neoadjuvant_EFS_NeoSTEEP_confirmed_v0_2.md)。后续CRF根据已定方案定义设计，不反向阻挡CP确定；Word未改 |
 | PK/免疫原性 | 当前统计团队不负责（用户明确） | CP-16既有参考稿仅备查；不再逐条审阅§8/§11.7或追问临床药理采样，后续由负责部门处理；Word未改 |
 | 随机化/盲态治理 | CRC不分层、BC按计划神经毒性化疗方案分层均已确认 | CRC无分层、1:1:1区组随机；BC按随机前计划神经毒性化疗方案单一因子分层，层内1:1:1区组随机；具体分层类别待C-BC-14医学确认。第三队列占位，Word未改 |
 | 文稿与访视表一致性 | 全篇仍待统一改稿；BC正式写入准备包已完成 | BC按[CP insertion sheet](./AK135-201_BC_protocol_insertion_sheet_v1_0.md)准备§3.1、§5.6.2随机化、§11.3.1样本量、§11.4.1期中、§11.5.1主要有效性及方案概要联动；CRC/BC不同设计参数保持独立，Word仍未改 |
@@ -1300,3 +1313,4 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 | 2026-10-13 | CP-22乳腺癌辅助DFS采用STEEP2.0(2021 JCO)原始PDF Table1，与2007 STEEP及CAMBRIA使用案例核对：共同纳入同侧侵袭性复发、区域/远处复发、对侧侵袭性乳腺癌、全因死亡，不计DCIS；IDFS另含第二原发非乳腺侵袭性癌（排除皮肤基底/鳞癌、原位癌），IBCFS不含。因AK135支持疗法潜在harm监测统计建议IDFS，但**待用户确认**；CRC DATECAN事件集不同不可悄然同化。已保存BC STEEP工作稿v0.1及CP建议正文，Word不改。 |
 | 2026-10-13 | CP-22用户倾向STEEP IDFS但要求同型文献。核对一手试验：POLAR-A CIPN预防在原Protocol把DFS列为Safety Objective（CRC）；ABCSG-18辅助乳腺癌denosumab预防AI骨折，DFS次要含第二原发癌；MA.32乳腺癌辅助metformin+SOC安慰剂RCT明确STEEP式IDFS含新发非乳腺侵袭性癌（Table 2有实际事件计数）。三层互补支持探索性BC IDFS，但尚未证实完全同型“BC CIPN预防RCT用STEEP IDFS”；STEEP2警示复合终点可能掩盖复发差异，建议单列首次事件类型。归档到BC STEEP v0.1；未将用户倾向过早标为绝对定案，Word未改。 |
 | 2026-10-13 | **BC辅助IDFS用户最终确认**：在POLAR-A/ABCSG-18/MA.32先例解释后用户“可以，我们继续”，确认STEEP2.0 IDFS纳入第二原发非乳腺侵袭性癌、按首次事件类型汇总，不重复要求IDFS/IBCFS选择。随后CP-23开始BC新辅助EFS：核查NeoSTEEP 2023 Table3和KEYNOTE-522/NSABP B-59原始案例，建议随机起算EFS、术后事件沿IDFS；唯一待用户决定术前局部区域进展A（导致无法根治手术）或B（另外因明确进展须额外非方案治疗），统计倾向B。归档BC EFS v0.1，Word未改。 |
+| 2026-10-13 | CP-23用户确定BC新辅助EFS采用KEYNOTE-522型A：仅当术前**局部/区域疾病进展导致不能进行根治性手术**才计该类EFS事件；进展后仍可手术即使新增/改药也不单独计事件。术前远处进展与术后STEEP2 IDFS一致的侵袭性复发/第二原发癌/全因死亡继续计入。用户指定**先在临床方案中写清楚，后续据此设计CRF/EDC**，不因目前CRF缺字段而推迟统计事件定义。归档BC EFS confirmed v0.2，旧v0.1标历史备选，原始Word未修改，下一项OS。 |

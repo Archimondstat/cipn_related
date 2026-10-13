@@ -1151,6 +1151,21 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 
 **状态：** BC的样本量与Stage1设计**已由用户定案并归档；可在整份CP收束时按insertion sheet一并修改**；当前Word未修改。
 
+
+### CP-21｜CRC DFS独立定义：不依赖原CP模板（2026-10-13）
+
+**状态：统计建议工作稿已完成；待用户确认；未修改原始Word。**
+
+用户要求：“我们不去检查原方案定义，我们通过之前归档的同类型研究自己写。”本轮**不核对或复制AK135-201原方案DFS段落**，以[既有CIPN竞争研究](./competitor_landscape.md)和[CP-06已归档FDA 2018 Endpoints Guidance](./AK135-201_protocol_review_decision_log.md)确定方法背景。**边界：** 既有GM1、POLAR-A、N08CB等CIPN竞品研究档案没有可以直接移植的CRC DFS详细事件/删失规定，因此**另补充**更直接的[2020 DATECAN局限性结肠癌辅助RCT终点共识](https://pmc.ncbi.nlm.nih.gov/articles/PMC7409551/)作为新文献，不谎称它此前已经在竞品归档中。
+
+**新拟CRC DFS事件：** 从**随机化日期**到首个（1）结肠癌局部/区域或吻合口复发；（2）远处复发/转移；（3）**第二原发结直肠癌**；（4）**任何原因死亡**。建议按DATECAN2020**排除第二原发非CRC作为直接DFS事件**，与2007较宽泛的CRC DFS事件集有版本差异，列待用户确认。因病复发等事件日期取最早可核实疾病证据日期，死亡取死亡日期。
+
+**删失与IC事件统计建议：** 无事件者在截止前末次能确认无CRC疾病事件的疾病状态评估日删失；失访同理；随机后没有疾病评估且没有已知事件者在随机日删失；**记录到任何原因死亡均算事件，不因缺乏随访影像自动转为删失**。AK135/化疗减量/提前停药或开始新的抗肿瘤治疗本身既非DFS事件，也**不自动删失**，尽可能保留既定随访中的结肠癌疾病与生存结果；CIPN主要终点新神经毒性抗肿瘤治疗删失规则**不直接沿用于DFS**。第二原发非CRC继续观察CRC复发/死亡，丢失后续CRC评价才按末次疾病状态删失。
+
+**分析与目的：** 按随机组三组描述事件/删失及分类、随访成熟度；事件数量允许时Kaplan–Meier描述，不做DFS验证性检验、alpha或额外计划访视，不以小样本结果宣称排除AK135造成的肿瘤学损害。
+
+**完整CP中文建议稿、证据差异与医学Comment：** [AK135-201_CRC_DFS_design_working_v0_1.md](./AK135-201_CRC_DFS_design_working_v0_1.md)。C-DFS-01需医学确认既定CRF/随访能识别第二原发CRC和初始复发证据，C-DFS-02 DATECAN口径由用户确认，C-DFS-03事件证据日期、无postbaseline等SAP衍生。**不是本轮已批准正文；Word未改**。下轮依序做BC辅助DFS、BC新辅助EFS、OS，仍按每轮一项讨论。
+
 ## 4. 其余未完成的CP审阅项目（供逐项推进）
 
 | 项目 | 当前状态 | 待解决内容 |
@@ -1162,7 +1177,7 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 | PRO/神经功能指标 | CP-11 CRC工作稿已写，Comment保留 | CRC FACT-Ntx-11、音叉及非优势手Grooved Pegboard按文献先例描述，正式版本/SOP待医学确认；C12D14/EOT的PRO/客观功能/化疗指标均已编写；乳腺癌去重后置 |
 | 伴随治疗与intercurrent events | 部分已确定 | 明确诱发CIPN的新抗肿瘤治疗清单（医学）、支持性分析 |
 | 安全性 | CP-15 §11.6已按AK135-101 SAP §3.9拟稿，带Comment | §9.2收集/报告属于医学/PV，统计不审。§11.6仅借鉴101的SS/TEAE/TRAE/SOC-PT/实验室Shift/生命体征/ECG及体检统计结构；CTCAE用201 v6.0，不照搬101转换期和模板阈值；TEAE分析期及AESI等保留统计衔接Comment，Word未改 |
-| 肿瘤长期结局 | 部分已确认 | CP-06定位及法规依据已确认；DFS/EFS事件/删失规则、OS成熟度、随访可行性仍需审阅 |
+| 肿瘤长期结局 | **CP-21 CRC DFS独立工作稿已提出，待用户确认** | CRC术后辅助DFS建议按DATECAN2020，随机日至局部/远处复发、第二原发CRC或全因死亡；第二原发非CRC不直接计事件，停药/换药不自动删失，KM仅描述；见[CRC DFS v0.1](./AK135-201_CRC_DFS_design_working_v0_1.md)。BC辅助DFS、新辅助EFS及OS待依序完成 |
 | PK/免疫原性 | 当前统计团队不负责（用户明确） | CP-16既有参考稿仅备查；不再逐条审阅§8/§11.7或追问临床药理采样，后续由负责部门处理；Word未改 |
 | 随机化/盲态治理 | CRC不分层、BC按计划神经毒性化疗方案分层均已确认 | CRC无分层、1:1:1区组随机；BC按随机前计划神经毒性化疗方案单一因子分层，层内1:1:1区组随机；具体分层类别待C-BC-14医学确认。第三队列占位，Word未改 |
 | 文稿与访视表一致性 | 全篇仍待统一改稿；BC正式写入准备包已完成 | BC按[CP insertion sheet](./AK135-201_BC_protocol_insertion_sheet_v1_0.md)准备§3.1、§5.6.2随机化、§11.3.1样本量、§11.4.1期中、§11.5.1主要有效性及方案概要联动；CRC/BC不同设计参数保持独立，Word仍未改 |
@@ -1217,3 +1232,4 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 | 2026-10-12 | CP-19找回BC旧假设：2026-09-21 cp_two_stage_framework明确pP=30%、pT=20%或15%（10/15pp），但历史BC N和OC原表未查到。建立docs/AK135-201_BC_two_stage_design_working_v0_1.md与simulation/AK135201_BC_two_stage_calibration.R，精确binomial枚举BC候选：投射30%/15%、N50/臂、Stage1名义60、CP≥70%、final RD≥10pp时，一剂量真15pp有效P(Stage1 Go)=74.4%、P(Stage1且Final Go)=64.8%，null整设计19.7%；qT若改20%则真15pp时整设计41.5%。全部为新重算未批准，尚未模拟BC分层随机/缺失，Word未改。 |
 | 2026-10-13 | **CP-20 BC用户核心参数定案**：BC独立pP=30%、pT=15%（目标绝对风险降低15pp），最终至少一剂量实际观察差≥10pp为Go倾向，N50/臂总150、三臂1:1:1。按CRC相同结构完成BC Stage1前60/40%、CP未来q=.30/.15、max(CP_L,CP_H)≥70%、Go两剂量继续、不重估样本量、consumed-slot。独立精确重新核验一剂量真15pp时Stage1Go74.35%、Stage1且FinalGo64.80%；null完整Go19.69%，均为无缺失名义等组OC。新增docs/AK135-201_BC_two_stage_design_working_v0_2.md，原v0.1仅历史候选。BC分层类别仍待C-BC-14，Word未改。 |
 | 2026-10-13 | CP-20用户指示将已定BC样本量+Stage1设计归档，预备正式写进CP：冻结[BC设计v0.2](./AK135-201_BC_two_stage_design_working_v0_2.md)，新增[BC CP写入准备包v1.0](./AK135-201_BC_protocol_insertion_sheet_v1_0.md)，经实际原DOCX核对插入位置为§3.1/§5.6.2/§11.3.1/§11.4.1/§11.5.1及概要、§2.2/§6一致性；更正早期随机化§5.7.2误记。BC pP30%/pT15%、N50×3、前60例、CP70%、最终Go观察差≥10pp不重开；C-BC-14等医学Comment保留，原Word未改。 |
+| 2026-10-13 | CP-21依用户最新要求**不核对AK135-201原DFS文字**，改从CIPN竞品资料和已归档FDA 2018终点指南出发，新增结肠癌辅助治疗DATECAN2020共识，独立拟CRC DFS：随机化到局部/吻合口/远处复发、第二原发CRC或全因死亡；第二原发非CRC不计DFS事件（待用户确认）、新抗/停药不自动删失、无事件取末次疾病评估删失、KM描述不正式检验。完整文稿存docs/AK135-201_CRC_DFS_design_working_v0_1.md，原Word未改。 |

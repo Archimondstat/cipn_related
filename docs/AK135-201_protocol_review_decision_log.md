@@ -1245,7 +1245,7 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 
 ### CP-24｜OS长期生存安全性：全因死亡和新抗肿瘤治疗删失之区别（2026-10-13）
 
-**状态：全因死亡为事件、DCO/失访末次确知存活日删失的原则已明确；新抗肿瘤治疗是否触发主OS删失须单独澄清，**不视作用户已同意标准treatment-policy主分析。** 原Word未改。**
+**状态：2026-10-13用户正式确认标准OS极简定义：全因死亡为唯一事件；DCO/失访按末次确认存活日删失；新抗肿瘤治疗不自动删失。工作稿已完成，原Word未改。**
 
 用户提出：“这个似乎没什么争议了，任何原因死亡，新的抗肿瘤治疗，DCO删失。” 按字面可理解为**新抗肿瘤治疗开始即删失**。但该方案会截断随机后新抗治疗发生的死亡，**不同于常规OS从随机化至任何原因死亡、不因新抗治疗自动删失的定义**，并可能因进展/病情驱动后续用药而产生informative censoring，尤其与CP-06已确认OS旨在探索AK135潜在长期生存harm的目标存在张力。
 
@@ -1254,6 +1254,15 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 若项目需要可**另外描述在新抗肿瘤治疗前的死亡**，可作为单独支持性分析在新抗治疗前末次确认存活日删失，但需明确它不等于标准OS，可能信息性删失，**不应用作OS主要生存安全推断替代**。**不把主要CIPN终点新神经毒性抗肿瘤治疗删失规则照搬到OS。**
 
 **完整中文CP建议文字及需确认点：** [AK135-201_OS_long_term_safety_working_v0_1.md](./AK135-201_OS_long_term_safety_working_v0_1.md)。**待用户最终选择：“新抗开始时主OS删失”，还是“常规OS继续随访，额外探索新抗前死亡”。** 方案阶段先明确定义、后续CRF/SAP据此落实。原Word未改。
+
+#### CP-24用户最终确认：OS极简定义（2026-10-13）
+
+用户纠正：“是我弄错了，OS只和死亡有关，我们尽量写简洁。” **此前“新抗肿瘤治疗时删失”的初步提法已明确撤回，不再设为待决问题。**
+
+- **已确认：** 随机化日期至**任何原因死亡**；DCO时尚未死亡者或失访者在**DCO当日或之前最后确认存活的日期**删失（不能把DCO日期无条件当作已知存活日）。
+- **不需要冗长正文：** 开始新抗肿瘤治疗**既非OS事件也不自动删失**；在SAP说明即可，不要求额外新抗前删失敏感性终点。
+- **分析定位：** 按队列和随机组描述，资料成熟度允许时KM，不设正式检验、额外样本量/访视。**OS仍为长期生存安全信号观察，有限样本不能排除伤害。**
+- **完整已确认极简文字：** [AK135-201_OS_long_term_safety_confirmed_v0_2.md](./AK135-201_OS_long_term_safety_confirmed_v0_2.md)；旧[v0.1](./AK135-201_OS_long_term_safety_working_v0_1.md)仅作为历史备选追溯。**原始Word尚未改，整篇CP审阅完成后统一写入。**
 
 ## 4. 其余未完成的CP审阅项目（供逐项推进）
 
@@ -1266,7 +1275,7 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 | PRO/神经功能指标 | CP-11 CRC工作稿已写，Comment保留 | CRC FACT-Ntx-11、音叉及非优势手Grooved Pegboard按文献先例描述，正式版本/SOP待医学确认；C12D14/EOT的PRO/客观功能/化疗指标均已编写；乳腺癌去重后置 |
 | 伴随治疗与intercurrent events | 部分已确定 | 明确诱发CIPN的新抗肿瘤治疗清单（医学）、支持性分析 |
 | 安全性 | CP-15 §11.6已按AK135-101 SAP §3.9拟稿，带Comment | §9.2收集/报告属于医学/PV，统计不审。§11.6仅借鉴101的SS/TEAE/TRAE/SOC-PT/实验室Shift/生命体征/ECG及体检统计结构；CTCAE用201 v6.0，不照搬101转换期和模板阈值；TEAE分析期及AESI等保留统计衔接Comment，Word未改 |
-| 肿瘤长期结局 | **CRC DFS CP-21、BC辅助IDFS CP-22、BC新辅助EFS CP-23已确认；OS CP-24待明确新抗肿瘤治疗删失** | OS随机至全因死亡；DCO/失访在末次确认存活日删失。用户提及新抗肿瘤治疗删失，但常规treatment-policy OS不应自动删失；若删失需独立标记为不同问题且存在informative censoring。详见[OS工作稿v0.1](./AK135-201_OS_long_term_safety_working_v0_1.md)。继续按既定研究随访、不增加OS检验/访视。Word未改 |
+| 肿瘤长期结局 | **CRC DFS CP-21、BC辅助IDFS CP-22、BC新辅助EFS CP-23、全队列OS CP-24均已确认** | OS极简：随机化至任何原因死亡，DCO/失访在末次确认存活日删失；**新抗肿瘤治疗不自动删失**，在SAP阐明即可。按队列和随机组三组描述，成熟时KM，无正式检验/额外访视。已确认文字见[OS v0.2](./AK135-201_OS_long_term_safety_confirmed_v0_2.md)，Word暂不改 |
 | PK/免疫原性 | 当前统计团队不负责（用户明确） | CP-16既有参考稿仅备查；不再逐条审阅§8/§11.7或追问临床药理采样，后续由负责部门处理；Word未改 |
 | 随机化/盲态治理 | CRC不分层、BC按计划神经毒性化疗方案分层均已确认 | CRC无分层、1:1:1区组随机；BC按随机前计划神经毒性化疗方案单一因子分层，层内1:1:1区组随机；具体分层类别待C-BC-14医学确认。第三队列占位，Word未改 |
 | 文稿与访视表一致性 | 全篇仍待统一改稿；BC正式写入准备包已完成 | BC按[CP insertion sheet](./AK135-201_BC_protocol_insertion_sheet_v1_0.md)准备§3.1、§5.6.2随机化、§11.3.1样本量、§11.4.1期中、§11.5.1主要有效性及方案概要联动；CRC/BC不同设计参数保持独立，Word仍未改 |
@@ -1328,3 +1337,4 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 | 2026-10-13 | **BC辅助IDFS用户最终确认**：在POLAR-A/ABCSG-18/MA.32先例解释后用户“可以，我们继续”，确认STEEP2.0 IDFS纳入第二原发非乳腺侵袭性癌、按首次事件类型汇总，不重复要求IDFS/IBCFS选择。随后CP-23开始BC新辅助EFS：核查NeoSTEEP 2023 Table3和KEYNOTE-522/NSABP B-59原始案例，建议随机起算EFS、术后事件沿IDFS；唯一待用户决定术前局部区域进展A（导致无法根治手术）或B（另外因明确进展须额外非方案治疗），统计倾向B。归档BC EFS v0.1，Word未改。 |
 | 2026-10-13 | CP-23用户确定BC新辅助EFS采用KEYNOTE-522型A：仅当术前**局部/区域疾病进展导致不能进行根治性手术**才计该类EFS事件；进展后仍可手术即使新增/改药也不单独计事件。术前远处进展与术后STEEP2 IDFS一致的侵袭性复发/第二原发癌/全因死亡继续计入。用户指定**先在临床方案中写清楚，后续据此设计CRF/EDC**，不因目前CRF缺字段而推迟统计事件定义。归档BC EFS confirmed v0.2，旧v0.1标历史备选，原始Word未修改，下一项OS。 |
 | 2026-10-13 | CP-24 用户提出OS“任何原因死亡，新的抗肿瘤治疗，DCO删失”。全因死亡事件与DCO前末次确知存活日删失原则明确；提示新抗治疗日删失可能造成informative censoring，非传统treatment-policy OS且偏离长期潜在harm监测目标。先起草OS v0.1：建议主OS新抗后继续跟踪死亡，若需要新抗前删失则支持性分析另列；待用户决定是否坚持主OS删失，不能擅自归档最终选择。原Word未改。 |
+| 2026-10-13 | CP-24用户纠正初步OS说法并要求简洁：**OS仅全因死亡为事件**，DCO/失访按最后确认存活日删失，后续新抗肿瘤治疗不自动删失；无需另设新抗前OS分析。按队列和组描述、成熟时KM，不正式检验。归档docs/AK135-201_OS_long_term_safety_confirmed_v0_2.md，旧v0.1标历史，CRC DFS/BC IDFS/BC EFS/OS四项疾病结局均已确定，原Word未改。 |

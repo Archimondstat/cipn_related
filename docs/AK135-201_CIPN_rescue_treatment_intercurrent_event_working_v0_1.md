@@ -1,7 +1,7 @@
 # AK135-201 CIPN挽救治疗对EOT双主要终点的影响：直接同类研究与统计建议 v0.1
 
 **审阅日期：** 2026-10-13  
-**状态：历史讨论稿。用户2026-10-13明确更正：按既往实践拟将首次CIPN挽救治疗本身视为提前EOT触发条件，且保留医学Comment。当前统计工作口径见[rescue triggers EOT v0.2](./AK135-201_CIPN_rescue_triggers_EOT_working_v0_2.md)。v0.1正文及§6“挽救本身不触发EOT”的建议已被新选择覆盖，不可作为最终方案建议；原Word未改。**
+**状态：早期讨论稿，仅作研究证据/分析轨迹。2026-10-13用户最终决定采用**CIPN挽救治疗+Treatment Policy**，**救治本身不触发EOT**，同时保留医学Comment。当前唯一有效确认稿为[CP-28 v0.3](./AK135-201_CIPN_rescue_treatment_policy_confirmed_v0_3.md)；原先[v0.2](./AK135-201_CIPN_rescue_triggers_EOT_working_v0_2.md)‘救治即EOT’已撤回。** 不应从本v0.1的历史待确认语句判断最新决策；原Word未改。**
 
 ## 1. 明确来自AK135-201原始方案的事实
 

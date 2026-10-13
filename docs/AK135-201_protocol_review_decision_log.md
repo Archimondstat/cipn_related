@@ -1139,6 +1139,18 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 4. 两项EOT主要终点定义均维持CP-10/12方案、最终按随机治疗组描述发生率/95%CI与安慰剂减各剂量风险差/95%CI；不做正式验证性检验，不引入多重性调整。
 5. **Stage1 No-Go针对BC队列，不自动改变CRC。** 第三队列继续占位。原始Word按照“完整CP审阅后统一修订”的工作规则**尚未修改**。
 
+
+#### CP-20 归档完成／正式CP预写入资料（2026-10-13）
+
+**用户最新指令：** “把这个设计归档，然后预备写在方案中。”执行状态：**BC设计已归档且方案各章节拟写入文字与定位清单已准备，但尚未修改原始Word**。等整份CP审阅结束后统一落稿（与本项目既定工作流一致）。
+
+- **设计冻结版本：** [BC两阶段统计设计v0.2](./AK135-201_BC_two_stage_design_working_v0_2.md)；确认：BC安慰剂30%、AK13515%，设计效应15个百分点，最终observed Go≥10个百分点，每臂50总150，前60例Stage1、CP≥70%，未来qP/qT=.30/.15，Go两剂量和安慰剂均保留；分层因子为“随机前计划的神经毒性化疗方案”。
+- **CP写入准备包：** [AK135-201_BC_protocol_insertion_sheet_v1_0.md](./AK135-201_BC_protocol_insertion_sheet_v1_0.md)；通过直接读取`AK135-201方案 v0.1.docx`确认原文的真实章节编号为**§3.1总体设计、§5.6.2随机化、§11.3.1样本量的估计、§11.4.1期中分析、§11.5.1主要有效性分析**，以及方案概要、§2.2和§6访视表应进行一致性核对。注意：日志早先有`§5.7.2`的随机化编号，**应按原文§5.6.2为准**；§11.3、§11.4是上级节，精准插入位置为对应**.1**子章节。
+- **预写入文字：** 完整中文正文含BC样本量依据、Stage1 Conditional Power定义、分层随机、EOT两项主要终点描述性统计，以及CRC与BC各自独立适用范围，全部存入上述insertion sheet并保留临床/医学Comment。**本轮不提交修改后的CP Word**。
+- **未决但不重开主设计：** BC神经毒性化疗的分层类别水平和药物组成（C-BC-14）；BC历史30%/15%是否对应最终EOT当次事件率的医学适用性；分层实际入组人数及EOT缺失的OC稳健性；随机表/IWRS技术文件与SAP细则。
+
+**状态：** BC的样本量与Stage1设计**已由用户定案并归档；可在整份CP收束时按insertion sheet一并修改**；当前Word未修改。
+
 ## 4. 其余未完成的CP审阅项目（供逐项推进）
 
 | 项目 | 当前状态 | 待解决内容 |
@@ -1153,7 +1165,7 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 | 肿瘤长期结局 | 部分已确认 | CP-06定位及法规依据已确认；DFS/EFS事件/删失规则、OS成熟度、随访可行性仍需审阅 |
 | PK/免疫原性 | 当前统计团队不负责（用户明确） | CP-16既有参考稿仅备查；不再逐条审阅§8/§11.7或追问临床药理采样，后续由负责部门处理；Word未改 |
 | 随机化/盲态治理 | CRC不分层、BC按计划神经毒性化疗方案分层均已确认 | CRC无分层、1:1:1区组随机；BC按随机前计划神经毒性化疗方案单一因子分层，层内1:1:1区组随机；具体分层类别待C-BC-14医学确认。第三队列占位，Word未改 |
-| 文稿与访视表一致性 | 待全篇结束 | 摘要/正文/表格/流程图/SAP联动、删除未填占位符 |
+| 文稿与访视表一致性 | 全篇仍待统一改稿；BC正式写入准备包已完成 | BC按[CP insertion sheet](./AK135-201_BC_protocol_insertion_sheet_v1_0.md)准备§3.1、§5.6.2随机化、§11.3.1样本量、§11.4.1期中、§11.5.1主要有效性及方案概要联动；CRC/BC不同设计参数保持独立，Word仍未改 |
 
 ## 5. 统一修改前的完成条件
 
@@ -1204,3 +1216,4 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 | 2026-10-12 | CP-18统计剩余任务总盘点：最优先BC独立Stage1样本量/OC、BC分层类别和随机化实施、DFS/EFS/OS；BC C6≥10去重未决。EOT双主要、CRC CP等已定仅需SAP和CP落稿。安全§11.6已拟；§9.2/§11.7不由本组负责；队列3占位，Word未改。 |
 | 2026-10-12 | CP-19找回BC旧假设：2026-09-21 cp_two_stage_framework明确pP=30%、pT=20%或15%（10/15pp），但历史BC N和OC原表未查到。建立docs/AK135-201_BC_two_stage_design_working_v0_1.md与simulation/AK135201_BC_two_stage_calibration.R，精确binomial枚举BC候选：投射30%/15%、N50/臂、Stage1名义60、CP≥70%、final RD≥10pp时，一剂量真15pp有效P(Stage1 Go)=74.4%、P(Stage1且Final Go)=64.8%，null整设计19.7%；qT若改20%则真15pp时整设计41.5%。全部为新重算未批准，尚未模拟BC分层随机/缺失，Word未改。 |
 | 2026-10-13 | **CP-20 BC用户核心参数定案**：BC独立pP=30%、pT=15%（目标绝对风险降低15pp），最终至少一剂量实际观察差≥10pp为Go倾向，N50/臂总150、三臂1:1:1。按CRC相同结构完成BC Stage1前60/40%、CP未来q=.30/.15、max(CP_L,CP_H)≥70%、Go两剂量继续、不重估样本量、consumed-slot。独立精确重新核验一剂量真15pp时Stage1Go74.35%、Stage1且FinalGo64.80%；null完整Go19.69%，均为无缺失名义等组OC。新增docs/AK135-201_BC_two_stage_design_working_v0_2.md，原v0.1仅历史候选。BC分层类别仍待C-BC-14，Word未改。 |
+| 2026-10-13 | CP-20用户指示将已定BC样本量+Stage1设计归档，预备正式写进CP：冻结[BC设计v0.2](./AK135-201_BC_two_stage_design_working_v0_2.md)，新增[BC CP写入准备包v1.0](./AK135-201_BC_protocol_insertion_sheet_v1_0.md)，经实际原DOCX核对插入位置为§3.1/§5.6.2/§11.3.1/§11.4.1/§11.5.1及概要、§2.2/§6一致性；更正早期随机化§5.7.2误记。BC pP30%/pT15%、N50×3、前60例、CP70%、最终Go观察差≥10pp不重开；C-BC-14等医学Comment保留，原Word未改。 |

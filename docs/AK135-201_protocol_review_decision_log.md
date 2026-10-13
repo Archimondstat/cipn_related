@@ -1418,6 +1418,16 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 
 **归档：** [AK135-201_CIPN20_18item_validity_confirmed_v0_1.md](./AK135-201_CIPN20_18item_validity_confirmed_v0_1.md)；CP-10更早出现的“9/18尚待确认”文字均属于历史状态，本条覆盖之。**原Word未改。**
 
+
+#### CP-29最终确认｜Protocol最简原则、SAP详细算法（2026-10-13）
+
+**用户回复：“我接受你的建议。”** 此回复针对CP-29所建议的Protocol/SAP写作分工，故**最终确认**：AK135-201 Protocol §11.5.1以一句话规定EORTC QLQ-CIPN20的18-item summary score须至少9/18个计分条目有效回答才可计算；具体条目有效性、非缺失均值与0–100转换、基线和实际EOT计分、indeterminate及缺失处理衍生在SAP详细规定，不在方案正文重复技术算法。计分阈值9/18本身此前已确认，这一轮进一步确认**写入方案的深度与位置**。
+
+**拟写入Protocol原文：**“EORTC QLQ-CIPN20采用18-item summary score进行评价，每次评价至少需有18个计分条目中的9项有效回答，方可计算该次评分。具体评分算法及缺失数据处理方法将在SAP中规定。”
+
+**现状：** GitHub记录最终决策；原始Word保持冻结，待统计审阅与医学Comment全面完成后统一改稿。见[CP-29 18-item有效问卷确认稿](./AK135-201_CIPN20_18item_validity_confirmed_v0_1.md)。
+
+
 ## 4. 其余未完成的CP审阅项目（供逐项推进）
 
 | 项目 | 当前状态 | 待解决内容 |

@@ -308,7 +308,7 @@
 
 
 ### CP-10｜§11.5 双主要有效性终点的具体定义与分析——开始审阅
-**状态：双主要终点均按EOT当次、18-item CIPN20 summary score及原CTCAE Conditional Power数学方法均已确认；问卷完成度细节和≥10分独立临床依据仍需准确表述**  
+**状态：双主要EOT和18-item CIPN20均已确认，2026-10-13 CP-29另已确认≥9/18有效答题才计分；≥10分临床依据仍需准确表述。**  
 **审阅日期：2026-10-12**  
 **涉及：** 摘要及§2.2、§3.2.3、§6.2/EOT、§7、§11.5.1；CIPN20评分源文件；相关SAP衍生规则
 
@@ -1402,6 +1402,22 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 
 **当前正式撰写文本、文献依据及Comment：** [AK135-201_CIPN_rescue_treatment_policy_confirmed_v0_3.md](./AK135-201_CIPN_rescue_treatment_policy_confirmed_v0_3.md)。此前[v0.1](./AK135-201_CIPN_rescue_treatment_intercurrent_event_working_v0_1.md)及[v0.2](./AK135-201_CIPN_rescue_triggers_EOT_working_v0_2.md)均为历史轨迹，v0.2不得用于CP插入。**原Word未改，待全篇审阅后统一落稿并保留医学Comment。**
 
+
+### CP-29｜CIPN20 18-item最低有效答题数：采纳Kieffer 2017 ≥50%（2026-10-13）
+
+**状态：用户已确认采用此前同类型研究的计分规则；每次18项中须有至少9项有效回答才计算18-item summary score。** 用户另询问是否需写入方案：**统计建议在Protocol §11.5.1只写关键原则1句，完整衍生放SAP，最终正文将在全篇审阅后统一写入；原Word未改。**
+
+**文献核对：** [Kieffer JM et al., *Quality of Life Research* 2017;26:2999–3010, DOI 10.1007/s11136-017-1626-1（原始出版PDF）](https://pure.amsterdamumc.nl/ws/portalfiles/portal/159020278/Evaluation-of-the-psychometric-properties-of-the-eortc-chemotherapy-induced-peripheral-neuropathy-questionnaire-qlq-cip.pdf) Methods明确18-item summary score的原始均值线性转为0–100，**仅当回答≥50%（≥9/18）时计算**，排除条件题item19/20。**这是该已发表研究的规则，不可称为EORTC官方统一规定，也不能据此声称个体恶化≥10分已得到验证**；AK135-101不是≥10分来源。
+
+**已确认用于AK135-201：** 18项item1–18，4级原始回答1–4；每次访视n_valid≥9时按**所有有效回答条目的均值**换算`Score = (RS−1)/3×100`（高分症状重）；n_valid<9则本次18-item summary**缺失**。基线及实际EOT**分别达到≥9**后才能计算`Δ=EOT−baseline`；Δ≥10为事件，Δ<10为非事件；基线和/或EOT无有效分数则主要PRO结局**indeterminate**，继续沿CP-07和已归档missing/sensitivity规则，不假定无事件；期间评分按同一规则画描述性曲线，各点展示实际N。该决定不改变CTCAE主终点、CTCAE驱动Stage1 Conditional Power、剂量/样本量或挽救治疗Treatment Policy。
+
+**建议临床方案§11.5.1仅写：**
+> EORTC QLQ-CIPN20采用18-item summary score进行评价，每次评价至少需有18个计分条目中的9项有效回答，方可计算该次评分。具体评分算法及缺失数据处理方法将在SAP中规定。
+
+**放置判断：** 因≥9/18会直接改变主要PRO可评价分母，关键规则不宜等SAP才首次界定；但条目代码、换算公式、无效/缺答码映射、访视衍生和missing细则留SAP即可。若§7已有同一评分段落，Protocol只应确定一个主落点并交叉引用，避免重复矛盾。**用户尚未额外审批这句CP的具体落位措辞，暂作为最终统一改稿建议；最低9项规则已定。**
+
+**归档：** [AK135-201_CIPN20_18item_validity_confirmed_v0_1.md](./AK135-201_CIPN20_18item_validity_confirmed_v0_1.md)；CP-10更早出现的“9/18尚待确认”文字均属于历史状态，本条覆盖之。**原Word未改。**
+
 ## 4. 其余未完成的CP审阅项目（供逐项推进）
 
 | 项目 | 当前状态 | 待解决内容 |
@@ -1409,7 +1425,7 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 | 统计分析集 | CP-07原则已确认，待最终文稿实施 | 已有完整随机基础、observed/evaluable分母、indeterminate/敏感性及Stage 1 CP设计；FAS/EES/PPS命名不构成未决统计议题 |
 | §11.3样本量 | CRC已定；**BC已定：N50/臂、总150、30%→15%设计效应，最终Go观察差≥10pp**（CP-20） | CRC设计保持45%/30%、前60/70%CP不动；BC按独立30%/15%假设、50/臂、Stage1前60/40%、70%CP、最终描述性风险差≥10pp已确认；准确OC与文案见BC设计v0.2。队列3占位 |
 | §11.4 Stage 1 | CRC与BC同框架参数已定，BC CP-20 | **CRC前60、q=.45/.30，BC前60、q=.30/.15；各自max(CP_L,CP_H)≥70%继续，两剂量全保留、available-case+consumed-slot；BC完整名义均衡OC一剂量真15pp时Stage1Go74.35%、阶段且最终Go64.80%。** BC真实分层层级/IWRS及缺失稳健性待完成，不重开数学规则 |
-| §11.5主要有效性 | CP-10 CRC、CP-12乳腺癌两项主要均已确认；队列3仅保留框架占位 | CRC/乳腺癌C1D1至EOT、EOT当次CIPN20 18-item≥10和CTCAE≥2；队列3医学未决定是否入组，§11.5暂用简洁原则性描述而不细定SOC/EOT实施；**CP-26已确认删除BC单列C6 CIPN20≥10次要终点**；C-BC-14保留 |
+| §11.5主要有效性 | CP-10 CRC、CP-12乳腺癌两项主要均已确认；队列3仅保留框架占位 | CRC/乳腺癌EOT当次CIPN20 18-item≥10和CTCAE≥2；**CP-29已确认CIPN20每次至少9/18有效回答**（基线与EOT均须满足），Protocol §11.5.1建议一句原则，其余在SAP；队列3医学未决定是否入组，§11.5暂用简洁原则性描述而不细定SOC/EOT实施；**CP-26已确认删除BC单列C6 CIPN20≥10次要终点**；C-BC-14保留 |
 | PRO/神经功能指标及背景化疗暴露 | CRC PRO拟稿待医学SOP；CP-25化疗暴露参考资料已归档 | 化疗暴露按公司已有标准模板撰写，用户未来对照[CP-25参考笔记](./AK135-201_chemotherapy_exposure_secondary_endpoints_working_v0_1.md)核查计划周期完成、实际/计划累计剂量、CIPN相关减量/延迟/永久终止；不新增统计终点，不要求目前确认具体算法。BC药物范围待医学C-BC-14，Word未改 |
 | 伴随治疗与intercurrent events | **CP-28已确认CIPN挽救治疗+Treatment Policy，挽救本身不触发EOT；C-RESCUE-EOT-01医学Comment保留** | 救治后**实际有效EOT** CIPN20/CTCAE照常判定，救治不自动事件/删失；只有实际永久停试验治疗等既定原因才提前EOT。§5.8.3挽救前尽量评价，但不能替代正式EOT或延误必要治疗。按组描述挽救治疗，并请医学确认救治范围/记录、与提前停药和访视表的衔接；现行见[CP-28确认稿v0.3](./AK135-201_CIPN_rescue_treatment_policy_confirmed_v0_3.md)，救治即EOT旧v0.2已撤回，Word未改 |
 | 安全性 | CP-15 §11.6已按AK135-101 SAP §3.9拟稿，带Comment | §9.2收集/报告属于医学/PV，统计不审。§11.6仅借鉴101的SS/TEAE/TRAE/SOC-PT/实验室Shift/生命体征/ECG及体检统计结构；CTCAE用201 v6.0，不照搬101转换期和模板阈值；TEAE分析期及AESI等保留统计衔接Comment，Word未改 |
@@ -1484,3 +1500,4 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 | 2026-10-13 | CP-28后续：用户作为统计师原则同意救治后的EOT实测按Treatment Policy，但追问救治本身是否导致EOT。直接核查原§5.8.3、§5给药、§4.6、§6/§7：**救治本身不强制停试验治疗/触发EOT**；若实际因CIPN永久停神经毒性化疗，AK135同步停止并在决定停药后3天内提前EOT。建议临床允许先完成正式EOT CIPN评分再挽救，不延误必要救治；先救治后EOT仍用实际评分，救治及CIPN停药单独描述；评价时序待用户确认，Word未改。 |
 | 2026-10-13 | CP-28用户明确更正：**依据以往工作实践，首次CIPN挽救治疗本身就应触发提前有效性EOT**；先前‘挽救本身不触发EOT’及救治后统一Treatment Policy建议仅保留历史，不能作为最终写法。尽可能在救治前完成正式EOT测量，治疗不能延误；有效值照已定两主要阈值判定，挽救不自动判事件。**保留医学Comment C-RESCUE-EOT-01**，核实此EOT是否要求AK135/化疗同步停用、时窗及与现行§5.8.3冲突；归档docs/AK135-201_CIPN_rescue_triggers_EOT_working_v0_2.md。原Word未改。 |
 | 2026-10-13 | CP-28最终反转并确认：用户要求**恢复CIPN挽救治疗 + Treatment Policy**，**挽救本身不触发EOT**，救治后有效的实际EOT CIPN20/CTCAE仍按主要终点实测判定，不自动事件或缺失；只有实际停试验治疗等方案既定原因才提前EOT。保留**C-RESCUE-EOT-01**医学Comment核实挽救范围、挽救前测量时序、停药和后续访视衔接。归档当前唯一有效v0.3；原‘救治即EOT’v0.2标历史废弃。原始Word未修改。 |
+| 2026-10-13 | CP-29：用户要求沿此前Kieffer 2017同类型研究锁定CIPN20有效问卷规则：18-item summary至少9/18项有效回答后才能计算，以有效回答均值转换0–100；基线与EOT任一不足9条则该EOT PRO主要结局indeterminate、继续既有可评价/缺失策略。原论文Methods核实≥50%规则，不称其EORTC官方标准，也不用其证明个体≥10截点。用户询问是否写CP：建议§11.5.1用一句写明9/18关键门槛，详细条目/转换/缺失衍生放SAP；原始Word未改。归档docs/AK135-201_CIPN20_18item_validity_confirmed_v0_1.md。 |

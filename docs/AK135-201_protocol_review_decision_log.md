@@ -1169,6 +1169,31 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 
 **2026-10-13用户确认：** 对本条最后提议“采用DATECAN 2020：第二原发结直肠癌为DFS事件、第二原发非结直肠癌不直接为DFS事件”，用户答复“可以”。**因此CRC DFS原则性定义已定案，正式CP统一改稿时按已确认工作稿纳入**；仅留C-DFS-01核实CRF/既有随访能否区分第二原发结直肠癌及复发证据、C-DFS-03事件日期和无基线后评估的SAP实施细则。**不要再向用户重复要求选择第二原发范围。Word未改。**
 
+
+### CP-22｜乳腺癌术后辅助DFS：STEEP 2.0疾病特异终点共识核查（2026-10-13）
+
+**状态：已完成STEEP 2.0原始Table 1一手核对与统计拟稿，待用户确认IDFS vs IBCFS；原始CP Word未修改。**
+
+**用户指令：** 继CRC DATECAN2020 DFS完成归档后，用户问“BC DFS应该也有类似的文件吧，我们开始”，沿用**不以AK135-201原方案既有DFS模板为起点、而由同类文献重新设计**的工作方式。
+
+**直接参考与证据精度：**
+- **STEEP 2.0**，Tolaney SM et al., *J Clin Oncol* 2021;39:2720–2731, DOI [10.1200/JCO.20.03613](https://doi.org/10.1200/JCO.20.03613)，[PMC全文](https://pmc.ncbi.nlm.nih.gov/articles/PMC10166345/)，[原始论文PDF](https://repository.icr.ac.uk/server/api/core/bitstreams/afce9bb3-c50f-43db-874b-282eddc3b87e/content)，**Table 1（PDF第3页）**已逐格人工核对。这是针对乳腺癌辅助治疗的专门标准化终点共识。
+- **STEEP 2007** Hudis et al. [原论文摘要](https://pubmed.ncbi.nlm.nih.gov/17513820/)：早已主张使用明确定义的**IDFS**，而不是事件口径随研究变化的裸“DFS”。
+- **实际同类型肿瘤临床研究用法举例：** [CAMBRIA-1/2方案论文](https://pmc.ncbi.nlm.nih.gov/articles/PMC11916374/) Table 2分别记录按STEEP 2.0定义的IBCFS及IDFS。该案例只用于核对标准的可操作性，不代表AK135抗肿瘤证据。
+- **既有CIPN竞争研究归档**未提供可直接移植的乳腺癌DFS事件/删失表；本次STEEP证据是专项新增，不谎称来自已有CIPN药物试验。
+
+**STEEP 2.0两个重要事件集（共同部分）：** 同侧乳房/胸壁侵袭性复发、局部区域侵袭性复发、远处复发/转移、**对侧侵袭性乳腺癌**、**任何原因死亡**（含非乳腺癌和不明原因）；DCIS/LCIS/其他原位癌单独出现不是事件。
+- **IDFS (Invasive Disease-Free Survival)：** 另外包括**第二原发非乳腺侵袭性癌**，但排除皮肤基底细胞/鳞状细胞癌及原位癌（Table1脚注c）。
+- **IBCFS (Invasive Breast Cancer-Free Survival)：** 除第二原发非乳腺侵袭性癌**不作为事件**外，与IDFS一致，**仍算任何原因死亡**。
+- STEEP 2.0推荐若干情况下可采用IBCFS，包括治疗的毒性和第二原发恶性肿瘤风险已明确、风险较低时。**AK135是CIPN预防探索性药物、疾病结局用于观察潜在肿瘤学harm而非证明抗肿瘤获益**，本统计建议因此**优先使用IDFS**，保留更广泛的肿瘤/致死不利事件监测；**这是结合项目目的的统计判断，不是STEEP强制指示；待用户明确选择**。
+- **CRC此前已确认DATECAN2020**不包括非结直肠第二原发癌；乳腺癌若选IDFS包括非乳腺第二原发癌，属**采用两种疾病特异终点共识的事件口径差异**，不是遗漏或必须跨队列强行统一。方案需显式标注。
+- 定义建议：从**随机化日期**至首个对应事件，截止前无事件于末次能确认无所定义事件的疾病状态评价日删失，无postrandom有效疾病评估且无事件在随机日删失，死亡不因缺乏疾病评估而忽略；停用AK135/化疗调整/后续抗肿瘤治疗本身不算事件且不自动删失。所有结果探索性描述、适用时KM，无正式DFS有效性检验/alpha/额外评估负担。
+- 医学/DM Comment核实既定CRF能否记录第二原发非乳腺侵袭性癌、对侧侵袭性乳腺癌、原位癌与侵袭性癌、复发首个证据日期；具体日期优先级和缺失规则由SAP落实，不擅自加访视。
+- **完整方法证据、事件/非事件矩阵、中文CP草案、Comment**： [BC辅助DFS STEEP 2.0工作稿v0.1](./AK135-201_BC_adjuvant_DFS_STEEP2_working_v0_1.md)。
+
+**下一轮唯一需用户确认：** BC辅助治疗究竟按STEEP 2.0的**IDFS（计入第二原发非乳腺侵袭性癌）**还是**IBCFS（不计入这类第二原发，但全因死亡依旧计入）**？如果接受推荐IDFS，归档后继续BC新辅助EFS（NeoSTEEP2023），再OS。本轮**未修改原CP Word**。
+
+
 ## 4. 其余未完成的CP审阅项目（供逐项推进）
 
 | 项目 | 当前状态 | 待解决内容 |
@@ -1180,7 +1205,7 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 | PRO/神经功能指标 | CP-11 CRC工作稿已写，Comment保留 | CRC FACT-Ntx-11、音叉及非优势手Grooved Pegboard按文献先例描述，正式版本/SOP待医学确认；C12D14/EOT的PRO/客观功能/化疗指标均已编写；乳腺癌去重后置 |
 | 伴随治疗与intercurrent events | 部分已确定 | 明确诱发CIPN的新抗肿瘤治疗清单（医学）、支持性分析 |
 | 安全性 | CP-15 §11.6已按AK135-101 SAP §3.9拟稿，带Comment | §9.2收集/报告属于医学/PV，统计不审。§11.6仅借鉴101的SS/TEAE/TRAE/SOC-PT/实验室Shift/生命体征/ECG及体检统计结构；CTCAE用201 v6.0，不照搬101转换期和模板阈值；TEAE分析期及AESI等保留统计衔接Comment，Word未改 |
-| 肿瘤长期结局 | **CP-21 CRC DFS事件与原则性删失已由用户确认** | 采用DATECAN2020：随机化至局部/区域/吻合口复发、远处复发、第二原发结直肠癌或全因死亡；非结直肠第二原发癌不直接计DFS事件，停药/换药不自动删失，KM仅描述；医学/DM采集性和SAP日期规则待核查。见[CRC DFS已确认稿](./AK135-201_CRC_DFS_design_working_v0_1.md)。下一项BC辅助DFS，其后BC新辅助EFS和OS |
+| 肿瘤长期结局 | **CRC DFS CP-21已确认；BC辅助STEEP2 CP-22已拟稿，待用户选IDFS/IBCFS** | CRC用DATECAN2020；BC辅助STEEP2 IDFS计第二原发非乳腺侵袭性癌、IBCFS不计，但两者均纳入侵袭性乳腺复发/对侧侵袭性癌/全因死亡，DCIS不计。统计优先推荐IDFS以探索AK135潜在harm，见[BC辅助DFS工作稿](./AK135-201_BC_adjuvant_DFS_STEEP2_working_v0_1.md)。BC新辅助EFS、OS随后独立处理 |
 | PK/免疫原性 | 当前统计团队不负责（用户明确） | CP-16既有参考稿仅备查；不再逐条审阅§8/§11.7或追问临床药理采样，后续由负责部门处理；Word未改 |
 | 随机化/盲态治理 | CRC不分层、BC按计划神经毒性化疗方案分层均已确认 | CRC无分层、1:1:1区组随机；BC按随机前计划神经毒性化疗方案单一因子分层，层内1:1:1区组随机；具体分层类别待C-BC-14医学确认。第三队列占位，Word未改 |
 | 文稿与访视表一致性 | 全篇仍待统一改稿；BC正式写入准备包已完成 | BC按[CP insertion sheet](./AK135-201_BC_protocol_insertion_sheet_v1_0.md)准备§3.1、§5.6.2随机化、§11.3.1样本量、§11.4.1期中、§11.5.1主要有效性及方案概要联动；CRC/BC不同设计参数保持独立，Word仍未改 |
@@ -1237,3 +1262,4 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 | 2026-10-13 | CP-20用户指示将已定BC样本量+Stage1设计归档，预备正式写进CP：冻结[BC设计v0.2](./AK135-201_BC_two_stage_design_working_v0_2.md)，新增[BC CP写入准备包v1.0](./AK135-201_BC_protocol_insertion_sheet_v1_0.md)，经实际原DOCX核对插入位置为§3.1/§5.6.2/§11.3.1/§11.4.1/§11.5.1及概要、§2.2/§6一致性；更正早期随机化§5.7.2误记。BC pP30%/pT15%、N50×3、前60例、CP70%、最终Go观察差≥10pp不重开；C-BC-14等医学Comment保留，原Word未改。 |
 | 2026-10-13 | CP-21依用户最新要求**不核对AK135-201原DFS文字**，改从CIPN竞品资料和已归档FDA 2018终点指南出发，新增结肠癌辅助治疗DATECAN2020共识，独立拟CRC DFS：随机化到局部/吻合口/远处复发、第二原发CRC或全因死亡；第二原发非CRC不计DFS事件（待用户确认）、新抗/停药不自动删失、无事件取末次疾病评估删失、KM描述不正式检验。完整文稿存docs/AK135-201_CRC_DFS_design_working_v0_1.md，原Word未改。 |
 | 2026-10-13 | CP-21用户答复“可以”：采纳DATECAN2020 CRC辅助DFS，**第二原发结直肠癌纳入事件，第二原发非结直肠癌不直接计事件**；随机化起算、局部/远处复发与全因死亡事件、治疗更改不自动删失等原则性定义归档为已确认。医学/DM只核查现有资料采集可能性和SAP日期优先级，Word不改。下一步BC辅助DFS。 |
+| 2026-10-13 | CP-22乳腺癌辅助DFS采用STEEP2.0(2021 JCO)原始PDF Table1，与2007 STEEP及CAMBRIA使用案例核对：共同纳入同侧侵袭性复发、区域/远处复发、对侧侵袭性乳腺癌、全因死亡，不计DCIS；IDFS另含第二原发非乳腺侵袭性癌（排除皮肤基底/鳞癌、原位癌），IBCFS不含。因AK135支持疗法潜在harm监测统计建议IDFS，但**待用户确认**；CRC DATECAN事件集不同不可悄然同化。已保存BC STEEP工作稿v0.1及CP建议正文，Word不改。 |

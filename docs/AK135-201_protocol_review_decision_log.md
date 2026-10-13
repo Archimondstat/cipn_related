@@ -1429,13 +1429,25 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 
 
 
+### CP-30最终统计决定｜FACT-Ntx13最低有效条目与prorating，医学Comment保留（2026-10-13）
+
+**用户原话：**“统计师（我）认可这个做法，但是需要保留comment。”
+
+**决策状态：STATISTICIAN CONFIRMED / MEDICAL COMMENT OPEN。** 该决定优先于下述CP-30早期工作笔记的“待用户确认/仅建议”状态，不改动历史记录本身。
+
+- **已确认计分规格：** FACT/GOG-Ntx13（13项神经毒性subscale），官方FACIT标准反向计分后0–52分（高分更好）；每次至少**7/13**项有效回答（>50%）才计算该次评分；部分条目缺失时依官方规则**prorating**，即`score=13*sum(valid scored items)/m`，`m>=7`；0–6项有效时本次评分missing。
+- **预设FACT恶化终点衍生：** 对既有探索性`baseline score−visit score>12`口径，仅有效基线和对应指定访视均满足7/13门槛时才可判定；否则该次结局indeterminate，不自动分类为“未恶化”。评分判定使用未四舍五入的计算值；FACT可评价分母与条目缺失比例按访视记录。**>12阈值在Ntx13的临床适用性不因本次缺失处理决定而被自动验证。**
+- **Protocol/SAP分工：** §11.5.2拟一句简述13项至少7有效、部分缺失FACIT prorating；SAP写具体反向编码、公式、访视及可评价分母、未舍入阈值比较和缺失QC。
+- **保留医学Comment C-CRC-01（共用，不能标关闭）：** 请医学及量表负责人核实**正式授权FACT/GOG-Ntx13 v4中文问卷及score template**、实际采集完整40项还是只采13项、具体13个条目/反向计分和非适用编码、两项冷诱发症状在各队列的适用性，及**较基线恶化>12分**在13项0–52计分中的临床解释和证据。若实际授权版有差异，交由统计和医学确认是否修订当前算法。该Comment属于**实施与医学确认**，**不是再请统计师选择11项还是13项/6项还是7项**。
+- **修改状态：** 已更新[CP-30 FACT-Ntx13统计确认稿v0.2](./AK135-201_CP30_FACT_Ntx13_missing_items_prorating_working_v0_2.md)，并保留早期11项历史记录。**原始AK135-201 Word仍冻结，不在本次修改。**
+
 ### CP-30最新版本更新｜FACT-Ntx13取代FACT-Ntx11（2026-10-13）
 
 **用户最新明确：“最新修改，是FACT-Ntx 13。”** 此为新的、优先级最高的量表版本指示。前期CP-11 CRC和CP-13 BC的11项0–44、CP-30 v0.1的6/11计分讨论保留为历史决策轨迹，**未来最终修订Protocol/SAP不能再按11项实施**。最新有效性工作稿：[CP-30 FACT-Ntx13 missing/prorating v0.2](./AK135-201_CP30_FACT_Ntx13_missing_items_prorating_working_v0_2.md)。
 
 **官方及同类研究依据**：FACIT 13项v4官方页面https://www.facit.org/measures/fact-gog-ntx-13 确认完整量表40项，其中神经毒性分量表13项；FACIT官方https://www.facit.org/scoring 规定单一subscale**严格超过50%**的条目有效方可prorate，故13项建议至少**7/13项**，按有效反向得分平均×13计算，范围**0–52、高分更好**。同类POLAR-A/M使用FACT/GOG-NTX-13 v4；2025 NOVIT成人血液肿瘤队列同样采用0–52。两个由11项新增的条目关注冷刺激诱发症状。
 
-**当前决策状态：** 用户已**确定量表改为13项**，这是定案，不需要重新问卷版本选择。7/13门槛与prorating是由官方规则推出的统计**建议，尚待用户明确批准**。如仍维持原CP探索性恶化界值`baseline−visit>12`，须在**0–52的Ntx13**下核对既有文献解释，不能将11项阈值证据机械移植。保留医学Comment C-CRC-01核实正式授权13项问卷及两项冷刺激条目、实际收集是完整40项还是单13项子量表、eCOA/CRF映射和技术计分。**原Word未修改**。
+**当前决策状态：** 用户已**确定量表改为13项**，这是定案，不需要重新问卷版本选择。7/13门槛与prorating于本节归档当时还是统计建议，**已由上方“CP-30最终统计决定”记录的用户后续回复正式确认**。如仍维持原CP探索性恶化界值`baseline−visit>12`，须在**0–52的Ntx13**下核对既有文献解释，不能将11项阈值证据机械移植。保留医学Comment C-CRC-01核实正式授权13项问卷及两项冷刺激条目、实际收集是完整40项还是单13项子量表、eCOA/CRF映射和技术计分。**原Word未修改**。
 
 ### CP-30主题纠正｜FACT-Ntx11有效问卷门槛及部分条目缺失（2026-10-13）
 

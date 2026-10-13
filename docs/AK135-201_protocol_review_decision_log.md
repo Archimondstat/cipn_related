@@ -1264,6 +1264,29 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 - **分析定位：** 按队列和随机组描述，资料成熟度允许时KM，不设正式检验、额外样本量/访视。**OS仍为长期生存安全信号观察，有限样本不能排除伤害。**
 - **完整已确认极简文字：** [AK135-201_OS_long_term_safety_confirmed_v0_2.md](./AK135-201_OS_long_term_safety_confirmed_v0_2.md)；旧[v0.1](./AK135-201_OS_long_term_safety_working_v0_1.md)仅作为历史备选追溯。**原始Word尚未改，整篇CP审阅完成后统一写入。**
 
+
+### CP-25｜背景化疗暴露量及CIPN相关剂量调整：依据同类研究的常规统计（2026-10-13）
+
+**状态：用户提出按常规化疗暴露量统计；已核对原AK135-201方案现有三项次要终点及同型一手发表研究，完成§11.5.2工作稿。** 统计方向符合实践；**具体药物范围、完成周期及剂量分母细则待用户/医学确认；不擅自将工作稿标记为全部定案。原Word未改。**
+
+**用户原话：** “同理，参考同类型的研究。我目前的理解是，按照常规化疗治疗的药物暴露量统计分析。”
+
+**原方案实际终点（此处仅核对既有次要终点，不自创）：**（1）完成计划周期治疗的受试者比例；（2）化疗实际累计剂量及**实际/计划累计剂量比例**；（3）因CIPN导致化疗**剂量降低、给药延迟、永久终止**的受试者比例。CRC另明确“12个周期mFOLFOX6”，BC依随机前计划化疗方案、药物组成、周期数及周期内给药日；药物及日程范围需医学C-BC-14确认。原CP仅在背景谈**Relative Dose Intensity (RDI)**，**未单列RDI为正式次要终点**，不得悄然换成RDI。
+
+**同类研究的一手核对：**
+- [POLAR-A/POLAR-M](https://pmc.ncbi.nlm.nih.gov/articles/PMC9678401/)（与AK135相同CIPN药物预防思路，CRC奥沙利铂背景）：报告累计奥沙利铂剂量与完成12个周期双治疗比例；[POLAR-A Protocol §7.5.2](https://cdn.clinicaltrials.gov/large-docs/29/NCT03654729/Prot_000.pdf)规定记录减量、延迟及其原因。
+- [NABRAX研究](https://academic.oup.com/oncolo/article/22/11/1301/6444695)（BC新辅助nab-paclitaxel，非CIPN预防药研究）：报告RDI、实际完成计划治疗、给药省略/延迟/减量，说明常规化疗暴露汇总在BC适用。
+- [Weekly Paclitaxel-Induced Neurotoxicity](https://academic.oup.com/oncolo/article/26/5/366/6445663)（BC观察性）：累计紫杉醇剂量与减量比例，并区分是否因神经病变减量，支持将CIPN原因单独统计。
+- [nab-paclitaxel压迫疗法+中药CIPN预防SABCS会议摘要](https://aacrjournals.org/cancerres/article/82/4_Supplement/P5-18-13/681392/)报告nab-PTX减量（含PN归因）、RDI，**会议摘要仅辅助先例**，不作为决定方法学阈值的一手完整研究。
+
+**统计建议：** 按队列/随机组（i）计划及实际完成周期数、完成者n/N；（ii）按**每个化疗药物**汇总累计剂量和actual/planned累计剂量百分比，尤其重点列示导致CIPN的神经毒性药物，勿把不同成分mg、mg/m²或AUC相加；（iii）按**研究者记录的归因**分别汇总因CIPN减量、延迟、永久停药n/N以及任选的任一调整合并比例。一个患者不同调整类别可重复出现，合并类型计一次；不能因其CTCAE≥2就推定所有化疗调整是CIPN所致。
+
+**最重要的差别：** Actual/planned **累计剂量比例**反映减量、遗漏、提前停药导致的总剂量变化；若延迟了化疗但最终所有剂量给足，累计剂量比例仍可为100%。**RDI（单位时间给药强度比）才包含给药时间变化**，与原方案比例不是严格同义；目前**不自动加RDI作为额外正式次要终点**，如确有需要可在SAP中列支持性描述并事先指定实际/计划持续时间定义。
+
+**BC特有实施Comment：** 预随机确定计划周期（4–6）、给药频率Q3W/Q4W和D1/D8/D15，按患者自身原定计划计算分母（不因后续减量下调计划分母），明确单个周期仅部分计划剂量实际给药时是否称为“周期完成”；C-BC-14确定实际允许药物组成再列具体药物；将减量/延迟/永久停药及研究者原因纳入后续CRF设计。方案阶段先写清分析意图，不需当前已有CRF字段。
+
+**完整文献证据表、示例衍生、简洁CP§11.5.2中文拟稿及Comment：** [AK135-201_chemotherapy_exposure_secondary_endpoints_working_v0_1.md](./AK135-201_chemotherapy_exposure_secondary_endpoints_working_v0_1.md)。**本轮工作稿待用户同意按常规暴露框架实施，不做正式化疗剂量疗效检验；原始Word未改。**
+
 ## 4. 其余未完成的CP审阅项目（供逐项推进）
 
 | 项目 | 当前状态 | 待解决内容 |
@@ -1272,7 +1295,7 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 | §11.3样本量 | CRC已定；**BC已定：N50/臂、总150、30%→15%设计效应，最终Go观察差≥10pp**（CP-20） | CRC设计保持45%/30%、前60/70%CP不动；BC按独立30%/15%假设、50/臂、Stage1前60/40%、70%CP、最终描述性风险差≥10pp已确认；准确OC与文案见BC设计v0.2。队列3占位 |
 | §11.4 Stage 1 | CRC与BC同框架参数已定，BC CP-20 | **CRC前60、q=.45/.30，BC前60、q=.30/.15；各自max(CP_L,CP_H)≥70%继续，两剂量全保留、available-case+consumed-slot；BC完整名义均衡OC一剂量真15pp时Stage1Go74.35%、阶段且最终Go64.80%。** BC真实分层层级/IWRS及缺失稳健性待完成，不重开数学规则 |
 | §11.5主要有效性 | CP-10 CRC、CP-12乳腺癌两项主要均已确认；队列3仅保留框架占位 | CRC/乳腺癌C1D1至EOT、EOT当次CIPN20 18-item≥10和CTCAE≥2；队列3医学未决定是否入组，§11.5暂用简洁原则性描述而不细定SOC/EOT实施；C-BC-14保留 |
-| PRO/神经功能指标 | CP-11 CRC工作稿已写，Comment保留 | CRC FACT-Ntx-11、音叉及非优势手Grooved Pegboard按文献先例描述，正式版本/SOP待医学确认；C12D14/EOT的PRO/客观功能/化疗指标均已编写；乳腺癌去重后置 |
+| PRO/神经功能指标及背景化疗暴露 | CP-11 CRC PRO已拟稿；**CP-25 常规化疗暴露/调整分析工作稿已完成，待确认** | PRO/神经功能按此前文献拟稿，量表版本及SOP待医学；背景化疗计划完成周期、实际累计及actual/planned剂量比例、CIPN所致减量/延迟/永久停药沿原CP次要终点拟稿。详见[CP-25暴露统计工作稿](./AK135-201_chemotherapy_exposure_secondary_endpoints_working_v0_1.md)；BC方案成分与周期完成界线待C-BC-14/医学核实，RDI不自动新增为正式终点 |
 | 伴随治疗与intercurrent events | 部分已确定 | 明确诱发CIPN的新抗肿瘤治疗清单（医学）、支持性分析 |
 | 安全性 | CP-15 §11.6已按AK135-101 SAP §3.9拟稿，带Comment | §9.2收集/报告属于医学/PV，统计不审。§11.6仅借鉴101的SS/TEAE/TRAE/SOC-PT/实验室Shift/生命体征/ECG及体检统计结构；CTCAE用201 v6.0，不照搬101转换期和模板阈值；TEAE分析期及AESI等保留统计衔接Comment，Word未改 |
 | 肿瘤长期结局 | **CRC DFS CP-21、BC辅助IDFS CP-22、BC新辅助EFS CP-23、全队列OS CP-24均已确认** | OS极简：随机化至任何原因死亡，DCO/失访在末次确认存活日删失；**新抗肿瘤治疗不自动删失**，在SAP阐明即可。按队列和随机组三组描述，成熟时KM，无正式检验/额外访视。已确认文字见[OS v0.2](./AK135-201_OS_long_term_safety_confirmed_v0_2.md)，Word暂不改 |
@@ -1338,3 +1361,4 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 | 2026-10-13 | CP-23用户确定BC新辅助EFS采用KEYNOTE-522型A：仅当术前**局部/区域疾病进展导致不能进行根治性手术**才计该类EFS事件；进展后仍可手术即使新增/改药也不单独计事件。术前远处进展与术后STEEP2 IDFS一致的侵袭性复发/第二原发癌/全因死亡继续计入。用户指定**先在临床方案中写清楚，后续据此设计CRF/EDC**，不因目前CRF缺字段而推迟统计事件定义。归档BC EFS confirmed v0.2，旧v0.1标历史备选，原始Word未修改，下一项OS。 |
 | 2026-10-13 | CP-24 用户提出OS“任何原因死亡，新的抗肿瘤治疗，DCO删失”。全因死亡事件与DCO前末次确知存活日删失原则明确；提示新抗治疗日删失可能造成informative censoring，非传统treatment-policy OS且偏离长期潜在harm监测目标。先起草OS v0.1：建议主OS新抗后继续跟踪死亡，若需要新抗前删失则支持性分析另列；待用户决定是否坚持主OS删失，不能擅自归档最终选择。原Word未改。 |
 | 2026-10-13 | CP-24用户纠正初步OS说法并要求简洁：**OS仅全因死亡为事件**，DCO/失访按最后确认存活日删失，后续新抗肿瘤治疗不自动删失；无需另设新抗前OS分析。按队列和组描述、成熟时KM，不正式检验。归档docs/AK135-201_OS_long_term_safety_confirmed_v0_2.md，旧v0.1标历史，CRC DFS/BC IDFS/BC EFS/OS四项疾病结局均已确定，原Word未改。 |
+| 2026-10-13 | CP-25用户提出照常规化疗暴露量统计并参考同类研究。核对原AK135-201次要终点三项（计划周期完成；实际累计剂量和actual/planned比例；CIPN归因减量/延迟/永久停用）。原始文献POLAR-A/M、BC NABRAX及Paclitaxel Neurotoxicity均有相应常规暴露数据实例。明确累计剂量比例不同RDI（延迟不必改变累计剂量），RDI原CP背景涉及但未正式设为新次要终点；初拟按化疗药物分列累计剂量、完成率及研究者归因的CIPN调药。归档docs/AK135-201_chemotherapy_exposure_secondary_endpoints_working_v0_1.md；计划分母、BC药物及CRF原因字段仍需实施核实，Word未改。 |

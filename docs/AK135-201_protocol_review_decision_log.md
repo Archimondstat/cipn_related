@@ -1429,6 +1429,14 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 
 
 
+### CP-30最新版本更新｜FACT-Ntx13取代FACT-Ntx11（2026-10-13）
+
+**用户最新明确：“最新修改，是FACT-Ntx 13。”** 此为新的、优先级最高的量表版本指示。前期CP-11 CRC和CP-13 BC的11项0–44、CP-30 v0.1的6/11计分讨论保留为历史决策轨迹，**未来最终修订Protocol/SAP不能再按11项实施**。最新有效性工作稿：[CP-30 FACT-Ntx13 missing/prorating v0.2](./AK135-201_CP30_FACT_Ntx13_missing_items_prorating_working_v0_2.md)。
+
+**官方及同类研究依据**：FACIT 13项v4官方页面https://www.facit.org/measures/fact-gog-ntx-13 确认完整量表40项，其中神经毒性分量表13项；FACIT官方https://www.facit.org/scoring 规定单一subscale**严格超过50%**的条目有效方可prorate，故13项建议至少**7/13项**，按有效反向得分平均×13计算，范围**0–52、高分更好**。同类POLAR-A/M使用FACT/GOG-NTX-13 v4；2025 NOVIT成人血液肿瘤队列同样采用0–52。两个由11项新增的条目关注冷刺激诱发症状。
+
+**当前决策状态：** 用户已**确定量表改为13项**，这是定案，不需要重新问卷版本选择。7/13门槛与prorating是由官方规则推出的统计**建议，尚待用户明确批准**。如仍维持原CP探索性恶化界值`baseline−visit>12`，须在**0–52的Ntx13**下核对既有文献解释，不能将11项阈值证据机械移植。保留医学Comment C-CRC-01核实正式授权13项问卷及两项冷刺激条目、实际收集是完整40项还是单13项子量表、eCOA/CRF映射和技术计分。**原Word未修改**。
+
 ### CP-30主题纠正｜FACT-Ntx11有效问卷门槛及部分条目缺失（2026-10-13）
 
 **用户指出：** “我们这部分的讨论，不是应该参考量表缺失的处理吗？” 前文用户所说“同理，写明同类型研究”实际承接CP-29的**最低有效答题数与缺失处理**，不是再次确认CP-11已经接受的FACT-Ntx11 v4反向评分方向或>12阈值。此前将CP-30转为版本/阈值复核，属于错误理解；此前专题仍保留为补充文献，不构成待用户再次选择的主议题。

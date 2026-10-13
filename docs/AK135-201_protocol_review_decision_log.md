@@ -1341,7 +1341,7 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 
 ### CP-28｜CIPN挽救治疗后EOT主要结果的estimand处理（2026-10-13）
 
-**状态：用户已在统计原则上同意Treatment Policy，但提出挽救与提前EOT同时发生的关键实施问题；原方案核对显示挽救本身不自动触发EOT，因CIPN永久停试验治疗则按提前终止/EOT评价；评价时序及支持性记录待用户确认。原Word未改。**
+**状态：用户2026-10-13明确更正统计拟定口径：首次因CIPN启动挽救治疗本身触发提前EOT有效性评价；此前‘挽救不触发EOT／一律挽救后Treatment Policy’工作建议不再适用；**但与原§5.8.3不一致，保留C-RESCUE-EOT-01医学Comment等待确认。原Word未改。**
 
 **原方案§5.8.3（上传AK135-201 v0.1，段落492–502）已经明确：** 确有新发/加重CIPN需要临床干预时可由研究者给予挽救治疗；临床可行时尽可能在首次挽救前完成CTCAE和PRO；记录症状等级、用药起止、类型与剂量、救治前后严重度及背景化疗是否调整；**挽救治疗本身不自动停止试验治疗或退出研究，继续后续有效性/安全性评价**。然而原文**尚未规定**挽救后EOT结果是否照常进入两项二分类主要终点，不可仅凭“继续评价”视为已决定分析策略。
 
@@ -1373,6 +1373,19 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 
 **更新工作稿：** [CP-28 rescue-vs-early-EOT](./AK135-201_CIPN_rescue_treatment_intercurrent_event_working_v0_1.md) §6；与§5.8.3原文一致，不另设新强制复合主要终点、Stage1 CP或访视时间。需审慎区分“临床必须首先救治，随后症状改善”的潜在低估风险，而不能机械地把原§5.8.3解读为救治强制停药。
 
+
+#### CP-28最终统计写作方向（用户更正，2026-10-13）｜救治本身触发提前EOT；医学Comment开放
+
+**用户原话：**“不，我的意思是，按照以往做法，挽救治疗本身就EOT了，但是我们要留comment。”此为用户确认的**统计方案撰写方向**，并非原AK135-201 v0.1已规定的操作，也不是POLAR-A/Alliance已证实采用的统一实践。
+
+**当前工作口径（覆盖CP-28此前Treatment Policy为主的建议、§6‘救治本身不触发EOT’建议）：** 首次**因既存CIPN**启动挽救治疗即触发**提前EOT有效性评价**，不以“同时永久停AK135/背景化疗”为必要统计条件；临床可行时先完成正式EOT CIPN20、CTCAE再救治，但绝不延误必要医疗救治。以实际有效EOT值按已定两主要阈值判定，**挽救治疗本身不自动记CIPN20恶化≥10或CTCAE≥2，也不自动填缺失结局**。如不能在救治前完成检查，补测是否可作为有效EOT及窗口须医学/实施确定；不能擅自以后续救治后评估替代“救治触发时EOT”。
+
+**必须保留的医学Comment C-RESCUE-EOT-01：** 原§5.8.3明确“接受挽救治疗本身不意味着试验参与者必须停止试验治疗或退出研究”，§6–§7将提前EOT主要与提前永久停试验治疗关联。**请医学确认**（a）首次CIPN挽救是否触发提前EOT；（b）这里EOT仅指主要有效性窗口终止，还是要求同时停止AK135/背景化疗、如何继续疾病/安全随访；（c）挽救前未能及时检查时可补测的时窗/数据用途；（d）首次“CIPN挽救”与原有稳定用药或其他原因镇痛的区分。**在答复前保留显式冲突，不擅自修订原§5.8.3。** 医学答复后联动§5、§6、§7、访视表、统计§11.5和后续CRF/SAP。
+
+**证据状态：** 使用“按照以往做法”描述用户的项目经验即可；已经检索的POLAR/Alliance来源仅支持临床允许救治及记录，**不支持据此宣称所有CIPN试验均以救治触发EOT**。若救治触发EOT可能使实际终点时点与样本量假定的时间分布有差异；此处暂不重新计算CP或新增复合主要终点，但最终需核对解释和终点可执行性。
+
+**已更新详细稿：** [AK135-201_CIPN_rescue_triggers_EOT_working_v0_2.md](./AK135-201_CIPN_rescue_triggers_EOT_working_v0_2.md)。[v0.1](./AK135-201_CIPN_rescue_treatment_intercurrent_event_working_v0_1.md)标记历史稿。**CP-28统计撰写方向已定、医学Comment开放；原Word未改。**
+
 ## 4. 其余未完成的CP审阅项目（供逐项推进）
 
 | 项目 | 当前状态 | 待解决内容 |
@@ -1382,7 +1395,7 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 | §11.4 Stage 1 | CRC与BC同框架参数已定，BC CP-20 | **CRC前60、q=.45/.30，BC前60、q=.30/.15；各自max(CP_L,CP_H)≥70%继续，两剂量全保留、available-case+consumed-slot；BC完整名义均衡OC一剂量真15pp时Stage1Go74.35%、阶段且最终Go64.80%。** BC真实分层层级/IWRS及缺失稳健性待完成，不重开数学规则 |
 | §11.5主要有效性 | CP-10 CRC、CP-12乳腺癌两项主要均已确认；队列3仅保留框架占位 | CRC/乳腺癌C1D1至EOT、EOT当次CIPN20 18-item≥10和CTCAE≥2；队列3医学未决定是否入组，§11.5暂用简洁原则性描述而不细定SOC/EOT实施；**CP-26已确认删除BC单列C6 CIPN20≥10次要终点**；C-BC-14保留 |
 | PRO/神经功能指标及背景化疗暴露 | CRC PRO拟稿待医学SOP；CP-25化疗暴露参考资料已归档 | 化疗暴露按公司已有标准模板撰写，用户未来对照[CP-25参考笔记](./AK135-201_chemotherapy_exposure_secondary_endpoints_working_v0_1.md)核查计划周期完成、实际/计划累计剂量、CIPN相关减量/延迟/永久终止；不新增统计终点，不要求目前确认具体算法。BC药物范围待医学C-BC-14，Word未改 |
-| 伴随治疗与intercurrent events | **CP-28救治Treatment Policy统计原则用户认可；挽救同日永久停试验治疗时的提前EOT测量时序待确认** | 原§5.8.3规定救治本身不自动停药；若CIPN导致神经毒性化疗永久停用、AK135同步停用，则§6/§7规定3天内提前EOT。建议临床允许时先正式评估再挽救（不延误必要救治）；若EOT已在救治后，照常采用实测EOT且单独描述挽救及CIPN提前停药。见[CP-28工作稿§6](./AK135-201_CIPN_rescue_treatment_intercurrent_event_working_v0_1.md)，不自动把救治判双主要事件 |
+| 伴随治疗与intercurrent events | **CP-28统计拟稿已确定CIPN首次挽救触发提前有效性EOT；医学Comment C-RESCUE-EOT-01开放** | 用户要求沿既往做法“开始救治即EOT”；区别于原§5.8.3允许救治后继续治疗/评价，须医学明确是否仅终止EOT观察窗口或同时停药、救治前EOT检查与无法及时检查的时间窗，并协调§5–§7/访视表。见[CP-28 v0.2](./AK135-201_CIPN_rescue_triggers_EOT_working_v0_2.md)；不自动把救治记为两主要终点事件，原Word未改 |
 | 安全性 | CP-15 §11.6已按AK135-101 SAP §3.9拟稿，带Comment | §9.2收集/报告属于医学/PV，统计不审。§11.6仅借鉴101的SS/TEAE/TRAE/SOC-PT/实验室Shift/生命体征/ECG及体检统计结构；CTCAE用201 v6.0，不照搬101转换期和模板阈值；TEAE分析期及AESI等保留统计衔接Comment，Word未改 |
 | 肿瘤长期结局 | **CRC DFS CP-21、BC辅助IDFS CP-22、BC新辅助EFS CP-23、全队列OS CP-24均已确认** | OS极简：随机化至任何原因死亡，DCO/失访在末次确认存活日删失；**新抗肿瘤治疗不自动删失**，在SAP阐明即可。按队列和随机组三组描述，成熟时KM，无正式检验/额外访视。已确认文字见[OS v0.2](./AK135-201_OS_long_term_safety_confirmed_v0_2.md)，Word暂不改 |
 | PK/免疫原性 | 当前统计团队不负责（用户明确） | CP-16既有参考稿仅备查；不再逐条审阅§8/§11.7或追问临床药理采样，后续由负责部门处理；Word未改 |
@@ -1453,3 +1466,4 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 | 2026-10-13 | CP-27：对照AK135-201原始方案v0.1和CP-01~26，形成剩余撰写问题审计：救援治疗对EOT主要结果的处理为首要新增统计问题；CIPN20≥9/18有效问卷门槛、FACT版本/计分方向与>19/>12证据措辞尚待关账；C-BC-14方案缩写/紫杉类具体药物必须在统一Word前提醒医学，第三SOC/EOT待医学，§11.6 TEAE窗口待PV；§11.1-11.6及摘要/终点/访视多数为已有设计统一落稿，排除PK/PV/DMC越权。本次仅清单不加新定案，Word未改；详见docs/AK135-201_protocol_writing_gap_audit_20261013.md。 |
 | 2026-10-13 | CP-28按用户要求从CIPN挽救治疗开始：核对原§5.8.3允许挽救前尽量评估、之后继续CIPN评价；查POLAR-A及Alliance A221805原Protocol/SAP发现允许治疗/需记录先例，但**未发现明确主要estimand**，用ICH E9(R1)提议救治作为Treatment Policy intercurrent event（EOT实测纳入、不自动事件/缺失），救治率/类型/时点作描述性支持，以免改动EOT主要及Stage1 CP。归档docs/AK135-201_CIPN_rescue_treatment_intercurrent_event_working_v0_1.md；**待用户同意，Word未改。** |
 | 2026-10-13 | CP-28后续：用户作为统计师原则同意救治后的EOT实测按Treatment Policy，但追问救治本身是否导致EOT。直接核查原§5.8.3、§5给药、§4.6、§6/§7：**救治本身不强制停试验治疗/触发EOT**；若实际因CIPN永久停神经毒性化疗，AK135同步停止并在决定停药后3天内提前EOT。建议临床允许先完成正式EOT CIPN评分再挽救，不延误必要救治；先救治后EOT仍用实际评分，救治及CIPN停药单独描述；评价时序待用户确认，Word未改。 |
+| 2026-10-13 | CP-28用户明确更正：**依据以往工作实践，首次CIPN挽救治疗本身就应触发提前有效性EOT**；先前‘挽救本身不触发EOT’及救治后统一Treatment Policy建议仅保留历史，不能作为最终写法。尽可能在救治前完成正式EOT测量，治疗不能延误；有效值照已定两主要阈值判定，挽救不自动判事件。**保留医学Comment C-RESCUE-EOT-01**，核实此EOT是否要求AK135/化疗同步停用、时窗及与现行§5.8.3冲突；归档docs/AK135-201_CIPN_rescue_triggers_EOT_working_v0_2.md。原Word未改。 |

@@ -1,8 +1,8 @@
 # AK135-201：CIPN挽救治疗触发提前EOT（统计工作口径 v0.2）
 
 **日期：** 2026-10-13  
-**状态：统计师指定的拟写方案规则；尚待医学确认其与现行治疗/随访管理条款是否一致。原始方案Word未修改。**  
-**替代：** [先前CP-28挽救治疗Treatment Policy v0.1工作稿](./AK135-201_CIPN_rescue_treatment_intercurrent_event_working_v0_1.md)及其§6提出的“救治本身不触发EOT”方案建议；其文献研究和原方案摘录只作为历史证据，**不可视为当前统计建议**。
+**状态：已被2026-10-13用户最新决定撤回，**历史备选稿**，不能用于当前正式CP改稿。用户最终选择保留CIPN挽救治疗并按Treatment Policy使用后续实际EOT结果，**挽救本身不触发EOT**；保留医学实施Comment。当前唯一有效确认稿：[CP-28 v0.3](./AK135-201_CIPN_rescue_treatment_policy_confirmed_v0_3.md)。原始Word未改。**  
+**历史关系：** 本v0.2曾提出‘挽救即EOT’，**现已撤回**，不得替代[当前确认的Treatment Policy v0.3](./AK135-201_CIPN_rescue_treatment_policy_confirmed_v0_3.md)。旧v0.1、v0.2均仅留作决策轨迹。
 
 ## 一、用户明确的新选择
 

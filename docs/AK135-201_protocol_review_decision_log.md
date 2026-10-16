@@ -1429,6 +1429,15 @@ Lu et al. *Effects of Ganglioside-Monosialic Acid in Taxane-Induced Peripheral N
 
 
 
+#### CP-29补充勘误｜Kieffer 2017 sum score与summary score的术语和公式（2026-10-16）
+
+**用户要求更新归档；本条仅澄清名称、原文和公式，不改变已确认评分算法、终点观察窗口或缺失处理。**
+
+- **正式命名：** AK135-201的Protocol/SAP统一采用**18-item QLQ-CIPN20 sum score（0–100分）**；旧归档使用的`18-item summary score`是指相同指标的历史称呼。Kieffer 2017在Methods称`single, mean sum score`，Conclusion既称`our summary score`也正式推荐`18-item QLQ-CIPN20 sum score`。不能把论文中两种用语解读为两种不同算法。
+- **直接原文：** [Kieffer JM et al., *Qual Life Res* 2017, DOI 10.1007/s11136-017-1626-1](https://pure.amsterdamumc.nl/ws/portalfiles/portal/159020278/Evaluation-of-the-psychometric-properties-of-the-eortc-chemotherapy-induced-peripheral-neuropathy-questionnaire-qlq-cip.pdf)，Methods刊物p.3003/PDF第6页：18项`raw mean`线性转0–100，至少50%作答；Conclusion刊物p.3007/PDF第10页推荐18-item sum score。
+- **已确认算法不变：** 前18项原始值1–4、排除条件题19/20；`n_valid>=9`时`RS=Σ(valid item raw scores)/n_valid`、`S=(RS−1)/3×100`，高分症状重。若只有15项有效则除以15而非18；这一平均法及线性转换还可参考[EORTC QLQ-C30 Scoring Manual 3rd ed.（2001）](https://www.eortc.org/app/uploads/sites/2/2018/02/SCmanual.pdf)。Kieffer所称`sum score`**不是18个原始条目不经变换的总和**。
+- **优先级：** CP-29历史文本出现的仅EOT一点评价已被**CP-31窗口内任一次有效评价达标即计累积发生**覆盖；缺失规则服从后续**CP-35**。Kieffer论文**不证明个体变化≥10分是经验证的MCID或二分类cut-off**。参见[CP-29评分有效性确认稿（已勘误）](./AK135-201_CIPN20_18item_validity_confirmed_v0_1.md)。本轮**不修改Word**。
+
 ### CP-30最终统计决定｜FACT-Ntx13最低有效条目与prorating，医学Comment保留（2026-10-13）
 
 **用户原话：**“统计师（我）认可这个做法，但是需要保留comment。”
